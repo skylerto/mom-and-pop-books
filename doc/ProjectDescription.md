@@ -16,20 +16,28 @@
 
 ## Suggested Components
 1. Data Access
+
 	This component mediates between your application’s business logic and the data base. It should be scalable, use `connectionPool` and be configurable.
 2. Product Catalog Component/Service
+
 	The Product Catalog is offered both as a servlet (backend for the web front end of the e-store) and as a Web Service (SOAP or REST). When offered as a service, it is just for external Partners. It should support: `getProductInfo(productId)`
 3. Order Process Component/Service
+
 	The Order Process is offered both as a servlet and as a Service (REST). It is offered as a service for external Partners. It should support: `getOrdersByPartNumber(partNumber)`
 4. Session Controller
+
 	The session controller mediates between the “model” (B and C above) and the “views” (E, F, and G below).  The controller manages session information related to the shopping cart (items selected, address, etc.).  Ideally the Session Controller is a Servlet.
 5. Book Store Main Page
+
 	Displays the contents of the store organized by category and by product. 
 6. Web services
+
 	Your application has two web services, as specified above, each one with one method (the italic method). The web services respond to REST or SOAP messages. The REST message should reply with an XML message using the XML schema `po.xml`, available [here](http://www.w3.org/TR/xmlschema-0/)
 7. Performance and Scalability
+
 	Conduct a performance test of your application. For this project focus just on one Service (2 or 3 above). Test your application with `1, 2, ..., n` clients. Draw the throughput and the response time curves.
 8. Security
+
 	The store website should run under https (SSL). Account Order page and “Confirm Order” action must be secured so that a login is required and the password is not passed in plain text. The visitor MUST type in their credit card each time.  It should not be stored.
 
 ## Use Cases
