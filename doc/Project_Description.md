@@ -16,7 +16,7 @@
 
 ## Suggested Components
 1. Data Access
-	This component mediates between your application’s business logic and the data base. It should be scalable, use connectionPool and be configurable.
+	This component mediates between your application’s business logic and the data base. It should be scalable, use `connectionPool` and be configurable.
 2. Product Catalog Component/Service
 	The Product Catalog is offered both as a servlet (backend for the web front end of the e-store) and as a Web Service (SOAP or REST). When offered as a service, it is just for external Partners. It should support: `getProductInfo(productId)`
 3. Order Process Component/Service
@@ -26,7 +26,7 @@
 5. Book Store Main Page
 	Displays the contents of the store organized by category and by product. 
 6. Web services
-	Your application has two web services, as specified above, each one with one method (the italic method). The web services respond to REST or SOAP messages. The REST message should reply with an XML message using the XML schema po.xml, available [here](http://www.w3.org/TR/xmlschema-0/)
+	Your application has two web services, as specified above, each one with one method (the italic method). The web services respond to REST or SOAP messages. The REST message should reply with an XML message using the XML schema `po.xml`, available [here](http://www.w3.org/TR/xmlschema-0/)
 7. Performance and Scalability
 	Conduct a performance test of your application. For this project focus just on one Service (2 or 3 above). Test your application with `1, 2, ..., n` clients. Draw the throughput and the response time curves.
 8. Security
