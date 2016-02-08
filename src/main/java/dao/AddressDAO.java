@@ -13,7 +13,7 @@ import beans.AddressBean;
 /**
  * AddressDAO - Data Access Object for Addresses
  * 
- * @author Skyler Layne © Jan 9, 2016
+ * @author Skyler Layne on Jan 9, 2016
  *
  */
 public class AddressDAO {

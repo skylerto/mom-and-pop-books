@@ -2,7 +2,7 @@ package beans;
 
 /**
  * 
- * @author Skyler Layne © Jan 8, 2016
+ * @author Skyler Layne on Jan 8, 2016
  * @version 0.0.2
  *
  */

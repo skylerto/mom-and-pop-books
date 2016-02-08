@@ -13,7 +13,7 @@ import beans.BookBean;
 /**
  * BookDAO - Data Access Object for Book.
  * 
- * @author Skyler Layne © Jan 9, 2016
+ * @author Skyler Layne on Jan 9, 2016
  *
  */
 public class BookDAO {

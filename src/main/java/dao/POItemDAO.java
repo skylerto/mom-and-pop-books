@@ -12,6 +12,11 @@ import beans.BookBean;
 import beans.POBean;
 import beans.POItemBean;
 
+/**
+ * 
+ * @author Skyler Layne on Feb 8, 2016
+ *
+ */
 public class POItemDAO {
 
 	/* SQL DB Connection */

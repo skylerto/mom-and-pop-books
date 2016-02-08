@@ -11,6 +11,11 @@ import java.util.List;
 import beans.AddressBean;
 import beans.POBean;
 
+/**
+ * 
+ * @author Skyler Layne on Feb 8, 2016
+ *
+ */
 public class PODAO {
 	/* SQL DB Connection */
 	private String host = "localhost";

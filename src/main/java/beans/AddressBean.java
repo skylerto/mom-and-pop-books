@@ -3,7 +3,7 @@ package beans;
 /**
  * AddressBean - Address class
  * 
- * @author Skyler Layne © Jan 9, 2016
+ * @author Skyler Layne on Jan 9, 2016
  *
  */
 public class AddressBean {

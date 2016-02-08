@@ -1,5 +1,10 @@
 package beans;
 
+/**
+ * 
+ * @author Skyler Layne on Feb 8, 2016
+ *
+ */
 public class POBean {
 
 	/*
