@@ -17,6 +17,6 @@ TODO: Link to tools/languages used.
 
 ## Style
 - Indentation must use hard tabs
-- All attributes must be prefixed with `this`
+- Attributes only be prefixed with `this` if vague
 - Curly braces go on same line, no exceptions
 - All blocks must have braces, even one-line "if" statements
