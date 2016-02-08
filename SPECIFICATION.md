@@ -1,8 +1,10 @@
 Mom and Pop Bookstore Specification
 ===================================
 
+## Formal Specification
+- [Project Description](doc/ProjectDescription.md)
+
 ## Language
-Languages used:
 - Java for the backend
 - JDBC with MYSQL database
 - JSPs using JSTL for front end
