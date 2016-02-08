@@ -14,55 +14,17 @@
 	- Logout
 	- Register
 
-Below are the SUGGESTED main components of your bookstore. It is
-acceptable to deviate from this as long as you justify it in the design
-document. It is strongly recommended you discuss the deviations with
-your instructor and TA before you implement them.
-
-**A.  Data Access Component**
-
-This component mediates between your application’s business logic and
-the data base. It should be scalable, use connectionPool and be
-configurable.
-
-** **
-
-**B. Product Catalog Component/Service**
-
-The Product Catalog is offered both as a servlet (backend for the web
-front end of the e-store) and as a Web Service (SOAP or REST). When
-offered as a service, it is just for external Partners. It should
-support the following functionality:
-
--   *getProductInfo(productId)//gets the detailed product information
-    for a product as an XML file. This is a SOAP operation.*
-
-** **
-
-**C. Order Process Component/Service**
-
-The Order Process is offered both as a servlet and as a Service (REST).
-It is offered as a service for external Partners. It should support the
-following:
-
--   *getOrdersByPartNumber(partNumber)// return a list of all orders as
-    an XML file. This is a REST service.*
-
- 
-
-**D. Session Controller**
-
-The session controller mediates between the “model” (B and C above) and
-the “views” (E, F, and G below).  The controller manages session
-information related to the shopping cart (items selected, address,
-etc.).  Ideally the Session Controller is a Servlet.
-
-** **
-
-**E.  Book Store Main Page**
-
-Displays the contents of the store organized by category and by
-product. 
+## Suggested Components
+1. Data Access
+	This component mediates between your application’s business logic and the data base. It should be scalable, use connectionPool and be configurable.
+2. Product Catalog Component/Service
+	The Product Catalog is offered both as a servlet (backend for the web front end of the e-store) and as a Web Service (SOAP or REST). When offered as a service, it is just for external Partners. It should support: `getProductInfo(productId)`
+3. Order Process Component/Service
+	The Order Process is offered both as a servlet and as a Service (REST). It is offered as a service for external Partners. It should support: `getOrdersByPartNumber(partNumber)`
+4. Session Controller
+	The session controller mediates between the “model” (B and C above) and the “views” (E, F, and G below).  The controller manages session information related to the shopping cart (items selected, address, etc.).  Ideally the Session Controller is a Servlet.
+5. Book Store Main Page
+	Displays the contents of the store organized by category and by product. 
 
 The visitor must be able to
 
