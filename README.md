@@ -25,6 +25,16 @@ If you're using eclipse, generate the necessary files with
 $ mvn eclipse:eclipse
 ```
 
+If you are testing, you can run the junit tests with
+```unix
+$ mvn test
+```
+
+You can also generate code coverage via
+```unix
+$ mvn cobertura:cobertura
+```
+
 ### Contributors
 
 Our team name is **SSD** and it contains the members:
