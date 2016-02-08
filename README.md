@@ -14,6 +14,7 @@ For advanced contribution, checkout the [Design Documentation](https://github.co
 ```unix
 $ git clone git@github.com:skylerto/mom-and-pop-books.git
 $ cd mom-and-pop-books
+$ mvn install
 ```
 
 ### Contributors
