@@ -16,6 +16,7 @@ TODO: Link to tools/languages used.
 ## Tools
 - Maven
 - Git
+- copertura for code coverage
 
 ## Style
 - Indentation must use hard tabs
