@@ -26,68 +26,21 @@
 5. Book Store Main Page
 	Displays the contents of the store organized by category and by product. 
 
-The visitor must be able to
-
--   UC M1: browse Book Categories (Science, Engineering, Fiction) and
-    see the books available. 
-
--   UC M2: select a book and see the information for that title (price,
-    ratings etc.). 
-
--   UC M3: add a review for book
-
--   UC M4: search (text search) the store
-
--   UC M5: add an individual book to shopping cart. 
-
--   UC M6: Shopping cart button
-
- 
-
-**F. Shopping Cart Page**
-
-The Shopping Cart Page allows a visitor to
-
--   UC C1: view all the items in the shopping basket and their
-    information (price, etc.). 
-
--   UC C2: remove individual items from the shopping cart or
-    increase/decrease the quantity.  While doing so, the total bill
-    is updated.
-
--   UC C3: “Payment” submit button indicating they wish to purchase the
-    items in the shopping cart. 
-
- 
-
-**G.  Payment Page**
-
-The visitor can
-
--   UC P1: either log into their account with a password, or create a
-    new account.
-
--   UC P2: for a new account they enter their account name, password,
-    and default billing and shipping information. The new account is
-    submitted to the Order Processing service. 
-
--   UC P3: to submit their order, they verify their billing and shipping
-    information, and enter in their credit card number.
-
--   UC P4: “Confirm order” button
-
-*Note*: You should hard code that every 3rd request is denied on your
-website. If the order is approved, you should display “Order
-Successfully Completed.”  If it is denied, you should display “Credit
-Card Authorization Failed.” 
-
- 
-
-**H. Analytics Page**
-
-The Administrator should be able to
-
--   UC A1: generate a report with the books sold each month
+## Use Cases
+- M1 -- Visitor can browse Book Categories and see the books available
+- M2 -- Visitor can select a book and see the information for that title
+- M3 -- Visitor can add a review for book
+- M4 -- Visitor can search the store
+- M5 -- Visitor can add an individual book to shopping cart
+- M6 -- Visitor can use the shopping cart button
+- C1 -- Shopping cart has a view view of all the items in the shopping basket and their information (price, etc.)
+- C2 -- Shopping cart supports removal individual items from the shopping cart or increase/decrease the quantity (while doing so, the total bill is updated)
+- C3 -- Shopping cart contains "Payment" submit button indicating they wish to purchase the items in the shopping cart
+- P1 -- Payment page requires visitor either log into their account with a password, or create a new account.
+- P2 -- Payment page for a new account requires they enter their account name, password, and default billing and shipping information
+- P3 -- Payment page requires that to submit their order, they verify their billing and shipping information, and enter in their credit card number
+- P4 -- Payment page contains a "Confirm order" button, which fails every third request
+- A1 -- Administrator can generate a report with the books sold each month
 
 **I.** **Web services.** Your application has two web services, as
 specified above, each one with one method (the italic method). The web
