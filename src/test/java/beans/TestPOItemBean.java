@@ -4,60 +4,133 @@ import junit.framework.TestCase;
 
 public class TestPOItemBean extends TestCase {
 
+	POItemBean poitem;
+	BookBean book;
+	BookBean book2;
+	POBean po;
+	POBean po2;
+	AddressBean address;
+
+	String title = "";
+	double price = 20.0;
+	String category = "action";
+
+	// BookBean fields
+	int id = 1;
+	String bid = "BOOK1";
+	int pOID = 1;
+	String bookID = "BOOK1";
+
+	// AddressBean fields
+	int aid = 1;
+	String street = "some street";
+	String province = "ON";
+	String country = "CA";
+	String zip = "M3J1P3";
+	String phone = "905 960 6578";
+
+	// POBean fields
+	String lname = "last";
+	String fname = "first";
+	String status = "inactive";
+
+
+
+
 	protected void setUp() throws Exception {
 		super.setUp();
+
+		book = new BookBean(bid, title, price, category);
+		book2 = new BookBean("BOOK21", title, price, category);
+		address = new AddressBean(aid, street, province, country, zip, phone);
+		po = new POBean(id, lname, fname, status, address);
+		po2 = new POBean(2, lname, fname, status, address);
+		
+		poitem = new POItemBean(id, bid, price, pOID, bookID, po, book);
 	}
 
 	protected void tearDown() throws Exception {
 		super.tearDown();
+		poitem = null;
+		book = null;
+		po = null;
+		address = null;
 	}
 
 	public void testPOItemBean() {
-		fail("Not yet implemented");
+		
+		this.book = new BookBean(bid, title, price, category);
+		this.address = new AddressBean(aid, street, province, country, zip, phone);
+		this.po = new POBean(id, lname, fname, status, address);
+		this.poitem = new POItemBean(id, bid, price, pOID, bookID, po, book);
 	}
 
 	public void testToString() {
-		fail("Not yet implemented");
+		String res = "POItem: [" + poitem.getId() + ", " + poitem.getBid() + ", " + poitem.getPrice() + ", " + poitem.getPOID() + ", " + poitem.getBookID()
+				+ ", " + poitem.getPO() + ", " + poitem.getBook() + "]";
 	}
 
 	public void testGetId() {
-		fail("Not yet implemented");
+		assertEquals(1, poitem.getId());
 	}
 
 	public void testSetId() {
-		fail("Not yet implemented");
+		poitem.setId(2);
+		assertEquals(2, poitem.getId());
+	}
+	
+	public void testGetPO() {
+		assertEquals(po, poitem.getPO());
+	}
+
+	public void testSetPO() {
+		poitem.setPO(po2);
+		assertEquals(po2, poitem.getPO());
+	}
+
+	public void testGetBook() {
+		assertEquals(book, poitem.getBook());
+	}
+
+	public void testSetBook() {
+		poitem.setBook(book2);
+		assertEquals(book2, poitem.getBook());
 	}
 
 	public void testGetBid() {
-		fail("Not yet implemented");
+		assertEquals(bid, poitem.getBid());
 	}
 
 	public void testSetBid() {
-		fail("Not yet implemented");
+		poitem.setBid("BOOK2");
+		assertEquals("BOOK2", poitem.getBid());
 	}
 
 	public void testGetPrice() {
-		fail("Not yet implemented");
+		assertEquals(price, poitem.getPrice());
 	}
 
 	public void testSetPrice() {
-		fail("Not yet implemented");
+		poitem.setPrice(100.00);
+		assertEquals(100.00, poitem.getPrice());
 	}
 
 	public void testGetPOID() {
-		fail("Not yet implemented");
+		assertEquals(pOID, poitem.getPOID());
 	}
 
 	public void testSetPOID() {
-		fail("Not yet implemented");
+		poitem.setPOID(2);
+		assertEquals(2, poitem.getPOID());
 	}
 
 	public void testGetBookID() {
-		fail("Not yet implemented");
+		assertEquals(bid, poitem.getBookID());
 	}
 
 	public void testSetBookID() {
-		fail("Not yet implemented");
+		poitem.setBookID("BOOK2");
+		assertEquals("BOOK2", poitem.getBookID());
 	}
 
 }
