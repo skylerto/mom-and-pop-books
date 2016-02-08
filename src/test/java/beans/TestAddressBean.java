@@ -4,68 +4,87 @@ import junit.framework.TestCase;
 
 public class TestAddressBean extends TestCase {
 
+	AddressBean address;
+
+	// AddressBean fields
+	int aid = 1;
+	String street = "some street";
+	String province = "ON";
+	String country = "CA";
+	String zip = "M3J1P3";
+	String phone = "905 960 6578";
+
 	protected void setUp() throws Exception {
 		super.setUp();
+		address = new AddressBean(aid, street, province, country, zip, phone);
 	}
 
 	protected void tearDown() throws Exception {
-		super.tearDown();
+		address = null;
 	}
 
 	public void testAddressBean() {
-		fail("Not yet implemented");
+		address = new AddressBean(aid, street, province, country, zip, phone);
 	}
 
 	public void testGetId() {
-		fail("Not yet implemented");
+		assertEquals(aid, address.getId());
 	}
 
 	public void testSetId() {
-		fail("Not yet implemented");
+		address.setId(2);
+		assertEquals(2, address.getId());
 	}
 
 	public void testGetStreet() {
-		fail("Not yet implemented");
+		assertEquals(street, address.getStreet());
 	}
 
 	public void testSetStreet() {
-		fail("Not yet implemented");
+		address.setStreet("other lane");
+		assertEquals("other lane", address.getStreet());
 	}
 
 	public void testGetProvince() {
-		fail("Not yet implemented");
+		assertEquals(province, address.getProvince());
 	}
 
 	public void testSetProvince() {
-		fail("Not yet implemented");
+		address.setProvince("AB");
+		assertEquals("AB", address.getProvince());
 	}
 
 	public void testGetCountry() {
-		fail("Not yet implemented");
+		assertEquals(country, address.getCountry());
 	}
 
 	public void testSetCountry() {
-		fail("Not yet implemented");
+		address.setCountry("USA");
+		assertEquals("USA", address.getCountry());
 	}
 
 	public void testGetZip() {
-		fail("Not yet implemented");
+		assertEquals(zip, address.getZip());
 	}
 
 	public void testSetZip() {
-		fail("Not yet implemented");
+		address.setZip("M4J1K2");
+		assertEquals("M4J1K2", address.getZip());
 	}
 
 	public void testGetPhone() {
-		fail("Not yet implemented");
+		assertEquals(phone, address.getPhone());
 	}
 
 	public void testSetPhone() {
-		fail("Not yet implemented");
+		address.setPhone("9054768976");
+		assertEquals("9054768976", address.getPhone());
 	}
 
 	public void testToString() {
-		fail("Not yet implemented");
+		String res = "Address: [" + address.getId() + ", " + address.getStreet() + ", " + address.getProvince() + ", "
+				+ address.getCountry() + ", " + address.getZip() + ", " + address.getPhone() + "]";
+		assertEquals(res, address.toString());
 	}
 
 }

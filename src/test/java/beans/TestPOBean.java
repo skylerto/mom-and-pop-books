@@ -4,60 +4,102 @@ import junit.framework.TestCase;
 
 public class TestPOBean extends TestCase {
 
+	POBean po;
+	AddressBean address;
+	AddressBean address2;
 	protected void setUp() throws Exception {
 		super.setUp();
+		
+		int aid = 1;
+		String street = "some street";
+		String province = "ON";
+		String country = "CA";
+		String zip = "M3J1P3";
+		String phone = "905 960 6578";
+		this.address = new AddressBean(aid, street, province, country, zip, phone);
+		
+		this.address2 = new AddressBean(aid + 1, street, province, country, zip, phone);
+		
+		int id = 1;
+		String lname = "last";
+		String fname = "first";
+		String status = "inactive";
+		this.po = new POBean(id, lname, fname, status, address);
 	}
 
 	protected void tearDown() throws Exception {
 		super.tearDown();
+		po = null;
+		address = null;
 	}
 
 	public void testPOBean() {
-		fail("Not yet implemented");
+		
+		int aid = 1;
+		String street = "some street";
+		String province = "ON";
+		String country = "CA";
+		String zip = "M3J1P3";
+		String phone = "905 960 6578";
+		AddressBean address = new AddressBean(aid, street, province, country, zip, phone);
+		
+		int id = 1;
+		String lname = "last";
+		String fname = "first";
+		String status = "inactive";
+		
+		POBean po = new POBean(id, lname, fname, status, address);
 	}
 
 	public void testGetId() {
-		fail("Not yet implemented");
+		assertEquals(1, this.po.getId());
 	}
 
 	public void testSetId() {
-		fail("Not yet implemented");
+		this.po.setId(2);
+		assertEquals(2, this.po.getId());
 	}
 
 	public void testGetLname() {
-		fail("Not yet implemented");
+		System.out.println(this.po.getLname());
+		assertEquals("last", this.po.getLname());
 	}
 
 	public void testSetLname() {
-		fail("Not yet implemented");
+		this.po.setLname("otherlast");
+		assertEquals("otherlast", this.po.getLname());
 	}
 
 	public void testGetFname() {
-		fail("Not yet implemented");
+		assertEquals("first", this.po.getFname());
 	}
 
 	public void testSetFname() {
-		fail("Not yet implemented");
+		this.po.setFname("otherfirst");
+		assertEquals("otherfirst", this.po.getFname());
 	}
 
 	public void testGetStatus() {
-		fail("Not yet implemented");
+		assertEquals("inactive", po.getStatus());
 	}
 
 	public void testSetStatus() {
-		fail("Not yet implemented");
+		this.po.setStatus("active");
+		assertEquals("active", this.po.getStatus());
 	}
 
 	public void testGetAddress() {
-		fail("Not yet implemented");
+		assertEquals(address, this.po.getAddress());
 	}
 
 	public void testSetAddress() {
-		fail("Not yet implemented");
+		this.po.setAddress(address2);
+		assertEquals(address2, this.po.getAddress());
 	}
 
 	public void testToString() {
-		fail("Not yet implemented");
+		String res = "PO: [" + this.po.getId() + ", " + this.po.getLname() + ", " + this.po.getFname() + ", " + this.po.getStatus() + ", " + this.po.getAddress() + "]";
+		assertEquals(res, this.po.toString());
 	}
 
 }

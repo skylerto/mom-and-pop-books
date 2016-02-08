@@ -9,13 +9,30 @@ public class POItemBean {
 
 	private int id;
 	private String bid;
-	private int price;
+	private double price;
 	private int POID;
 	private POBean PO;
+	
+	public POBean getPO() {
+		return PO;
+	}
+
+	public void setPO(POBean pO) {
+		PO = pO;
+	}
+
+	public BookBean getBook() {
+		return book;
+	}
+
+	public void setBook(BookBean book) {
+		this.book = book;
+	}
+
 	private String BookID;
 	private BookBean book;
 
-	public POItemBean(int id, String bid, int price, int pOID, String bookID, POBean PO, BookBean book) {
+	public POItemBean(int id, String bid, double price, int pOID, String bookID, POBean PO, BookBean book) {
 		this.id = id;
 		this.bid = bid;
 		this.price = price;
@@ -47,11 +64,11 @@ public class POItemBean {
 		this.bid = bid;
 	}
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
