@@ -2,7 +2,7 @@ Mom and Pop Bookstore
 =====================
 
 [![Slack
-Status](slack.svg)](https://mom-and-pop-books.slack.com)
+Status](./slack.svg)](https://mom-and-pop-books.slack.com)
 
 The brick-and-mortar company Mom&Pop wants to create an online book store. This, is, their, store.
 
