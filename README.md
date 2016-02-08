@@ -17,6 +17,11 @@ $ cd mom-and-pop-books
 $ mvn install
 ```
 
+If you're using eclipse, generate the necessary files with
+```unix
+$ mvn eclipse:eclipse
+```
+
 ### Contributors
 
 Our team name is **SSD** and it contains the members:
