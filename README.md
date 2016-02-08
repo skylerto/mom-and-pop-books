@@ -12,7 +12,7 @@ For advanced contribution, checkout the [Design Documentation](https://github.co
 ## Contributing
 
 ```unix
-$ git clone https://github.com/skylerto/mom-and-pop-books.git
+$ git clone git@github.com:skylerto/mom-and-pop-books.git
 $ cd mom-and-pop-books
 ```
 
