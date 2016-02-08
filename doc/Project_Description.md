@@ -1,61 +1,18 @@
-Project topic, LE/EECS 4413 Z
-=============================
+# Mom and Pop Books
 
-Executive summary
------------------
-
-The brick-and-mortar company Mom&Pop wants to create an online book
-store.  They want these types of Users: Visitors, Customers,
-Administrators, and Partners, to interact with the store.
-
-All Users can
-
--   Log in
-
--   Log out
-
--   Register
-
-Visitors and Customers can
-
--   Browse a product catalogue of books 
-
--   Select, add, remove books to/from a shopping cart
-
--   “Check out” by providing credit card information and shipping
-    information to purchase the items in the shopping cart
-
--   Search the store
-
-Administrators: are the owners of the store
-
--   Run Reports
-
-Partners: are business partners, they can programmatically (through SOAP
-and REST)
-
--   Search the Catalog
-
-Design Hints
-------------
-
-A sample data schema is attached at the end of this document.  It is in
-MySQL but you are welcome to use Derby. You need to extend the schema
-and add more content to the tables.
-
- 
-
-It is important that the architecture of your book store exhibits:
-
--   Good coding style (modularity, comments, readability, etc.)
-
--   Architecture and Design patterns (MVC, Observer etc.)
-
--   Testing (Robustness to user inputs)
-
--   Drivers and test data.
-
-  
+## User Roles
+- Visitor
+	- Browse, interact with cart (add/remove), checkout, search
+- Customer
+	- Same as visitor
+- Administrator
+	- Run reports
+- Partner
+	- Interact with API (SOAP or REST)
+- All Users
+	- Login
+	- Logout
+	- Register
 
 Below are the SUGGESTED main components of your bookstore. It is
 acceptable to deviate from this as long as you justify it in the design
