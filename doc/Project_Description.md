@@ -72,4 +72,8 @@ A single zip file containing the following:
 2. WAR File
 
 ## Grading
-See [Marking Scheme](Project_Marking.md).
+* Use Cases -- 35 marks
+* Documentation -- 15 marks
+* Robustness and Testing -- 15 marks
+* Source Code and Design -- 15 marks
+* Quality (compared to other groups) -- 20 marks
