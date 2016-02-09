@@ -16,6 +16,13 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import beans.BookBean;
 
+/**
+ * 
+ * @author Skyler Layne on Feb 9, 2016
+ * 
+ * @version 0.1.0
+ *
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class TestBookDAO {
 

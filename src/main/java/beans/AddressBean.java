@@ -5,6 +5,7 @@ package beans;
  * 
  * @author Skyler Layne on Jan 9, 2016
  *
+ * @version 0.0.1
  */
 public class AddressBean {
 
