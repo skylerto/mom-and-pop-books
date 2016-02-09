@@ -68,6 +68,7 @@ public class TestPOItemBean extends TestCase {
 	public void testToString() {
 		String res = "POItem: [" + poitem.getId() + ", " + poitem.getBid() + ", " + poitem.getPrice() + ", " + poitem.getPOID() + ", " + poitem.getBookID()
 				+ ", " + poitem.getPO() + ", " + poitem.getBook() + "]";
+		assertEquals(res, poitem.toString());
 	}
 
 	public void testGetId() {
