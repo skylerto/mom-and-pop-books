@@ -16,49 +16,18 @@ import beans.BookBean;
  * @author Skyler Layne on Jan 9, 2016
  *
  */
-public class BookDAO {
-
-	/* SQL DB Connection */
-	private String host = "localhost";
-	private String user = "bookstore_test";
-	private String pass = "4413";
-
-	/* String SQL Queries */
-	private static String TABLE_NAME = "Book";
-	private static String GET_ALL_QUERY = "select * from " + TABLE_NAME;
-	private static String GET_BY_QUERY = "select * from " + TABLE_NAME;
-
-	private static Connection con = null;
-	private static Statement stmt = null;
+public class BookDAO extends DAO {
 
 	public BookDAO() {
-
-	}
-
-	// Get a connection from the pool
-	private void createConnection()
-			throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
-		Class.forName("com.mysql.jdbc.Driver").newInstance();
-
-		con = DriverManager.getConnection("jdbc:mysql://" + host + "/bookstore_test?useSSL=false", user, pass);
-
-		stmt = con.createStatement();
-	}
-
-	public void close() {
-		try {
-			con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("Error: " + e.getErrorCode() + ": " + e.getMessage());
-		}
+		super();
+		this.setTableName("Book");
 	}
 
 	public List<BookBean> get(ResultSet rs) {
 		List<BookBean> books = new ArrayList<BookBean>();
 
 		try {
-			con.setReadOnly(true);
+			this.getCon().setReadOnly(true);
 
 			while (rs.next()) {
 				String bid = rs.getString("bid");
@@ -69,7 +38,7 @@ public class BookDAO {
 			}
 
 			rs.close();
-			stmt.close();
+			this.getStmt().close();
 			close();
 			return books;
 
@@ -82,17 +51,8 @@ public class BookDAO {
 	public List<BookBean> findAll() {
 		try {
 			createConnection();
-			ResultSet rs = stmt.executeQuery(GET_ALL_QUERY);
+			ResultSet rs = this.getStmt().executeQuery(this.getAllQuery());
 			return get(rs);
-		} catch (InstantiationException e) {
-			System.out.println("InstantiationException: " + e.getMessage() + "");
-			return null;
-		} catch (IllegalAccessException e) {
-			System.out.println("IllegalAccessException: " + e.getMessage() + "");
-			return null;
-		} catch (ClassNotFoundException e) {
-			System.out.println("ClassNotFoundException: " + e.getMessage() + "");
-			return null;
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getErrorCode() + "");
 			return null;
@@ -102,17 +62,8 @@ public class BookDAO {
 	public List<BookBean> findById(String id) {
 		try {
 			createConnection();
-			ResultSet rs = stmt.executeQuery(GET_BY_QUERY + " where bid='" + id + "';");
+			ResultSet rs = this.getStmt().executeQuery(this.getAllQuery() + " where bid='" + id + "';");
 			return get(rs);
-		} catch (InstantiationException e) {
-			System.out.println("InstantiationException: " + e.getMessage() + "");
-			return null;
-		} catch (IllegalAccessException e) {
-			System.out.println("IllegalAccessException: " + e.getMessage() + "");
-			return null;
-		} catch (ClassNotFoundException e) {
-			System.out.println("ClassNotFoundException: " + e.getMessage() + "");
-			return null;
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getErrorCode() + "");
 			return null;
@@ -122,17 +73,8 @@ public class BookDAO {
 	public List<BookBean> findByTitle(String name) {
 		try {
 			createConnection();
-			ResultSet rs = stmt.executeQuery(GET_BY_QUERY + " where title='" + name + "';");
+			ResultSet rs = this.getStmt().executeQuery(this.getAllQuery() + " where title='" + name + "';");
 			return get(rs);
-		} catch (InstantiationException e) {
-			System.out.println("InstantiationException: " + e.getMessage() + "");
-			return null;
-		} catch (IllegalAccessException e) {
-			System.out.println("IllegalAccessException: " + e.getMessage() + "");
-			return null;
-		} catch (ClassNotFoundException e) {
-			System.out.println("ClassNotFoundException: " + e.getMessage() + "");
-			return null;
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getErrorCode() + "");
 			return null;
@@ -141,9 +83,7 @@ public class BookDAO {
 
 	public boolean insert(BookBean book) {
 		// TODO Auto-generated method stub
-		
-		
-		
+
 		return false;
 	}
 

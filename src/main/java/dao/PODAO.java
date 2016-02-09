@@ -16,46 +16,18 @@ import beans.POBean;
  * @author Skyler Layne on Feb 8, 2016
  *
  */
-public class PODAO {
-	/* SQL DB Connection */
-	private String host = "localhost";
-	private String user = "bookstore_test";
-	private String pass = "4413";
-
-	/* String SQL Queries */
-	private static String TABLE_NAME = "PO";
-	private static String GET_ALL_QUERY = "select * from " + TABLE_NAME;
-	private static String GET_BY_QUERY = "select * from " + TABLE_NAME;
-
-	private static Connection con = null;
-	private static Statement stmt = null;
+public class PODAO extends DAO {
 
 	public PODAO() {
-
-	}
-
-	// Get a connection from the pool
-	private void createConnection()
-			throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
-		Class.forName("com.mysql.jdbc.Driver").newInstance();
-		con = DriverManager.getConnection("jdbc:mysql://" + host + "/bookstore_test?useSSL=false", user, pass);
-		stmt = con.createStatement();
-	}
-
-	public void close() {
-		try {
-			con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("Error: " + e.getErrorCode() + ": " + e.getMessage());
-		}
+		super();
+		this.setTableName("PO");
 	}
 
 	public List<POBean> get(ResultSet rs) {
 		List<POBean> addresses = new ArrayList<POBean>();
 
 		try {
-			con.setReadOnly(true);
+			this.getCon().setReadOnly(true);
 
 			while (rs.next()) {
 				int id = rs.getInt("id");
@@ -69,7 +41,7 @@ public class PODAO {
 			}
 
 			rs.close();
-			stmt.close();
+			this.getStmt().close();
 			close();
 			return addresses;
 
@@ -82,17 +54,8 @@ public class PODAO {
 	public List<POBean> findAll() {
 		try {
 			createConnection();
-			ResultSet rs = stmt.executeQuery(GET_ALL_QUERY);
+			ResultSet rs = this.getStmt().executeQuery(this.getAllQuery());
 			return get(rs);
-		} catch (InstantiationException e) {
-			System.out.println("InstantiationException: " + e.getMessage() + "");
-			return null;
-		} catch (IllegalAccessException e) {
-			System.out.println("IllegalAccessException: " + e.getMessage() + "");
-			return null;
-		} catch (ClassNotFoundException e) {
-			System.out.println("ClassNotFoundException: " + e.getMessage() + "");
-			return null;
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getErrorCode() + "");
 			return null;
@@ -102,17 +65,8 @@ public class PODAO {
 	public List<POBean> findById(String id) {
 		try {
 			createConnection();
-			ResultSet rs = stmt.executeQuery(GET_BY_QUERY + " where id='" + id + "';");
+			ResultSet rs = this.getStmt().executeQuery(this.getAllQuery() + " where id='" + id + "';");
 			return get(rs);
-		} catch (InstantiationException e) {
-			System.out.println("InstantiationException: " + e.getMessage() + "");
-			return null;
-		} catch (IllegalAccessException e) {
-			System.out.println("IllegalAccessException: " + e.getMessage() + "");
-			return null;
-		} catch (ClassNotFoundException e) {
-			System.out.println("ClassNotFoundException: " + e.getMessage() + "");
-			return null;
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getErrorCode() + "");
 			return null;
@@ -122,17 +76,8 @@ public class PODAO {
 	public List<POBean> findByTitle(String name) {
 		try {
 			createConnection();
-			ResultSet rs = stmt.executeQuery(GET_BY_QUERY + " where title='" + name + "';");
+			ResultSet rs = this.getStmt().executeQuery(this.getAllQuery() + " where title='" + name + "';");
 			return get(rs);
-		} catch (InstantiationException e) {
-			System.out.println("InstantiationException: " + e.getMessage() + "");
-			return null;
-		} catch (IllegalAccessException e) {
-			System.out.println("IllegalAccessException: " + e.getMessage() + "");
-			return null;
-		} catch (ClassNotFoundException e) {
-			System.out.println("ClassNotFoundException: " + e.getMessage() + "");
-			return null;
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getErrorCode() + "");
 			return null;
