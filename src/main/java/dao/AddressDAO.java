@@ -1,10 +1,7 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,51 +11,21 @@ import beans.AddressBean;
  * AddressDAO - Data Access Object for Addresses
  * 
  * @author Skyler Layne on Jan 9, 2016
+ * @version 0.1.0
  *
  */
-public class AddressDAO {
-
-	/* SQL DB Connection */
-	private String host = "localhost";
-	private String user = "bookstore_test";
-	private String pass = "4413";
-
-	/* String SQL Queries */
-	private static String TABLE_NAME = "Address";
-	private static String GET_ALL_QUERY = "select * from " + TABLE_NAME;
-	private static String GET_BY_QUERY = "select * from " + TABLE_NAME;
-
-	private static Connection con = null;
-	private static Statement stmt = null;
+public class AddressDAO extends DAO {
 
 	public AddressDAO() {
-
-	}
-
-	// Get a connection from the pool
-	private void createConnection()
-			throws SQLException, InstantiationException, IllegalAccessException, ClassNotFoundException {
-		Class.forName("com.mysql.jdbc.Driver").newInstance();
-
-		con = DriverManager.getConnection("jdbc:mysql://" + host + "/bookstore_test?useSSL=false", user, pass);
-
-		stmt = con.createStatement();
-	}
-
-	public void close() {
-		try {
-			con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			System.out.println("Error: " + e.getErrorCode() + ": " + e.getMessage());
-		}
+		super();
+		this.setTableName("Address");
 	}
 
 	public List<AddressBean> get(ResultSet rs) {
 		List<AddressBean> addresses = new ArrayList<AddressBean>();
 
 		try {
-			con.setReadOnly(true);
+			this.getCon().setReadOnly(true);
 
 			while (rs.next()) {
 				int id = rs.getInt("id");
@@ -72,7 +39,7 @@ public class AddressDAO {
 			}
 
 			rs.close();
-			stmt.close();
+			this.getStmt().close();
 			close();
 			return addresses;
 
@@ -84,18 +51,9 @@ public class AddressDAO {
 
 	public List<AddressBean> findAll() {
 		try {
-			createConnection();
-			ResultSet rs = stmt.executeQuery(GET_ALL_QUERY);
+			this.createConnection();
+			ResultSet rs = this.getStmt().executeQuery(this.getAllQuery());
 			return get(rs);
-		} catch (InstantiationException e) {
-			System.out.println("InstantiationException: " + e.getMessage() + "");
-			return null;
-		} catch (IllegalAccessException e) {
-			System.out.println("IllegalAccessException: " + e.getMessage() + "");
-			return null;
-		} catch (ClassNotFoundException e) {
-			System.out.println("ClassNotFoundException: " + e.getMessage() + "");
-			return null;
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getErrorCode() + "");
 			return null;
@@ -103,39 +61,25 @@ public class AddressDAO {
 	}
 
 	public List<AddressBean> findById(String id) {
+
+		this.createConnection();
+		ResultSet rs;
 		try {
-			createConnection();
-			ResultSet rs = stmt.executeQuery(GET_BY_QUERY + " where id='" + id + "';");
+			rs = this.getStmt().executeQuery(this.getAllQuery() + " where id='" + id + "';");
 			return get(rs);
-		} catch (InstantiationException e) {
-			System.out.println("InstantiationException: " + e.getMessage() + "");
-			return null;
-		} catch (IllegalAccessException e) {
-			System.out.println("IllegalAccessException: " + e.getMessage() + "");
-			return null;
-		} catch (ClassNotFoundException e) {
-			System.out.println("ClassNotFoundException: " + e.getMessage() + "");
-			return null;
 		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getErrorCode() + "");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 			return null;
 		}
+
 	}
 
 	public List<AddressBean> findByTitle(String name) {
 		try {
 			createConnection();
-			ResultSet rs = stmt.executeQuery(GET_BY_QUERY + " where title='" + name + "';");
+			ResultSet rs = this.getStmt().executeQuery(this.getAllQuery() + " where title='" + name + "';");
 			return get(rs);
-		} catch (InstantiationException e) {
-			System.out.println("InstantiationException: " + e.getMessage() + "");
-			return null;
-		} catch (IllegalAccessException e) {
-			System.out.println("IllegalAccessException: " + e.getMessage() + "");
-			return null;
-		} catch (ClassNotFoundException e) {
-			System.out.println("ClassNotFoundException: " + e.getMessage() + "");
-			return null;
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getErrorCode() + "");
 			return null;
