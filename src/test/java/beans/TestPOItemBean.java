@@ -34,9 +34,6 @@ public class TestPOItemBean extends TestCase {
 	String fname = "first";
 	String status = "inactive";
 
-
-
-
 	protected void setUp() throws Exception {
 		super.setUp();
 
@@ -45,8 +42,8 @@ public class TestPOItemBean extends TestCase {
 		address = new AddressBean(aid, street, province, country, zip, phone);
 		po = new POBean(id, lname, fname, status, address);
 		po2 = new POBean(2, lname, fname, status, address);
-		
-		poitem = new POItemBean(id, bid, price, pOID, bookID, po, book);
+
+		poitem = new POItemBean(id, bid, price, po, book);
 	}
 
 	protected void tearDown() throws Exception {
@@ -58,16 +55,16 @@ public class TestPOItemBean extends TestCase {
 	}
 
 	public void testPOItemBean() {
-		
+
 		this.book = new BookBean(bid, title, price, category);
 		this.address = new AddressBean(aid, street, province, country, zip, phone);
 		this.po = new POBean(id, lname, fname, status, address);
-		this.poitem = new POItemBean(id, bid, price, pOID, bookID, po, book);
+		this.poitem = new POItemBean(id, bid, price, po, book);
 	}
 
 	public void testToString() {
-		String res = "POItem: [" + poitem.getId() + ", " + poitem.getBid() + ", " + poitem.getPrice() + ", " + poitem.getPOID() + ", " + poitem.getBookID()
-				+ ", " + poitem.getPO() + ", " + poitem.getBook() + "]";
+		String res = "POItem: [" + poitem.getId() + ", " + poitem.getBid() + ", " + poitem.getPrice() + ", "
+				+ poitem.getPO() + ", " + poitem.getBook() + "]";
 		assertEquals(res, poitem.toString());
 	}
 
@@ -79,7 +76,7 @@ public class TestPOItemBean extends TestCase {
 		poitem.setId(2);
 		assertEquals(2, poitem.getId());
 	}
-	
+
 	public void testGetPO() {
 		assertEquals(po, poitem.getPO());
 	}
@@ -114,24 +111,6 @@ public class TestPOItemBean extends TestCase {
 	public void testSetPrice() {
 		poitem.setPrice(100.00);
 		assertEquals(100.00, poitem.getPrice());
-	}
-
-	public void testGetPOID() {
-		assertEquals(pOID, poitem.getPOID());
-	}
-
-	public void testSetPOID() {
-		poitem.setPOID(2);
-		assertEquals(2, poitem.getPOID());
-	}
-
-	public void testGetBookID() {
-		assertEquals(bid, poitem.getBookID());
-	}
-
-	public void testSetBookID() {
-		poitem.setBookID("BOOK2");
-		assertEquals("BOOK2", poitem.getBookID());
 	}
 
 }

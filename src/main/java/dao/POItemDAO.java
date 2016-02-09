@@ -30,12 +30,9 @@ public class POItemDAO extends DAO {
 			while (rs.next()) {
 
 				int id = rs.getInt("id");
-
 				String bid = rs.getString("bid");
 				int price = rs.getInt("price");
-				int poid = rs.getInt("id");
-				POBean po = (new PODAO()).findById("" + poid).get(poid - 1);
-				String bookID = rs.getString("bid");
+				POBean po = (new PODAO()).findById("" + id).get(id - 1);
 				List<BookBean> list = (new BookDAO()).findById(bid);
 				BookBean book = null;
 				for (BookBean b : list) {
@@ -44,7 +41,7 @@ public class POItemDAO extends DAO {
 					}
 				}
 
-				PoItems.add(new POItemBean(id, bid, price, poid, bookID, po, book));
+				PoItems.add(new POItemBean(id, bid, price, po, book));
 			}
 
 			rs.close();
