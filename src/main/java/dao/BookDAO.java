@@ -1,10 +1,7 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,12 +20,10 @@ public class BookDAO extends DAO {
 		this.setTableName("Book");
 	}
 
-	public List<BookBean> get(ResultSet rs) {
-		List<BookBean> books = new ArrayList<BookBean>();
-
+	private List<BookBean> get(ResultSet rs) {
+		List<BookBean> books = new ArrayList<>();
 		try {
 			this.getCon().setReadOnly(true);
-
 			while (rs.next()) {
 				String bid = rs.getString("bid");
 				String title = rs.getString("title");
@@ -36,7 +31,6 @@ public class BookDAO extends DAO {
 				String category = rs.getString("category");
 				books.add(new BookBean(bid, title, price, category));
 			}
-
 			rs.close();
 			this.getStmt().close();
 			close();
@@ -44,7 +38,7 @@ public class BookDAO extends DAO {
 
 		} catch (SQLException e) {
 			System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
-			return null;
+			return new ArrayList<>();
 		}
 	}
 
@@ -54,8 +48,9 @@ public class BookDAO extends DAO {
 			ResultSet rs = this.getStmt().executeQuery(this.getAllQuery());
 			return get(rs);
 		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getErrorCode() + "");
-			return null;
+			System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+			e.getStackTrace();
+			return new ArrayList<>();
 		}
 	}
 
@@ -66,7 +61,7 @@ public class BookDAO extends DAO {
 			return get(rs);
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getErrorCode() + "");
-			return null;
+			return new ArrayList<>();
 		}
 	}
 
@@ -77,23 +72,20 @@ public class BookDAO extends DAO {
 			return get(rs);
 		} catch (SQLException e) {
 			System.out.println("SQLException: " + e.getErrorCode() + "");
-			return null;
+			return new ArrayList<>();
 		}
 	}
 
 	public boolean insert(BookBean book) {
-		// TODO Auto-generated method stub
 
 		return false;
 	}
 
 	public boolean update(BookBean book) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	public boolean delete(BookBean book) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 }

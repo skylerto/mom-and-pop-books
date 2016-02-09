@@ -21,8 +21,8 @@ public class AddressDAO extends DAO {
 		this.setTableName("Address");
 	}
 
-	public List<AddressBean> get(ResultSet rs) {
-		List<AddressBean> addresses = new ArrayList<AddressBean>();
+	private List<AddressBean> get(ResultSet rs) {
+		List<AddressBean> addresses = new ArrayList<>();
 
 		try {
 			this.getCon().setReadOnly(true);
@@ -45,7 +45,7 @@ public class AddressDAO extends DAO {
 
 		} catch (SQLException e) {
 			System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
-			return null;
+			return new ArrayList<>();
 		}
 	}
 
@@ -55,8 +55,8 @@ public class AddressDAO extends DAO {
 			ResultSet rs = this.getStmt().executeQuery(this.getAllQuery());
 			return get(rs);
 		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getErrorCode() + "");
-			return null;
+			System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+			return new ArrayList<>();
 		}
 	}
 
@@ -68,9 +68,8 @@ public class AddressDAO extends DAO {
 			rs = this.getStmt().executeQuery(this.getAllQuery() + " where id='" + id + "';");
 			return get(rs);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
+			System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+			return new ArrayList<>();
 		}
 
 	}
@@ -81,8 +80,8 @@ public class AddressDAO extends DAO {
 			ResultSet rs = this.getStmt().executeQuery(this.getAllQuery() + " where title='" + name + "';");
 			return get(rs);
 		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getErrorCode() + "");
-			return null;
+			System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+			return new ArrayList<>();
 		}
 	}
 
@@ -101,8 +100,4 @@ public class AddressDAO extends DAO {
 		return false;
 	}
 
-	public static void main(String args[]) {
-		AddressDAO books = new AddressDAO();
-		System.out.println(books.findAll().toString());
-	}
 }

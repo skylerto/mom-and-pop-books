@@ -87,7 +87,6 @@ public class DAO {
 			this.setStmt(this.getCon().createStatement());
 
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -96,7 +95,8 @@ public class DAO {
 		try {
 			this.getCon().close();
 		} catch (SQLException e) {
-			System.out.println("Error: " + e.getErrorCode() + ": " + e.getMessage());
+			System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+			e.getStackTrace();
 		}
 	}
 

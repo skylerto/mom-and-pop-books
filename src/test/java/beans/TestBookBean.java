@@ -17,8 +17,6 @@ public class TestBookBean extends TestCase {
 		int price = 0;
 		String category = "";
 		b = new BookBean(bid, title, price, category);
-		BookBean c = new BookBean(bid, title, price, category);
-		//assertEquals(b, c);
 
 		b = null;
 		assertNull(b);

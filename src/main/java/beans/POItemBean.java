@@ -10,15 +10,33 @@ public class POItemBean {
 	private int id;
 	private String bid;
 	private double price;
-	private int POID;
-	private POBean PO;
-	
+	private int poid;
+	private POBean po;
+	private String BookID;
+	private BookBean book;
+
+	public POItemBean(int id, String bid, double price, int poid, String bookId, POBean po, BookBean book) {
+		this.id = id;
+		this.bid = bid;
+		this.price = price;
+		this.poid = poid;
+		this.BookID = bookId;
+		this.po = po;
+		this.book = book;
+	}
+
+	@Override
+	public String toString() {
+		return "POItem: [" + this.id + ", " + this.bid + ", " + this.price + ", " + this.poid + ", " + this.BookID
+				+ ", " + this.po + ", " + this.book + "]";
+	}
+
 	public POBean getPO() {
-		return PO;
+		return po;
 	}
 
 	public void setPO(POBean pO) {
-		PO = pO;
+		po = pO;
 	}
 
 	public BookBean getBook() {
@@ -27,25 +45,6 @@ public class POItemBean {
 
 	public void setBook(BookBean book) {
 		this.book = book;
-	}
-
-	private String BookID;
-	private BookBean book;
-
-	public POItemBean(int id, String bid, double price, int pOID, String bookID, POBean PO, BookBean book) {
-		this.id = id;
-		this.bid = bid;
-		this.price = price;
-		this.POID = pOID;
-		this.BookID = bookID;
-		this.PO = PO;
-		this.book = book;
-	}
-
-	@Override
-	public String toString() {
-		return "POItem: [" + this.id + ", " + this.bid + ", " + this.price + ", " + this.POID + ", " + this.BookID
-				+ ", " + this.PO + ", " + this.book + "]";
 	}
 
 	public int getId() {
@@ -73,11 +72,11 @@ public class POItemBean {
 	}
 
 	public int getPOID() {
-		return POID;
+		return poid;
 	}
 
 	public void setPOID(int pOID) {
-		POID = pOID;
+		poid = pOID;
 	}
 
 	public String getBookID() {
