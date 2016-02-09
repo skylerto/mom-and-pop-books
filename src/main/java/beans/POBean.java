@@ -3,17 +3,10 @@ package beans;
 /**
  * 
  * @author Skyler Layne on Feb 8, 2016
- *
+ * 
+ * @version 0.0.1
  */
 public class POBean {
-
-	/*
-	 * id INT UNSIGNED NOT NULL AUTO_INCREMENT, lname VARCHAR(20) NOT NULL,
-	 * fname VARCHAR(20) NOT NULL, status ENUM('ORDERED','PROCESSED','DENIED')
-	 * NOT NULL, address INT UNSIGNED NOT NULL, PRIMARY KEY(id), INDEX
-	 * (address), FOREIGN KEY (address) REFERENCES Address (id) ON DELETE
-	 * CASCADE
-	 */
 
 	private int id;
 	private String lname;

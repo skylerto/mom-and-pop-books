@@ -4,6 +4,7 @@ package beans;
  * 
  * @author Skyler Layne on Feb 8, 2016
  *
+ * @version 0.0.2
  */
 public class POItemBean {
 

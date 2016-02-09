@@ -8,6 +8,7 @@ import junit.framework.TestCase;
  * 
  * @author Skyler Layne on Feb 8, 2016
  *
+ * @version 0.1.0
  */
 public class TestDAO extends TestCase {
 
@@ -82,8 +83,8 @@ public class TestDAO extends TestCase {
 	public void testGetAllQuery() {
 		assertEquals("select * from ", dao.getAllQuery());
 	}
-	
-	public void testClose(){
+
+	public void testClose() {
 		// create an exception
 		dao.close();
 		try {

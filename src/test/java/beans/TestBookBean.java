@@ -3,6 +3,13 @@ package beans;
 import beans.BookBean;
 import junit.framework.TestCase;
 
+/**
+ * 
+ * @author Skyler Layne on Feb 9, 2016
+ * 
+ * @version 0.0.1
+ *
+ */
 public class TestBookBean extends TestCase {
 
 	BookBean b;

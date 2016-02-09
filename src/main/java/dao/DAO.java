@@ -5,6 +5,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * 
+ * @author Skyler Layne on Feb 8, 2016
+ * 
+ * @version 0.1.0
+ *
+ */
 public class DAO {
 	/* SQL DB Connection */
 	private String host;

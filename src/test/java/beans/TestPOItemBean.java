@@ -2,6 +2,13 @@ package beans;
 
 import junit.framework.TestCase;
 
+/**
+ * 
+ * @author Skyler Layne on Feb 9, 2016
+ * 
+ * @version 0.0.2
+ *
+ */
 public class TestPOItemBean extends TestCase {
 
 	POItemBean poitem;
