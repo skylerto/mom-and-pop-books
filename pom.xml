@@ -30,6 +30,11 @@
       <type>jar</type>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>2.0.0-beta</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>mom-and-pop-books</finalName>
