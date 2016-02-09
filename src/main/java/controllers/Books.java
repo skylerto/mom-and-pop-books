@@ -20,7 +20,6 @@ import dao.BookDAO;
 @WebServlet("/app/books")
 public class Books extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	// Book books = new Book();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -37,8 +36,6 @@ public class Books extends HttpServlet {
 			throws ServletException, IOException {
 
 		// Get the response as a PrintWriter
-
-		// response.setContentType("text/xml;charset=UTF-8");
 
 		PrintWriter writer = response.getWriter();
 		String id = request.getParameter("id");

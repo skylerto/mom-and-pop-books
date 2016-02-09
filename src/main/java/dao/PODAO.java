@@ -1,10 +1,7 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +21,7 @@ public class PODAO extends DAO {
 	}
 
 	public List<POBean> get(ResultSet rs) {
-		List<POBean> addresses = new ArrayList<POBean>();
+		List<POBean> addresses = new ArrayList<>();
 
 		try {
 			this.getCon().setReadOnly(true);
@@ -47,7 +44,8 @@ public class PODAO extends DAO {
 
 		} catch (SQLException e) {
 			System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
-			return null;
+			e.getStackTrace();
+			return new ArrayList<>();
 		}
 	}
 
@@ -57,8 +55,9 @@ public class PODAO extends DAO {
 			ResultSet rs = this.getStmt().executeQuery(this.getAllQuery());
 			return get(rs);
 		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getErrorCode() + "");
-			return null;
+			System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+			e.getStackTrace();
+			return new ArrayList<>();
 		}
 	}
 
@@ -68,8 +67,9 @@ public class PODAO extends DAO {
 			ResultSet rs = this.getStmt().executeQuery(this.getAllQuery() + " where id='" + id + "';");
 			return get(rs);
 		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getErrorCode() + "");
-			return null;
+			System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+			e.getStackTrace();
+			return new ArrayList<>();
 		}
 	}
 
@@ -79,28 +79,21 @@ public class PODAO extends DAO {
 			ResultSet rs = this.getStmt().executeQuery(this.getAllQuery() + " where title='" + name + "';");
 			return get(rs);
 		} catch (SQLException e) {
-			System.out.println("SQLException: " + e.getErrorCode() + "");
-			return null;
+			System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+			e.getStackTrace();
+			return new ArrayList<>();
 		}
 	}
 
 	public boolean insert(POBean address) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	public boolean update(POBean address) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	public boolean delete(POBean address) {
-		// TODO Auto-generated method stub
 		return false;
-	}
-
-	public static void main(String args[]) {
-		PODAO books = new PODAO();
-		System.out.println(books.findAll().toString());
 	}
 }
