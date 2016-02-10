@@ -1,4 +1,4 @@
-<a href="https://mom-and-pop-books.slack.com"><img src="slack.png" height="55" width="120" ></a>
+<a href="https://mom-and-pop-books.slack.com" target="_blank" ><img src="slack.png" height="55" width="120" ></a>
 
 Mom and Pop Bookstore
 =====================
