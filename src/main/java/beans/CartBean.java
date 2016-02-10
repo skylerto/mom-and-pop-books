@@ -24,12 +24,51 @@ public class CartBean {
 	}
 
 	/**
-	 * Add a book to the cart.
+	 * Add a book to the cart, set a max cart limit of 10.
 	 * 
-	 * @return - if the addition worked
+	 * @return - if the addition worked.
 	 */
-	public boolean addToCart(BookBean book) {
-		return this.books.add(book);
+	public boolean add(BookBean book) {
+		if (this.books.size() >= 10) {
+			return false;
+		} else {
+			return this.books.add(book);
+		}
+	}
+
+	/**
+	 * Get the items in the cart as a list.
+	 * 
+	 * @return - The books in the cart.
+	 */
+	public List<BookBean> get() {
+		return this.books;
+	}
+
+	/**
+	 * Get the current size of the cart.
+	 * 
+	 * @return - The current cart.
+	 */
+	public int size() {
+		return this.books.size();
+	}
+
+	/**
+	 * Get the book with the specified bid.
+	 * 
+	 * @param bid
+	 *            - the bid of the book you would like.
+	 * @return - The book with the specified bid.
+	 * 
+	 */
+	public BookBean getBook(String bid) {
+		for (BookBean b : books) {
+			if (b.getBid().equals(bid)) {
+				return b;
+			}
+		}
+		return null;
 	}
 
 }
