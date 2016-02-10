@@ -12,113 +12,113 @@ import junit.framework.TestCase;
  */
 public class TestBookBean extends TestCase {
 
-	BookBean b;
+  BookBean b;
 
-	public void testBookBean() {
-		// Null to start
-		assertNull(b);
+  public void testBookBean() {
+    // Null to start
+    assertNull(b);
 
-		// Create with empty arguments
-		String bid = "";
-		String title = "";
-		int price = 0;
-		String category = "";
-		b = new BookBean(bid, title, price, category);
+    // Create with empty arguments
+    String bid = "";
+    String title = "";
+    int price = 0;
+    String category = "";
+    b = new BookBean(bid, title, price, category);
 
-		b = null;
-		assertNull(b);
-	}
+    b = null;
+    assertNull(b);
+  }
 
-	public void testGetBid() {
+  public void testGetBid() {
 
-		String bid = "";
-		String title = "";
-		int price = 0;
-		String category = "";
-		b = new BookBean(bid, title, price, category);
+    String bid = "";
+    String title = "";
+    int price = 0;
+    String category = "";
+    b = new BookBean(bid, title, price, category);
 
-		assertEquals("", b.getBid());
-	}
+    assertEquals("", b.getBid());
+  }
 
-	public void testSetBid() {
-		String bid = "";
-		String title = "";
-		int price = 0;
-		String category = "";
-		b = new BookBean(bid, title, price, category);
-		b.setBid("BID2");
-		assertEquals("BID2", b.getBid());
-	}
+  public void testSetBid() {
+    String bid = "";
+    String title = "";
+    int price = 0;
+    String category = "";
+    b = new BookBean(bid, title, price, category);
+    b.setBid("BID2");
+    assertEquals("BID2", b.getBid());
+  }
 
-	public void testGetTitle() {
-		String bid = "";
-		String title = "";
-		int price = 0;
-		String category = "";
-		b = new BookBean(bid, title, price, category);
+  public void testGetTitle() {
+    String bid = "";
+    String title = "";
+    int price = 0;
+    String category = "";
+    b = new BookBean(bid, title, price, category);
 
-		assertEquals("", b.getTitle());
-	}
+    assertEquals("", b.getTitle());
+  }
 
-	public void testSetTitle() {
-		String bid = "";
-		String title = "";
-		int price = 0;
-		String category = "";
-		b = new BookBean(bid, title, price, category);
-		b.setTitle("A title");
-		assertEquals("A title", b.getTitle());
-	}
+  public void testSetTitle() {
+    String bid = "";
+    String title = "";
+    int price = 0;
+    String category = "";
+    b = new BookBean(bid, title, price, category);
+    b.setTitle("A title");
+    assertEquals("A title", b.getTitle());
+  }
 
-	public void testGetPrice() {
-		String bid = "";
-		String title = "";
-		double price = 0;
-		String category = "";
-		b = new BookBean(bid, title, price, category);
+  public void testGetPrice() {
+    String bid = "";
+    String title = "";
+    double price = 0;
+    String category = "";
+    b = new BookBean(bid, title, price, category);
 
-		assertEquals(0.0, b.getPrice());
-	}
+    assertEquals(0.0, b.getPrice());
+  }
 
-	public void testSetPrice() {
-		String bid = "";
-		String title = "";
-		int price = 0;
-		String category = "";
-		b = new BookBean(bid, title, price, category);
-		b.setPrice(36.50);
-		assertEquals(36.50, b.getPrice());
-	}
+  public void testSetPrice() {
+    String bid = "";
+    String title = "";
+    int price = 0;
+    String category = "";
+    b = new BookBean(bid, title, price, category);
+    b.setPrice(36.50);
+    assertEquals(36.50, b.getPrice());
+  }
 
-	public void testGetCategory() {
-		String bid = "";
-		String title = "";
-		int price = 0;
-		String category = "";
-		b = new BookBean(bid, title, price, category);
+  public void testGetCategory() {
+    String bid = "";
+    String title = "";
+    int price = 0;
+    String category = "";
+    b = new BookBean(bid, title, price, category);
 
-		assertEquals("", b.getCategory());
-	}
+    assertEquals("", b.getCategory());
+  }
 
-	public void testSetCategory() {
-		String bid = "";
-		String title = "";
-		int price = 0;
-		String category = "";
-		b = new BookBean(bid, title, price, category);
-		b.setCategory("A Category");
-		assertEquals("A Category", b.getCategory());
-	}
+  public void testSetCategory() {
+    String bid = "";
+    String title = "";
+    int price = 0;
+    String category = "";
+    b = new BookBean(bid, title, price, category);
+    b.setCategory("A Category");
+    assertEquals("A Category", b.getCategory());
+  }
 
-	public void testToString() {
-		String bid = "";
-		String title = "";
-		double price = 0.0;
-		String category = "";
-		b = new BookBean(bid, title, price, category);
-		
-		String res = "Book: [" + "" + ", " + "" + ", $" + 0.0 + ", " + "" + "]";
-		assertEquals(res, b.toString());
-	}
+  public void testToString() {
+    String bid = "";
+    String title = "";
+    double price = 0.0;
+    String category = "";
+    b = new BookBean(bid, title, price, category);
+
+    String res = "Book: [" + "" + ", " + "" + ", $" + 0.0 + ", " + "" + "]";
+    assertEquals(res, b.toString());
+  }
 
 }

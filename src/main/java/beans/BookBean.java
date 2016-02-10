@@ -8,52 +8,112 @@ package beans;
  */
 public class BookBean {
 
-	private String bid;
-	private String title;
-	private double price;
-	private String category;
+  private String bid;
+  private String title;
+  private double price;
+  private String category;
 
-	public BookBean(String bid, String title, double price, String category) {
-		this.bid = bid;
-		this.title = title;
-		this.price = price;
-		this.category = category;
-	}
+  /**
+   * Constructor of a book bean.
+   * 
+   * @param bid
+   *          - the primary key of the book.
+   * @param title
+   *          - the title of the book.
+   * @param price
+   *          - the price of the book.
+   * @param category
+   *          - the category which the book is in.
+   */
+  public BookBean(String bid, String title, double price, String category) {
+    this.bid = bid;
+    this.title = title;
+    this.price = price;
+    this.category = category;
+  }
 
-	public String getBid() {
-		return bid;
-	}
+  /**
+   * Get the book id.
+   * 
+   * @return - the id.
+   */
+  public String getBid() {
+    return bid;
+  }
 
-	public void setBid(String bid) {
-		this.bid = bid;
-	}
+  /**
+   * Set the book id
+   * 
+   * @param bid
+   *          - the new id.
+   */
+  public void setBid(String bid) {
+    this.bid = bid;
+  }
 
-	public String getTitle() {
-		return title;
-	}
+  /**
+   * Get the title of the book.
+   * 
+   * @return - the books title.
+   */
+  public String getTitle() {
+    return title;
+  }
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+  /**
+   * Change the title of the book.
+   * 
+   * @param title
+   *          - the new title.
+   */
+  public void setTitle(String title) {
+    this.title = title;
+  }
 
-	public double getPrice() {
-		return price;
-	}
+  /**
+   * Get the price of the book.
+   * 
+   * @return - the books price.
+   */
+  public double getPrice() {
+    return price;
+  }
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
+  /**
+   * Change the books price.
+   * 
+   * @param price
+   *          - the new price.
+   */
+  public void setPrice(double price) {
+    this.price = price;
+  }
 
-	public String getCategory() {
-		return category;
-	}
+  /**
+   * Get the books category.
+   * 
+   * @return - the category.
+   */
+  public String getCategory() {
+    return category;
+  }
 
-	public void setCategory(String category) {
-		this.category = category;
-	}
+  /**
+   * Change the books category.
+   * 
+   * @param category
+   *          - the new category.
+   */
+  public void setCategory(String category) {
+    this.category = category;
+  }
 
-	@Override
-	public String toString() {
-		return "Book: [" + this.bid + ", " + this.title + ", $" + this.price + ", " + this.category + "]";
-	}
+  /**
+   * A String representation of the book.
+   */
+  @Override
+  public String toString() {
+    return "Book: [" + this.bid + ", " + this.title + ", $" + this.price + ", " + this.category
+        + "]";
+  }
 }
