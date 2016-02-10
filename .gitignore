@@ -6,6 +6,7 @@
 .project
 .settings/
 bin/
+.checkstyle
 
 # Maven
 log/
