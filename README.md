@@ -1,5 +1,4 @@
-[![Slack
-Status](slack.png =100x20)](https://mom-and-pop-books.slack.com)
+<a href="https://mom-and-pop-books.slack.com"><img src="slack.png" align="left" height="40" width="100" ></a>
 
 Mom and Pop Bookstore
 =====================
