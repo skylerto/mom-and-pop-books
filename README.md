@@ -33,6 +33,7 @@ You can also generate code coverage via
 ```unix
 $ mvn cobertura:cobertura
 ```
+Coverage report is at `mom-and-pop-books/target/site/cobertura/index.html`
 
 ### Contributors
 
