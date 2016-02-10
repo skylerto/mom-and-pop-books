@@ -24,12 +24,12 @@ public class CartBean {
 	}
 
 	/**
-	 * Add a book to the cart, set a max cart limit of 10.
+	 * Add a book to the cart, set a max cart limit of 50.
 	 * 
 	 * @return - if the addition worked.
 	 */
 	public boolean add(BookBean book) {
-		if (this.books.size() >= 10) {
+		if (this.books.size() >= 50) {
 			return false;
 		} else {
 			return this.books.add(book);
