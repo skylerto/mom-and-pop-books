@@ -1,5 +1,5 @@
 [![Slack
-Status](slack.png)](https://mom-and-pop-books.slack.com)
+Status](slack.png =100x20)](https://mom-and-pop-books.slack.com)
 
 Mom and Pop Bookstore
 =====================
