@@ -31,7 +31,7 @@ public class DataAccessObject {
    */
   public DataAccessObject() {
     /* SQL DB Connection */
-    this.host = "localhost";
+    this.host = "mysql";
     this.user = "bookstore_user";
     this.pass = "4413";
     this.tableName = "";
