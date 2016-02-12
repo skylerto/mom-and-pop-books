@@ -1,8 +1,10 @@
 CREATE DATABASE ecommerce;
 USE ecommerce;
+
+CREATE USER bookstore_user IDENTIFIED BY '4413';
+GRANT ALL PRIVILEGES ON ecommerce.* TO bookstore_user;
+
 DROP TABLE IF EXISTS book;
-
-
 CREATE TABLE book (
                    bid varchar(20) NOT NULL,
                    title varchar(60) NOT NULL,
