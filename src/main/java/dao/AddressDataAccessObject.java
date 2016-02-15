@@ -22,7 +22,7 @@ public class AddressDataAccessObject extends DataAccessObject {
    */
   public AddressDataAccessObject() {
     super();
-    this.setTableName("Address");
+    this.setTableName("address");
   }
 
   /**
