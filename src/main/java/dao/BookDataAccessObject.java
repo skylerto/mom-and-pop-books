@@ -1,11 +1,12 @@
 package dao;
 
-import beans.BookBean;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import beans.BookBean;
+import beans.Books;
 
 /**
  * BookDAO - Data Access Object for Book.
@@ -29,7 +30,7 @@ public class BookDataAccessObject extends DataAccessObject {
    *          - the result of the query.
    * @return - a list of the book Beans that are found from the query.
    */
-  private List<BookBean> get(ResultSet rs) {
+  private Books get(ResultSet rs) {
     List<BookBean> books = new ArrayList<>();
     try {
       this.getCon().setReadOnly(true);
@@ -43,11 +44,11 @@ public class BookDataAccessObject extends DataAccessObject {
       rs.close();
       this.getStmt().close();
       close();
-      return books;
+      return new Books(books);
 
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
-      return new ArrayList<>();
+      return new Books();
     }
   }
 
@@ -56,7 +57,7 @@ public class BookDataAccessObject extends DataAccessObject {
    * 
    * @return - A list of all the book beans.
    */
-  public List<BookBean> findAll() {
+  public Books findAll() {
     try {
       createConnection();
       ResultSet rs = this.getStmt().executeQuery(this.getAllQuery());
@@ -64,7 +65,7 @@ public class BookDataAccessObject extends DataAccessObject {
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
       e.getStackTrace();
-      return new ArrayList<>();
+      return new Books();
     }
   }
 
@@ -75,14 +76,14 @@ public class BookDataAccessObject extends DataAccessObject {
    *          - the id to look for.
    * @return - a list of book beans with that id.
    */
-  public List<BookBean> findById(String id) {
+  public Books findById(String id) {
     try {
       createConnection();
       ResultSet rs = this.getStmt().executeQuery(this.getAllQuery() + " where bid='" + id + "';");
       return get(rs);
     } catch (SQLException e) {
       System.out.println("SQLException: " + e.getErrorCode() + "");
-      return new ArrayList<>();
+      return new Books();
     }
   }
 
@@ -93,7 +94,7 @@ public class BookDataAccessObject extends DataAccessObject {
    *          - the title to query.
    * @return - a list of the book beans with that title.
    */
-  public List<BookBean> findByTitle(String title) {
+  public Books findByTitle(String title) {
     try {
       createConnection();
       ResultSet rs = this.getStmt()
@@ -101,7 +102,7 @@ public class BookDataAccessObject extends DataAccessObject {
       return get(rs);
     } catch (SQLException e) {
       System.out.println("SQLException: " + e.getErrorCode() + "");
-      return new ArrayList<>();
+      return new Books();
     }
   }
 
