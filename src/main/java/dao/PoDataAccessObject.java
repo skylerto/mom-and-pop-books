@@ -18,7 +18,7 @@ public class PoDataAccessObject extends DataAccessObject {
 
   public PoDataAccessObject() {
     super();
-    this.setTableName("PO");
+    this.setTableName("po");
   }
 
   /**

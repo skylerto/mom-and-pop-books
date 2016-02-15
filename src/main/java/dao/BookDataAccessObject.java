@@ -1,12 +1,12 @@
 package dao;
 
+import beans.BookBean;
+import beans.Books;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import beans.BookBean;
-import beans.Books;
 
 /**
  * BookDAO - Data Access Object for Book.
@@ -20,7 +20,7 @@ public class BookDataAccessObject extends DataAccessObject {
 
   public BookDataAccessObject() {
     super();
-    this.setTableName("Book");
+    this.setTableName("book");
   }
 
   /**

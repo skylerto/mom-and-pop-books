@@ -18,7 +18,7 @@ public class PoItemDataAccessObject extends DataAccessObject {
 
   public PoItemDataAccessObject() {
     super();
-    this.setTableName("POItem");
+    this.setTableName("poitem");
   }
 
   /**
