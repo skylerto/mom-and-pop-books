@@ -11,26 +11,35 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.PropertyException;
 
 /**
- * Book marshaller, return XML representation of a list of Books.
+ * Object marshaller, return XML representation of a list of Books.
  * 
  * @author Skyler Layne on Feb 15, 2016
  *
  */
-public class BookMarshaller {
+public class ObjectMarshaller {
 
-  public BookMarshaller() {
+  private Object object;
 
+  /**
+   * Default constructor.
+   */
+  public ObjectMarshaller() {
+
+  }
+
+  public ObjectMarshaller(Object object) {
+    this.object = object;
   }
 
   /**
    * Marshal a list of Books to a specific filename.
    * 
-   * @param books
-   *          - The Books which would like to be marshalled.
+   * @param object
+   *          - Correctly annotated object which would like to be marshalled.
    * @param filename
    *          - The filename to store the XML.
    */
-  public void marshal(Books books, String filename) {
+  public void marshal(Object object, String filename) {
     File file = new File("./" + filename);
 
     try {
@@ -38,7 +47,7 @@ public class BookMarshaller {
       Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-      jaxbMarshaller.marshal(books, file);
+      jaxbMarshaller.marshal(object, file);
 
     } catch (PropertyException e) {
       // TODO Auto-generated catch block
@@ -53,19 +62,19 @@ public class BookMarshaller {
   /**
    * Marshal XML out to a PrintWriter.
    * 
-   * @param books
-   *          - The Books to marshal.
+   * @param object
+   *          - Correctly annotated object which would like to be marshalled.
    * @param writer
    *          - The Writer to write too.
    */
-  public void marshal(Books books, PrintWriter writer) {
+  public void marshal(Object object, PrintWriter writer) {
 
     try {
       JAXBContext jaxbContext = JAXBContext.newInstance(Books.class);
       Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-      jaxbMarshaller.marshal(books, writer);
+      jaxbMarshaller.marshal(object, writer);
 
     } catch (PropertyException e) {
       // TODO Auto-generated catch block
