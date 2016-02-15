@@ -1,6 +1,7 @@
 package dao;
 
 import beans.BookBean;
+import beans.Books;
 import beans.PoBean;
 import beans.PoItemBean;
 
@@ -39,13 +40,9 @@ public class PoItemDataAccessObject extends DataAccessObject {
         String bid = rs.getString("bid");
         int price = rs.getInt("price");
         PoBean po = (new PoDataAccessObject()).findById("" + id).get(id - 1);
-        List<BookBean> list = (new BookDataAccessObject()).findById(bid);
+        Books list = (new BookDataAccessObject()).findById(bid);
         BookBean book = null;
-        for (BookBean b : list) {
-          if (b.getBid().equals(bid)) {
-            book = b;
-          }
-        }
+        book = list.getBooks().stream().filter(b -> b.getBid().equals(bid)).findFirst().get();
 
         poItems.add(new PoItemBean(id, bid, price, po, book));
       }
@@ -106,5 +103,4 @@ public class PoItemDataAccessObject extends DataAccessObject {
   public boolean delete(PoItemBean poitem) {
     return false;
   }
-
 }
