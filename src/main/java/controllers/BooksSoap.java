@@ -1,7 +1,8 @@
 package controllers;
 
+import beans.Books;
 import dao.BookDataAccessObject;
-import models.BookMarshaller;
+import models.ObjectMarshaller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,13 +20,13 @@ import javax.servlet.http.HttpServletResponse;
  *
  */
 @WebServlet("/soap/books")
-public class Books extends HttpServlet {
+public class BooksSoap extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   /**
    * @see HttpServlet#HttpServlet().
    */
-  public Books() {
+  public BooksSoap() {
     super();
   }
 
@@ -38,8 +39,8 @@ public class Books extends HttpServlet {
     // Get the response as a PrintWriter
 
     PrintWriter writer = response.getWriter();
-    beans.Books books = (new BookDataAccessObject()).findAll();
-    BookMarshaller marsh = new BookMarshaller();
+    Books books = (new BookDataAccessObject()).findAll();
+    ObjectMarshaller marsh = new ObjectMarshaller();
 
     response.setContentType("text/xml");
     marsh.marshal(books, writer);
