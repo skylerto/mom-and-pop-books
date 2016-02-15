@@ -19,6 +19,7 @@ public class DataAccessObject {
   private String host;
   private String user;
   private String pass;
+  private String db;
 
   /* String SQL Queries */
   private String tableName;
@@ -34,6 +35,7 @@ public class DataAccessObject {
     this.host = "mysql";
     this.user = "bookstore_user";
     this.pass = "4413";
+    this.db = "ecommerce";
     this.tableName = "";
 
     this.createConnection();
@@ -94,7 +96,7 @@ public class DataAccessObject {
       Class.forName("com.mysql.jdbc.Driver").newInstance();
 
       this.con = DriverManager.getConnection(
-          "jdbc:mysql://" + this.getHost() + "/bookstore_test?useSSL=false", this.getUser(),
+          "jdbc:mysql://" + this.getHost() + "/" + this.getDb() + "?useSSL=false", this.getUser(),
           this.getPass());
 
       this.setStmt(this.getCon().createStatement());
@@ -103,6 +105,10 @@ public class DataAccessObject {
         | SQLException e) {
       e.printStackTrace();
     }
+  }
+
+  private String getDb() {
+    return this.db;
   }
 
   protected void close() {
