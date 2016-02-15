@@ -1,5 +1,8 @@
 package controllers;
 
+import dao.BookDataAccessObject;
+import models.BookMarshaller;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -9,27 +12,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.BookDataAccessObject;
-
 /**
  * 
  * @author Skyler Layne on Jan 8, 2016
  * @version 0.0.1
  *
  */
-@WebServlet("/app/books")
+@WebServlet("/soap/books")
 public class Books extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   /**
-   * @see HttpServlet#HttpServlet()
+   * @see HttpServlet#HttpServlet().
    */
   public Books() {
     super();
   }
 
   /**
-   * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+   * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response).
    */
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
@@ -37,18 +38,16 @@ public class Books extends HttpServlet {
     // Get the response as a PrintWriter
 
     PrintWriter writer = response.getWriter();
-    String id = request.getParameter("id");
-    if (id != null) {
-      writer.append((new BookDataAccessObject()).findById(id).toString());
+    beans.Books books = (new BookDataAccessObject()).findAll();
+    BookMarshaller marsh = new BookMarshaller();
 
-    } else {
-      writer.append((new BookDataAccessObject()).findAll().toString());
-    }
+    response.setContentType("text/xml");
+    marsh.marshal(books, writer);
 
   }
 
   /**
-   * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+   * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response).
    */
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
