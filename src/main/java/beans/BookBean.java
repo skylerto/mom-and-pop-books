@@ -1,11 +1,16 @@
 package beans;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * 
  * @author Skyler Layne on Jan 8, 2016
  * @version 0.0.2
  *
  */
+@XmlRootElement(name = "book")
 public class BookBean {
 
   private String bid;
@@ -31,6 +36,10 @@ public class BookBean {
     this.price = price;
     this.category = category;
   }
+  
+  public BookBean() {
+
+  }
 
   /**
    * Get the book id.
@@ -47,6 +56,7 @@ public class BookBean {
    * @param bid
    *          - the new id.
    */
+  @XmlElement
   public void setBid(String bid) {
     this.bid = bid;
   }
@@ -66,6 +76,7 @@ public class BookBean {
    * @param title
    *          - the new title.
    */
+  @XmlElement
   public void setTitle(String title) {
     this.title = title;
   }
@@ -85,6 +96,7 @@ public class BookBean {
    * @param price
    *          - the new price.
    */
+  @XmlElement
   public void setPrice(double price) {
     this.price = price;
   }
@@ -104,6 +116,7 @@ public class BookBean {
    * @param category
    *          - the new category.
    */
+  @XmlElement
   public void setCategory(String category) {
     this.category = category;
   }
