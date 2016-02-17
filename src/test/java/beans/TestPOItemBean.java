@@ -3,9 +3,9 @@ package beans;
 import junit.framework.TestCase;
 
 /**
- * 
+ *
  * @author Skyler Layne on Feb 9, 2016.
- * 
+ *
  * @version 0.0.2.
  *
  */
@@ -50,7 +50,7 @@ public class TestPOItemBean extends TestCase {
     po = new PoBean(id, lname, fname, status, address);
     po2 = new PoBean(2, lname, fname, status, address);
 
-    poitem = new PoItemBean(id, bid, price, po, book);
+    poitem = new PoItemBean(id, price, po, book);
   }
 
   protected void tearDown() throws Exception {
@@ -66,11 +66,11 @@ public class TestPOItemBean extends TestCase {
     this.book = new BookBean(bid, title, price, category);
     this.address = new AddressBean(aid, street, province, country, zip, phone);
     this.po = new PoBean(id, lname, fname, status, address);
-    this.poitem = new PoItemBean(id, bid, price, po, book);
+    this.poitem = new PoItemBean(id, price, po, book);
   }
 
   public void testToString() {
-    String res = "POItem: [" + poitem.getId() + ", " + poitem.getBid() + ", " + poitem.getPrice()
+    String res = "POItem: [" + poitem.getId() + ", " + poitem.getPrice()
         + ", " + poitem.getPo() + ", " + poitem.getBook() + "]";
     assertEquals(res, poitem.toString());
   }
@@ -100,15 +100,6 @@ public class TestPOItemBean extends TestCase {
   public void testSetBook() {
     poitem.setBook(book2);
     assertEquals(book2, poitem.getBook());
-  }
-
-  public void testGetBid() {
-    assertEquals(bid, poitem.getBid());
-  }
-
-  public void testSetBid() {
-    poitem.setBid("BOOK2");
-    assertEquals("BOOK2", poitem.getBid());
   }
 
   public void testGetPrice() {
