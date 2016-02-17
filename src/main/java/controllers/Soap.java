@@ -47,15 +47,47 @@ public class Soap extends HttpServlet {
     response.setContentType("text/xml");
 
     if (path.contains("pos")) {
+
+      // do purchase order controller logic
       marshaller.marshal((new PoDataAccessObject()).findAll(), writer);
     } else if (path.contains("books")) {
-      marshaller.marshal((new BookDataAccessObject()).findAll(), writer);
+
+      // do books controller logic
+      String bid = request.getParameter("bid");
+      if(bid != null){
+        marshaller.marshal((new BookDataAccessObject()).findById(bid), writer);
+      } else {
+        marshaller.marshal((new BookDataAccessObject()).findAll(), writer);
+      }
     } else if (path.contains("poitems")) {
-      marshaller.marshal((new PoItemDataAccessObject()).findAll(), writer);
+
+      // do poitems controller logic
+      String id = request.getParameter("id");
+      if(id != null){
+        marshaller.marshal((new PoItemDataAccessObject()).findById(id), writer);
+      } else {
+        marshaller.marshal((new PoItemDataAccessObject()).findAll(), writer);
+      }
     } else if (path.contains("addresses")) {
-      marshaller.marshal((new AddressDataAccessObject()).findAll(), writer);
+
+      // do Address controller logic
+      String id = request.getParameter("id");
+      if(id != null){
+        marshaller.marshal((new PoItemDataAccessObject()).findById(id), writer);
+      } else {
+        marshaller.marshal((new AddressDataAccessObject()).findAll(), writer);
+      }
+
     } else if (path.contains("visits")) {
-      marshaller.marshal((new VisitEventDataAccessObject()).findAll().getAll("12"), writer);
+
+      // do Visits controller logic
+      String month = request.getParameter("month");
+      if(month != null){
+        marshaller.marshal((new VisitEventDataAccessObject()).findAll().getAll("12"), writer);
+      } else {
+        marshaller.marshal((new VisitEventDataAccessObject()).findAll(), writer);
+      }
+
     }
   }
 

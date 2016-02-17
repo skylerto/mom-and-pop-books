@@ -4,9 +4,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * 
+ *
  * @author Skyler Layne on Feb 8, 2016
- * 
+ *
  * @version 0.0.1
  */
 @XmlRootElement(name = "po")
@@ -20,7 +20,7 @@ public class PoBean {
 
   /**
    * Constructor of a purchase order bean.
-   * 
+   *
    * @param id
    *          - the if purchase order.
    * @param lname
@@ -49,7 +49,7 @@ public class PoBean {
 
   /**
    * Get the id of the purchase order.
-   * 
+   *
    * @return - the id of the purchase order.
    */
   public int getId() {
@@ -58,18 +58,18 @@ public class PoBean {
 
   /**
    * Set the id of the purchase order.
-   * 
+   *
    * @param id
    *          - the new id.
    */
-  @XmlElement
+  @XmlElement(required = true)
   public void setId(int id) {
     this.id = id;
   }
 
   /**
    * Get the last name registered with the purchase order.
-   * 
+   *
    * @return - the last name of the person on the purchase order.
    */
   public String getLname() {
@@ -78,7 +78,7 @@ public class PoBean {
 
   /**
    * Change the last name of the user registered on the purchase order.
-   * 
+   *
    * @param lname
    *          - the new last name.
    */
@@ -89,7 +89,7 @@ public class PoBean {
 
   /**
    * The first name of the user registered on the purchase order.
-   * 
+   *
    * @return - the first name.
    */
   public String getFname() {
@@ -98,7 +98,7 @@ public class PoBean {
 
   /**
    * Change the person registered on the purchase order's first name.
-   * 
+   *
    * @param fname
    *          - the new first name.
    */
@@ -109,7 +109,7 @@ public class PoBean {
 
   /**
    * Get the status of the purchase order.
-   * 
+   *
    * @return - the status of the purchase order.
    */
   public String getStatus() {
@@ -118,7 +118,7 @@ public class PoBean {
 
   /**
    * Change the status of the purchase order.
-   * 
+   *
    * @param status
    *          - the new status.
    */
@@ -130,7 +130,7 @@ public class PoBean {
 
   /**
    * Get the address registered on the purchase order.
-   * 
+   *
    * @return - the address.
    */
   public AddressBean getAddress() {
@@ -139,7 +139,7 @@ public class PoBean {
 
   /**
    * Change the address on the purchase order.
-   * 
+   *
    * @param address
    *          - the new address.
    */
