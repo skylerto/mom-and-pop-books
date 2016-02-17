@@ -1,14 +1,13 @@
 package dao;
 
-import beans.BookBean;
-import beans.Books;
-import beans.PoBean;
-import beans.PoItemBean;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+
+import beans.BookBean;
+import beans.PoBean;
+import beans.PoItemBean;
+import models.Books;
+import models.PoItems;
 
 /**
  * @author Skyler Layne on Feb 8, 2016.
@@ -28,8 +27,8 @@ public class PoItemDataAccessObject extends DataAccessObject {
    *          - the result of the query.
    * @return - a list of the PoItemBean that are found from the query.
    */
-  private List<PoItemBean> get(ResultSet rs) {
-    List<PoItemBean> poItems = new ArrayList<>();
+  private PoItems get(ResultSet rs) {
+    PoItems poItems = new PoItems();
 
     try {
       this.getCon().setReadOnly(true);
@@ -54,7 +53,7 @@ public class PoItemDataAccessObject extends DataAccessObject {
 
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
-      return new ArrayList<>();
+      return new PoItems();
     }
   }
 
@@ -63,14 +62,14 @@ public class PoItemDataAccessObject extends DataAccessObject {
    * 
    * @return - A list of all the PoItemBean.
    */
-  public List<PoItemBean> findAll() {
+  public PoItems findAll() {
     try {
       createConnection();
       ResultSet rs = this.getStmt().executeQuery(this.getAllQuery());
       return get(rs);
     } catch (SQLException e) {
       System.out.println("SQLException: " + e.getErrorCode() + "");
-      return new ArrayList<>();
+      return new PoItems();
     }
   }
 
@@ -81,14 +80,14 @@ public class PoItemDataAccessObject extends DataAccessObject {
    *          - the id to look for.
    * @return - a list of PoItemBean with that id.
    */
-  public List<PoItemBean> findById(String id) {
+  public PoItems findById(String id) {
     try {
       createConnection();
       ResultSet rs = this.getStmt().executeQuery(this.getAllQuery() + " where id='" + id + "';");
       return get(rs);
     } catch (SQLException e) {
       System.out.println("SQLException: " + e.getErrorCode() + "");
-      return new ArrayList<>();
+      return new PoItems();
     }
   }
 

@@ -1,7 +1,11 @@
 package beans;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import models.Books;
 
 /**
  * Bean data structure of what a cart should look like.
@@ -11,15 +15,16 @@ import java.util.List;
  * @version 0.0.1
  *
  */
+@XmlRootElement(name = "cart")
 public class CartBean {
 
-  private List<BookBean> books;
+  private Books books;
 
   /**
    * Default constructor, creates a new empty cart.
    */
   public CartBean() {
-    this.books = new ArrayList<>();
+    this.books = new Books();
   }
 
   /**
@@ -40,8 +45,20 @@ public class CartBean {
    * 
    * @return - The books in the cart.
    */
-  public List<BookBean> get() {
+
+  public Books get() {
     return this.books;
+  }
+
+  /**
+   * Set the carts list of books.
+   * 
+   * @param books
+   *          - The carts new list of books
+   */
+  @XmlAttribute
+  public void setBooks(Books books) {
+    this.books = books;
   }
 
   /**
@@ -50,7 +67,7 @@ public class CartBean {
    * @return - The current cart.
    */
   public int size() {
-    return this.books.size();
+    return this.books.getBooks().size();
   }
 
   /**
@@ -62,12 +79,13 @@ public class CartBean {
    * 
    */
   public BookBean getBook(String bid) {
-    for (BookBean b : books) {
-      if (b.getBid().equals(bid)) {
-        return b;
-      }
+    Optional<BookBean> o = this.books.getBooks().stream().filter(book -> book.getBid() == (bid))
+        .findFirst();
+    if (o.isPresent()) {
+      return o.get();
+    } else {
+      return null;
     }
-    return null;
   }
 
 }

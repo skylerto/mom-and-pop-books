@@ -1,11 +1,15 @@
 package beans;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * AddressBean - Address class.
  * 
  * @author Skyler Layne on Jan 9, 2016
  * @version 0.0.1
  */
+@XmlRootElement(name = "address")
 public class AddressBean {
 
   /**
@@ -60,6 +64,13 @@ public class AddressBean {
   }
 
   /**
+   * Default constructor.
+   */
+  public AddressBean() {
+
+  }
+
+  /**
    * The id of the address.
    * 
    * @return - The id of the address.
@@ -74,6 +85,7 @@ public class AddressBean {
    * @param id
    *          - the new id.
    */
+  @XmlElement
   public void setId(int id) {
     this.id = id;
   }
@@ -93,6 +105,7 @@ public class AddressBean {
    * @param street
    *          - the new street
    */
+  @XmlElement
   public void setStreet(String street) {
     this.street = street;
   }
@@ -112,6 +125,7 @@ public class AddressBean {
    * @param province
    *          - the new province.
    */
+  @XmlElement
   public void setProvince(String province) {
     this.province = province;
   }
@@ -131,6 +145,7 @@ public class AddressBean {
    * @param country
    *          - the new country.
    */
+  @XmlElement
   public void setCountry(String country) {
     this.country = country;
   }
@@ -150,6 +165,7 @@ public class AddressBean {
    * @param zip
    *          - the new zip code.
    */
+  @XmlElement
   public void setZip(String zip) {
     this.zip = zip;
   }
@@ -169,6 +185,7 @@ public class AddressBean {
    * @param phone
    *          - the new number.
    */
+  @XmlElement
   public void setPhone(String phone) {
     this.phone = phone;
   }

@@ -1,7 +1,7 @@
 package dao;
 
 import beans.BookBean;
-import beans.Books;
+import models.Books;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

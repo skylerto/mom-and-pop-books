@@ -1,17 +1,30 @@
 package beans;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * 
  * @author Skyler Layne on Feb 8, 2016
  *
  * @version 0.0.2
  */
+@XmlRootElement(name = "POItem")
 public class PoItemBean {
 
+  @XmlElement(required = true)
   private int id;
+
+  @XmlElement(required = true)
   private String bid;
+
+  @XmlElement(required = true)
   private double price;
+
+  @XmlElement(required = true)
   private PoBean po;
+
+  @XmlElement(required = true)
   private BookBean book;
 
   /**

@@ -1,7 +1,5 @@
 package models;
 
-import beans.Books;
-
 import java.io.File;
 import java.io.PrintWriter;
 
@@ -43,7 +41,7 @@ public class ObjectMarshaller {
     File file = new File("./" + filename);
 
     try {
-      JAXBContext jaxbContext = JAXBContext.newInstance(Books.class);
+      JAXBContext jaxbContext = JAXBContext.newInstance(object.getClass());
       Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -70,7 +68,7 @@ public class ObjectMarshaller {
   public void marshal(Object object, PrintWriter writer) {
 
     try {
-      JAXBContext jaxbContext = JAXBContext.newInstance(Books.class);
+      JAXBContext jaxbContext = JAXBContext.newInstance(object.getClass());
       Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);

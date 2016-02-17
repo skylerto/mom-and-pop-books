@@ -1,7 +1,9 @@
 package controllers;
 
-import beans.Books;
+import dao.AddressDataAccessObject;
 import dao.BookDataAccessObject;
+import dao.PoDataAccessObject;
+import dao.PoItemDataAccessObject;
 import models.ObjectMarshaller;
 
 import java.io.IOException;
@@ -14,20 +16,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 
- * @author Skyler Layne on Jan 8, 2016
- * @version 0.0.1
- *
+ * Servlet implementation class Soap.
  */
-@WebServlet("/soap/books")
-public class BooksSoap extends HttpServlet {
+@WebServlet(urlPatterns = { "/soap", "/soap/*" })
+public class Soap extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   /**
    * @see HttpServlet#HttpServlet().
    */
-  public BooksSoap() {
+  public Soap() {
     super();
+    // TODO Auto-generated constructor stub
   }
 
   /**
@@ -36,15 +36,24 @@ public class BooksSoap extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    // Get the response as a PrintWriter
+    String path = request.getPathInfo();
+    if (path == null) {
+      path = "";
+    }
 
     PrintWriter writer = response.getWriter();
-    Books books = (new BookDataAccessObject()).findAll();
-    ObjectMarshaller marsh = new ObjectMarshaller();
-
+    ObjectMarshaller marshaller = new ObjectMarshaller();
     response.setContentType("text/xml");
-    marsh.marshal(books, writer);
 
+    if (path.contains("pos")) {
+      marshaller.marshal((new PoDataAccessObject()).findAll(), writer);
+    } else if (path.contains("books")) {
+      marshaller.marshal((new BookDataAccessObject()).findAll(), writer);
+    } else if (path.contains("poitems")) {
+      marshaller.marshal((new PoItemDataAccessObject()).findAll(), writer);
+    } else if (path.contains("addresses")) {
+      marshaller.marshal((new AddressDataAccessObject()).findAll(), writer);
+    }
   }
 
   /**
@@ -52,6 +61,7 @@ public class BooksSoap extends HttpServlet {
    */
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+    // TODO Auto-generated method stub
     doGet(request, response);
   }
 

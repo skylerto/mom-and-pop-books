@@ -1,11 +1,12 @@
 package dao;
 
-import beans.AddressBean;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import beans.AddressBean;
+import models.Addresses;
 
 /**
  * AddressDAO - Data Access Object for Addresses
@@ -32,8 +33,8 @@ public class AddressDataAccessObject extends DataAccessObject {
    *          - the result of the query.
    * @return - a list of the Address Beans that are found from the query.
    */
-  private List<AddressBean> get(ResultSet rs) {
-    List<AddressBean> addresses = new ArrayList<>();
+  private Addresses get(ResultSet rs) {
+    Addresses addresses = new Addresses();
 
     try {
       this.getCon().setReadOnly(true);
@@ -56,7 +57,7 @@ public class AddressDataAccessObject extends DataAccessObject {
 
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
-      return new ArrayList<>();
+      return addresses;
     }
   }
 
@@ -65,14 +66,14 @@ public class AddressDataAccessObject extends DataAccessObject {
    * 
    * @return - A list of all the address beans.
    */
-  public List<AddressBean> findAll() {
+  public Addresses findAll() {
     try {
       this.createConnection();
       ResultSet rs = this.getStmt().executeQuery(this.getAllQuery());
       return get(rs);
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
-      return new ArrayList<>();
+      return new Addresses();
     }
   }
 
@@ -83,7 +84,7 @@ public class AddressDataAccessObject extends DataAccessObject {
    *          - the id to look for.
    * @return - a list of address beans with that id.
    */
-  public List<AddressBean> findById(String id) {
+  public Addresses findById(String id) {
 
     this.createConnection();
     ResultSet rs;
@@ -92,7 +93,7 @@ public class AddressDataAccessObject extends DataAccessObject {
       return get(rs);
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
-      return new ArrayList<>();
+      return new Addresses();
     }
 
   }
