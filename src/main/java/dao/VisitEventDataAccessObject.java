@@ -1,23 +1,26 @@
 package dao;
 
-import beans.BookBean;
-import beans.PoBean;
-import beans.PoItemBean;
-import models.Books;
-import models.PoItems;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import beans.BookBean;
+import beans.PoBean;
+import beans.PoItemBean;
+import beans.VisitEventBean;
+import models.Books;
+import models.PoItems;
+import models.Visits;
+
 /**
- * @author Skyler Layne on Feb 8, 2016.
+ * 
+ * @author Skyler Layne on Feb 17, 2016
  *
  */
-public class PoItemDataAccessObject extends DataAccessObject {
+public class VisitEventDataAccessObject extends DataAccessObject {
 
-  public PoItemDataAccessObject() {
+  public VisitEventDataAccessObject() {
     super();
-    this.setTableName("poitem");
+    this.setTableName("visitevent");
   }
 
   /**
@@ -27,33 +30,32 @@ public class PoItemDataAccessObject extends DataAccessObject {
    *          - the result of the query.
    * @return - a list of the PoItemBean that are found from the query.
    */
-  private PoItems get(ResultSet rs) {
-    PoItems poItems = new PoItems();
+  private Visits get(ResultSet rs) {
+    Visits visits = new Visits();
 
     try {
       this.getCon().setReadOnly(true);
 
       while (rs.next()) {
 
-        int id = rs.getInt("id");
+        String day = rs.getString("DAY");
         String bid = rs.getString("bid");
-        int price = rs.getInt("price");
-        PoBean po = (new PoDataAccessObject()).findById("" + id).get(id - 1);
-        Books list = (new BookDataAccessObject()).findById(bid);
+        String eventType = rs.getString("eventtype");
         BookBean book = null;
-        book = list.getBooks().stream().filter(b -> b.getBid().equals(bid)).findFirst().get();
+        book = (new BookDataAccessObject()).findAll().getBooks().stream()
+            .filter(b -> b.getBid().equals(bid)).findFirst().get();
 
-        poItems.add(new PoItemBean(id, bid, price, po, book));
+        visits.add(new VisitEventBean(day, book, eventType));
       }
 
       rs.close();
       this.getStmt().close();
       close();
-      return poItems;
+      return visits;
 
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
-      return new PoItems();
+      return new Visits();
     }
   }
 
@@ -62,44 +64,45 @@ public class PoItemDataAccessObject extends DataAccessObject {
    * 
    * @return - A list of all the PoItemBean.
    */
-  public PoItems findAll() {
+  public Visits findAll() {
     try {
       createConnection();
       ResultSet rs = this.getStmt().executeQuery(this.getAllQuery());
       return get(rs);
     } catch (SQLException e) {
       System.out.println("SQLException: " + e.getErrorCode() + "");
-      return new PoItems();
+      return new Visits();
     }
   }
 
   /**
-   * Get the PoItemBean with the registered id.
+   * Get the Visits that happen on a particular day.
    * 
    * @param id
-   *          - the id to look for.
-   * @return - a list of PoItemBean with that id.
+   *          - the day to find visits (DD/MM/YYYY)
+   * @return - The Visits on that day.
    */
-  public PoItems findById(String id) {
+  public Visits findByDay(String day) {
     try {
       createConnection();
-      ResultSet rs = this.getStmt().executeQuery(this.getAllQuery() + " where id='" + id + "';");
+      ResultSet rs = this.getStmt().executeQuery(this.getAllQuery() + " where id='" + day + "';");
       return get(rs);
     } catch (SQLException e) {
       System.out.println("SQLException: " + e.getErrorCode() + "");
-      return new PoItems();
+      return new Visits();
     }
   }
 
-  public boolean insert(PoItemBean poitem) {
+  public boolean insert(VisitEventBean poitem) {
     return false;
   }
 
-  public boolean update(PoItemBean poitem) {
+  public boolean update(VisitEventBean poitem) {
     return false;
   }
 
-  public boolean delete(PoItemBean poitem) {
+  public boolean delete(VisitEventBean poitem) {
     return false;
   }
+
 }

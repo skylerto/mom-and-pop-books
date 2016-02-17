@@ -1,11 +1,5 @@
 package controllers;
 
-import dao.AddressDataAccessObject;
-import dao.BookDataAccessObject;
-import dao.PoDataAccessObject;
-import dao.PoItemDataAccessObject;
-import models.ObjectMarshaller;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -14,6 +8,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dao.AddressDataAccessObject;
+import dao.BookDataAccessObject;
+import dao.PoDataAccessObject;
+import dao.PoItemDataAccessObject;
+import dao.VisitEventDataAccessObject;
+import models.ObjectMarshaller;
 
 /**
  * Servlet implementation class Soap.
@@ -53,6 +54,8 @@ public class Soap extends HttpServlet {
       marshaller.marshal((new PoItemDataAccessObject()).findAll(), writer);
     } else if (path.contains("addresses")) {
       marshaller.marshal((new AddressDataAccessObject()).findAll(), writer);
+    } else if (path.contains("visits")) {
+      marshaller.marshal((new VisitEventDataAccessObject()).findAll().getAll("12"), writer);
     }
   }
 
