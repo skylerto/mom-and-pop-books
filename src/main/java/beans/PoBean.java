@@ -1,11 +1,15 @@
 package beans;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * 
  * @author Skyler Layne on Feb 8, 2016
  * 
  * @version 0.0.1
  */
+@XmlRootElement(name = "po")
 public class PoBean {
 
   private int id;
@@ -37,6 +41,13 @@ public class PoBean {
   }
 
   /**
+   * Default constructor.
+   */
+  public PoBean() {
+
+  }
+
+  /**
    * Get the id of the purchase order.
    * 
    * @return - the id of the purchase order.
@@ -51,6 +62,7 @@ public class PoBean {
    * @param id
    *          - the new id.
    */
+  @XmlElement
   public void setId(int id) {
     this.id = id;
   }
@@ -70,6 +82,7 @@ public class PoBean {
    * @param lname
    *          - the new last name.
    */
+  @XmlElement(required = true, name = "last_name")
   public void setLname(String lname) {
     this.lname = lname;
   }
@@ -89,6 +102,7 @@ public class PoBean {
    * @param fname
    *          - the new first name.
    */
+  @XmlElement(required = true, name = "first_name")
   public void setFname(String fname) {
     this.fname = fname;
   }
@@ -108,6 +122,8 @@ public class PoBean {
    * @param status
    *          - the new status.
    */
+
+  @XmlElement(required = true)
   public void setStatus(String status) {
     this.status = status;
   }
@@ -127,6 +143,8 @@ public class PoBean {
    * @param address
    *          - the new address.
    */
+
+  @XmlElement(required = true)
   public void setAddress(AddressBean address) {
     this.address = address;
   }

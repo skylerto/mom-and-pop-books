@@ -1,9 +1,12 @@
-package beans;
+package models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import beans.BookBean;
 
 /**
  * Holds the state of a list of Books.
@@ -14,14 +17,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "books")
 public class Books {
 
-  
   private List<BookBean> books;
 
   /**
    * Default constructor.
    */
   public Books() {
-
+    this.books = new ArrayList<>();
   }
 
   /**
@@ -52,6 +54,28 @@ public class Books {
   @XmlElement(name = "book")
   public void setBooks(List<BookBean> books) {
     this.books = books;
+  }
+
+  /**
+   * Return a String representation of a list of Books.
+   */
+  @Override
+  public String toString() {
+    StringBuilder bookList = new StringBuilder();
+    bookList.append("[");
+    this.books.forEach(book -> {
+      bookList.append(book.toString());
+    });
+    bookList.append("]");
+    return bookList.toString();
+  }
+
+  public boolean add(BookBean b1) {
+    return this.books.add(b1);
+  }
+
+  public int size() {
+    return this.books.size();
   }
 
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import junit.framework.TestCase;
+import models.Books;
 
 public class TestCartBean extends TestCase {
 
@@ -49,17 +50,18 @@ public class TestCartBean extends TestCase {
   }
 
   public void testGetCart() {
-    // Add Some Books
-    assertEquals(new ArrayList<>(), cart.get());
 
-    List<BookBean> books = new ArrayList<>();
+    assertTrue(cart.size() == 0);
+
+    // Add Some Books
+    Books books = new Books();
     books.add(b1);
     cart.add(b1);
-    assertEquals(books, cart.get());
+    assertEquals(books.toString(), cart.get().toString());
 
     books.add(b2);
     cart.add(b2);
-    assertEquals(books, cart.get());
+    assertEquals(books.toString(), cart.get().toString());
 
     assertEquals(2, cart.size());
 
