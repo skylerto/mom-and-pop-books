@@ -5,7 +5,7 @@ tomcat:
   links:
     - mysql
   volumes:
-    - ../target/:/usr/local/tomcat/webapps/
+    - ../target/:/usr/local/tomcat/webapps/:ro
 
 mysql:
   build: mysql
