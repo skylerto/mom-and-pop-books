@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false" %>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -39,39 +41,17 @@
 
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4">
-					<img class="thumbnail" src="" width="200" height="200">
-				</div>
-				<div class="col-md-4">
-					<img class="thumbnail" src="" width="200" height="200">
-				</div>
-				<div class="col-md-4">
-					<img class="thumbnail" src="" width="200" height="200">
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-4">
-					<img class="thumbnail" src="" width="200" height="200">
-				</div>
-				<div class="col-md-4">
-					<img class="thumbnail" src="" width="200" height="200">
-				</div>
-				<div class="col-md-4">
-					<img class="thumbnail" src="" width="200" height="200">
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-md-4">
-					<img class="thumbnail" src="" width="200" height="200">
-				</div>
-				<div class="col-md-4">
-					<img class="thumbnail" src="" width="200" height="200">
-				</div>
-				<div class="col-md-4">
-					<img class="thumbnail" src="" width="200" height="200">
-				</div>
+				<c:forEach var="item" items="${books}">
+					<div class="col-md-4">
+						<a href="book/${item.getBid()}">
+							<!-- TODO: src depends on category -->
+							<img class="thumbnail" src="" width="200" height="200">
+							<div class="caption">
+								<h3>${item.getTitle()}</h3>
+							</div>
+						</a>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 
