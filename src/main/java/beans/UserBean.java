@@ -10,6 +10,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  * address for future purchases. - A user might want to save their Cart. - A user might want
  * remember want their purchase orders.
  *
+ * Credit card info should NOT be stored for each user.
+ *
  * @author Skyler Layne on Mar 16, 2016
  * @version 0.0.1
  *
@@ -79,7 +81,15 @@ public class UserBean {
     this.cart = cart;
     this.pos = pos;
   }
-
+  public UserBean(String userId, String userName, AddressBean address,
+      boolean admin, CartBean cart, List<PoBean> pos) {
+    this.userId = userId;
+    this.userName = userName;
+    this.address = address;
+    this.admin = admin;
+    this.cart = cart;
+    this.pos = pos;
+  }
   public UserBean() {
   }
 

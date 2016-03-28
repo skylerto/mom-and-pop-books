@@ -7,6 +7,8 @@ import java.util.List;
 
 import beans.BookBean;
 import beans.UserBean;
+import beans.AddressBean;
+import beans.CartBean;
 import models.Books;
 import models.Users;
 
@@ -28,7 +30,18 @@ public class UserDataAccessObject extends DataAccessObject {
     try {
       this.getCon().setReadOnly(true);
       while (rs.next()) {
-        // TODO: get the users data.
+        String id = rs.getString("userId");
+        String uname = rs.getString("userName");
+
+        // TODO: Get an addressId, create an address bean from it.
+        int addressId = rs.getInt("addressId");
+        AddressBean address;
+
+        // TODO: Get a cartId, create an cart bean from it.
+        int cartId = rs.getInt("cartId");
+        CartBean cart;
+
+        // TODO:  Create a user object from this information.
       }
       rs.close();
       this.getStmt().close();
@@ -53,11 +66,11 @@ public class UserDataAccessObject extends DataAccessObject {
     }
   }
 
-  public Users findById(String id) {
+  public Users get(String id, String hash) {
     try {
       createConnection();
       ResultSet rs = this.getStmt()
-          .executeQuery(this.getAllQuery() + " where userid='" + id + "';");
+          .executeQuery(this.getAllQuery() + " where userid='" + id + "' AND password '" + hash + ";");
       return get(rs);
     } catch (SQLException e) {
       System.out.println("SQLException: " + e.getErrorCode() + "");
