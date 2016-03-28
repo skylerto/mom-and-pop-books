@@ -44,8 +44,17 @@
 				<c:forEach var="item" items="${books}">
 					<div class="col-md-4">
 						<a href="book/${item.getBid()}">
-							<!-- TODO: src depends on category -->
-							<img class="thumbnail" src="" width="200" height="200">
+							<c:choose>
+								<c:when test="${item.getCategory() eq 'Science'}">
+									<img class="thumbnail" src="" alt="Science" width="200" height="200">
+								</c:when>
+								<c:when test="${item.getCategory() eq 'Engineering'}">
+									<img class="thumbnail" src="" alt="Engineering" width="200" height="200">
+								</c:when>
+								<c:when test="${item.getCategory() eq 'Fiction'}">
+									<img class="thumbnail" src="" alt="Fiction" width="200" height="200">
+								</c:when>
+							</c:choose>
 							<div class="caption">
 								<h3>${item.getTitle()}</h3>
 							</div>
