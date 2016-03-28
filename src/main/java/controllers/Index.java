@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Soap.
+ * Servlet implementation class Index.
  */
 @WebServlet(urlPatterns = { "/", "/index" })
 public class Index extends HttpServlet {
@@ -29,9 +29,8 @@ public class Index extends HttpServlet {
     BookDataAccessObject bdao = new BookDataAccessObject();
 
     Books books = bdao.findAll();
-    for (BookBean bb : books.getBooks()) {
-      System.out.println(bb.getTitle());
-    }
+    request.setAttribute("books", books.getBooks());
+
     rd.forward(request, response);
   }
 
