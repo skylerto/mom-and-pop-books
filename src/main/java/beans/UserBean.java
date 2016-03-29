@@ -44,11 +44,6 @@ public class UserBean {
   private boolean admin;
 
   /**
-   * The user's Cart.
-   */
-  private CartBean cart;
-
-  /**
    * The users purchase orders.
    */
   private List<PoBean> pos;
@@ -66,30 +61,40 @@ public class UserBean {
    *          - the user's address.
    * @param admin
    *          - flag to check if the user is an admin or not.
-   * @param cart
-   *          - the user's cart.
    * @param pos
    *          - A list of purchase orders.
    */
   public UserBean(String userId, String userName, String password, AddressBean address,
-      boolean admin, CartBean cart, List<PoBean> pos) {
+      boolean admin, List<PoBean> pos) {
     this.userId = userId;
     this.userName = userName;
     this.password = password;
     this.address = address;
     this.admin = admin;
-    this.cart = cart;
     this.pos = pos;
   }
-  public UserBean(String userId, String userName, AddressBean address,
-      boolean admin, CartBean cart, List<PoBean> pos) {
+
+  /**
+   * Create a UserBean without a password.
+   * 
+   * @param userId
+   * @param userName
+   * @param address
+   * @param admin
+   * @param pos
+   */
+  public UserBean(String userId, String userName, AddressBean address, boolean admin,
+      List<PoBean> pos) {
     this.userId = userId;
     this.userName = userName;
     this.address = address;
     this.admin = admin;
-    this.cart = cart;
     this.pos = pos;
   }
+
+  /**
+   * Default UserBean constructor.
+   */
   public UserBean() {
   }
 
@@ -131,14 +136,6 @@ public class UserBean {
 
   public void setAdmin(boolean admin) {
     this.admin = admin;
-  }
-
-  public CartBean getCart() {
-    return cart;
-  }
-
-  public void setCart(CartBean cart) {
-    this.cart = cart;
   }
 
   public List<PoBean> getPos() {
