@@ -10,6 +10,7 @@ import beans.UserBean;
 import beans.AddressBean;
 import beans.CartBean;
 import models.Books;
+import models.Pos;
 import models.Users;
 
 /**
@@ -25,23 +26,21 @@ public class UserDataAccessObject extends DataAccessObject {
     this.setTableName("user");
   }
 
-  private Users get(ResultSet rs) {
+  private synchronized Users get(ResultSet rs) {
     List<UserBean> users = new ArrayList<>();
     try {
       this.getCon().setReadOnly(true);
       while (rs.next()) {
-        String id = rs.getString("userId");
-        String uname = rs.getString("userName");
+        int id = rs.getInt("id");
+        String uname = rs.getString("username");
+        String password = rs.getString("password");
+        boolean admin = rs.getBoolean("admin");
+        int addressId = rs.getInt("addressid");
 
-        // TODO: Get an addressId, create an address bean from it.
-        int addressId = rs.getInt("addressId");
-        AddressBean address;
-
-        // TODO: Get a cartId, create an cart bean from it.
-        int cartId = rs.getInt("cartId");
-        CartBean cart;
-
-        // TODO:  Create a user object from this information.
+        AddressBean address = (new AddressDataAccessObject()).findById("" + addressId).get(0);
+        Pos pos = (new PoDataAccessObject()).findByUserId("" + id);
+        UserBean user = new UserBean(id, uname, password, address, admin, pos);
+        users.add(user);
       }
       rs.close();
       this.getStmt().close();
@@ -57,7 +56,7 @@ public class UserDataAccessObject extends DataAccessObject {
   public Users findAll() {
     try {
       createConnection();
-      ResultSet rs = this.getStmt().executeQuery(this.getAllQuery());
+      ResultSet rs = this.getStmt().executeQuery("select * from user;");
       return get(rs);
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
@@ -69,8 +68,8 @@ public class UserDataAccessObject extends DataAccessObject {
   public Users get(String id, String hash) {
     try {
       createConnection();
-      ResultSet rs = this.getStmt()
-          .executeQuery(this.getAllQuery() + " where userid='" + id + "' AND password '" + hash + ";");
+      ResultSet rs = this.getStmt().executeQuery(
+          this.getAllQuery() + " where userid='" + id + "' AND password '" + hash + ";");
       return get(rs);
     } catch (SQLException e) {
       System.out.println("SQLException: " + e.getErrorCode() + "");
@@ -86,6 +85,17 @@ public class UserDataAccessObject extends DataAccessObject {
       return get(rs);
     } catch (SQLException e) {
       System.out.println("SQLException: " + e.getErrorCode() + "");
+      return new Users();
+    }
+  }
+
+  public Users findByUserid(String id) {
+    try {
+      createConnection();
+      ResultSet rs = this.getStmt().executeQuery("select * from user where id=" + id + ";");
+      return get(rs);
+    } catch (SQLException e) {
+      System.out.println("SQLException: ");
       return new Users();
     }
   }
