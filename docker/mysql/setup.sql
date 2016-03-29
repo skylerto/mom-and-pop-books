@@ -81,10 +81,11 @@ CREATE TABLE po (
                  FOREIGN KEY (address) REFERENCES address (id) ON
                  DELETE cascade);
 
-INSERT INTO po (id, lname, fname, status, address)
+INSERT INTO po (id, lname, fname, userid, status, address)
 VALUES (1,
         'John',
         'White',
+        1,
         'PROCESSED',
         '1');
 
@@ -159,12 +160,25 @@ VALUES ('12252015',
         'PURCHASE');
 
 DROP TABLE IF EXISTS USER
-CREATE TABLE USER (id INT UNSIGNED NOT NULL,
+CREATE TABLE USER (id INT UNSIGNED NOT NULL auto_increment,
                    username varchar(20) NOT NULL,
                    password varchar(100) NOT NULL,
                    admin BIT(1) NOT NULL,
-                   poid INT UNSIGNED,
                    addressid INT UNSIGNED,
                    PRIMARY KEY(id),
                    FOREIGN KEY(addressid) REFERENCES address(id));
 
+INSERT INTO user (id, username, password, admin, addressid)
+VALUES (1,
+        'johnwhite',
+        'ineedtobehashed',
+        1,
+        1);
+
+
+INSERT INTO user (id, username, password, admin, addressid)
+VALUES (2,
+        'benjamin',
+        'ineedtobehashed',
+        0,
+        2);
