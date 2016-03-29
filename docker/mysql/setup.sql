@@ -74,7 +74,7 @@ CREATE TABLE po (
                  id INT UNSIGNED NOT NULL auto_increment,
                  lname varchar(20) NOT NULL,
                  fname varchar(20) NOT NULL,
-                 userid  INT UNSIGNED,
+                 userid  INT UNSIGNED NOT NULL,
                  status enum('ORDERED','PROCESSED','DENIED') NOT NULL,
                  address INT UNSIGNED NOT NULL,
                  PRIMARY key(id), INDEX (address),
@@ -90,18 +90,20 @@ VALUES (1,
         '1');
 
 
-INSERT INTO po (id, lname, fname, status, address)
+INSERT INTO po (id, lname, fname, userid, status, address)
 VALUES (2,
         'Peter',
         'Black',
+        2,
         'DENIED',
         '2');
 
 
-INSERT INTO po (id, lname, fname, status, address)
+INSERT INTO po (id, lname, fname,userid, status, address)
 VALUES (3,
         'Andy',
         'Green',
+        2,
         'ORDERED',
         '3');
 
@@ -159,8 +161,8 @@ VALUES ('12252015',
         'b001',
         'PURCHASE');
 
-DROP TABLE IF EXISTS USER
-CREATE TABLE USER (id INT UNSIGNED NOT NULL auto_increment,
+DROP TABLE IF EXISTS user;
+CREATE TABLE user (id INT UNSIGNED NOT NULL auto_increment,
                    username varchar(20) NOT NULL,
                    password varchar(100) NOT NULL,
                    admin BIT(1) NOT NULL,
