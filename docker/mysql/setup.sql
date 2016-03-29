@@ -157,3 +157,14 @@ INSERT INTO visitevent (DAY, bid, eventtype)
 VALUES ('12252015',
         'b001',
         'PURCHASE');
+
+DROP TABLE IF EXISTS USER
+CREATE TABLE USER (id INT UNSIGNED NOT NULL,
+                   username varchar(20) NOT NULL,
+                   password varchar(100) NOT NULL,
+                   admin BIT(1) NOT NULL,
+                   poid INT UNSIGNED,
+                   addressid INT UNSIGNED,
+                   FOREIGN KEY(addressid) REFERENCES address(id));
+                   FOREIGN KEY(poid) REFERENCES po(id));
+
