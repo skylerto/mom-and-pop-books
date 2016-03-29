@@ -16,6 +16,16 @@ public class PoBean {
   private String lname;
   private String fname;
   private String status;
+  private UserBean user;
+
+  public UserBean getUser() {
+    return user;
+  }
+
+  public void setUser(UserBean user) {
+    this.user = user;
+  }
+
   private AddressBean address;
 
   /**
@@ -32,6 +42,16 @@ public class PoBean {
    * @param address
    *          - the address of the user registered for the purchase order.
    */
+  public PoBean(int id, String lname, String fname, UserBean user, String status,
+      AddressBean address) {
+    this.id = id;
+    this.lname = lname;
+    this.fname = fname;
+    this.status = status;
+    this.user = user;
+    this.address = address;
+  }
+
   public PoBean(int id, String lname, String fname, String status, AddressBean address) {
     this.id = id;
     this.lname = lname;
