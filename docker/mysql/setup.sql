@@ -74,6 +74,7 @@ CREATE TABLE po (
                  id INT UNSIGNED NOT NULL auto_increment,
                  lname varchar(20) NOT NULL,
                  fname varchar(20) NOT NULL,
+                 userid  INT UNSIGNED,
                  status enum('ORDERED','PROCESSED','DENIED') NOT NULL,
                  address INT UNSIGNED NOT NULL,
                  PRIMARY key(id), INDEX (address),
