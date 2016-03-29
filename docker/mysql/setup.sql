@@ -165,6 +165,6 @@ CREATE TABLE USER (id INT UNSIGNED NOT NULL,
                    admin BIT(1) NOT NULL,
                    poid INT UNSIGNED,
                    addressid INT UNSIGNED,
+                   PRIMARY KEY(id),
                    FOREIGN KEY(addressid) REFERENCES address(id));
-                   FOREIGN KEY(poid) REFERENCES po(id));
 
