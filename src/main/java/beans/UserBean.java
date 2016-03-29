@@ -2,7 +2,10 @@ package beans;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import models.Pos;
 
 /**
  * UserBean is a class to represent a user of the system: - A user needs login information. - A
@@ -21,7 +24,7 @@ public class UserBean {
   /**
    * User's Id.
    */
-  private String userId;
+  private int id;
 
   /**
    * User's name.
@@ -46,7 +49,7 @@ public class UserBean {
   /**
    * The users purchase orders.
    */
-  private List<PoBean> pos;
+  private Pos pos;
 
   /**
    * Create a User from the passed value.
@@ -64,9 +67,9 @@ public class UserBean {
    * @param pos
    *          - A list of purchase orders.
    */
-  public UserBean(String userId, String userName, String password, AddressBean address,
-      boolean admin, List<PoBean> pos) {
-    this.userId = userId;
+  public UserBean(int id, String userName, String password, AddressBean address, boolean admin,
+      Pos pos) {
+    this.id = id;
     this.userName = userName;
     this.password = password;
     this.address = address;
@@ -83,9 +86,8 @@ public class UserBean {
    * @param admin
    * @param pos
    */
-  public UserBean(String userId, String userName, AddressBean address, boolean admin,
-      List<PoBean> pos) {
-    this.userId = userId;
+  public UserBean(int id, String userName, AddressBean address, boolean admin, Pos pos) {
+    this.id = id;
     this.userName = userName;
     this.address = address;
     this.admin = admin;
@@ -98,18 +100,20 @@ public class UserBean {
   public UserBean() {
   }
 
-  public String getUserId() {
-    return userId;
+  public int getUserId() {
+    return id;
   }
 
-  public void setUserId(String userId) {
-    this.userId = userId;
+  @XmlElement
+  public void setUserId(int id) {
+    this.id = id;
   }
 
   public String getUserName() {
     return userName;
   }
 
+  @XmlElement
   public void setUserName(String userName) {
     this.userName = userName;
   }
@@ -118,6 +122,7 @@ public class UserBean {
     return password;
   }
 
+  @XmlElement
   public void setPassword(String password) {
     this.password = password;
   }
@@ -126,6 +131,7 @@ public class UserBean {
     return address;
   }
 
+  @XmlElement
   public void setAddress(AddressBean address) {
     this.address = address;
   }
@@ -134,15 +140,17 @@ public class UserBean {
     return admin;
   }
 
+  @XmlElement
   public void setAdmin(boolean admin) {
     this.admin = admin;
   }
 
-  public List<PoBean> getPos() {
+  public Pos getPos() {
     return pos;
   }
 
-  public void setPos(List<PoBean> pos) {
+  @XmlElement
+  public void setPos(Pos pos) {
     this.pos = pos;
   }
 
