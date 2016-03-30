@@ -1,12 +1,12 @@
 package models;
 
+import beans.UserBean;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import beans.UserBean;
 
 /**
  * Holds the state of Users, provides the authentication.
@@ -45,9 +45,15 @@ public class Users {
     this.users = users;
   }
 
-  public UserBean get(int i) {
-    // TODO Auto-generated method stub
-    return users.get(i);
+  /**
+   * Get the user at index i.
+   * 
+   * @param i
+   *          - index value.
+   * @return - the UserBean at that location.
+   */
+  public UserBean get(int index) {
+    return users.get(index);
   }
 
 }

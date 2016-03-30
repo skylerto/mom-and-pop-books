@@ -1,17 +1,15 @@
 package dao;
 
+import beans.AddressBean;
+import beans.BookBean;
+import beans.UserBean;
+import models.Pos;
+import models.Users;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import beans.BookBean;
-import beans.UserBean;
-import beans.AddressBean;
-import beans.CartBean;
-import models.Books;
-import models.Pos;
-import models.Users;
 
 /**
  * UserDAO - Data Access Object for a User.
@@ -53,6 +51,11 @@ public class UserDataAccessObject extends DataAccessObject {
     }
   }
 
+  /**
+   * findAll users in the User table. Unsafe for production.
+   * 
+   * @return - a Users model object.
+   */
   public Users findAll() {
     try {
       createConnection();
@@ -65,11 +68,20 @@ public class UserDataAccessObject extends DataAccessObject {
     }
   }
 
+  /**
+   * Check the user in the database against its password hash.
+   * 
+   * @param id
+   *          - the User's id.
+   * @param hash
+   *          - the password hash.
+   * @return - a Users model of containing an authenticated user.
+   */
   public Users get(String id, String hash) {
     try {
       createConnection();
-      ResultSet rs = this.getStmt().executeQuery(
-          this.getAllQuery() + " where userid='" + id + "' AND password '" + hash + ";");
+      ResultSet rs = this.getStmt()
+          .executeQuery(this.getAllQuery() + " where id='" + id + "' AND password '" + hash + ";");
       return get(rs);
     } catch (SQLException e) {
       System.out.println("SQLException: " + e.getErrorCode() + "");
@@ -77,6 +89,13 @@ public class UserDataAccessObject extends DataAccessObject {
     }
   }
 
+  /**
+   * Find Users by Username.
+   * 
+   * @param username
+   *          - the user's username.
+   * @return - a Users object.
+   */
   public Users findByUsername(String username) {
     try {
       createConnection();
@@ -89,6 +108,13 @@ public class UserDataAccessObject extends DataAccessObject {
     }
   }
 
+  /**
+   * Find a User by a given id.
+   * 
+   * @param id
+   *          - the user's id.
+   * @return - a Users model with that id.
+   */
   public Users findByUserid(String id) {
     try {
       createConnection();
@@ -100,15 +126,36 @@ public class UserDataAccessObject extends DataAccessObject {
     }
   }
 
+  /**
+   * Insert a BookBean into the database.
+   * 
+   * @param book
+   *          - the book to be inserted.
+   * @return - if the insertion happened.
+   */
   public boolean insert(BookBean book) {
 
     return false;
   }
 
+  /**
+   * Update the passed BookBean in the database.
+   * 
+   * @param book
+   *          - The BookBean to update.
+   * @return - If the book has been, updated or not.
+   */
   public boolean update(BookBean book) {
     return false;
   }
 
+  /**
+   * Delete the passed book from the database.
+   * 
+   * @param book
+   *          - The book to be deleted.
+   * @return - If the book has been deleted or not.
+   */
   public boolean delete(BookBean book) {
     return false;
   }
