@@ -32,17 +32,22 @@ database row.
 Within these beans we use the XML annotation library to allow XML to be
 converted to, and from beans (Figure __).  
 
-![JavaBean UML Diagrams](resources/class-diagram/Beans.png)
+![JavaBean UML Diagrams](resources/class-diagrams/Beans.png)
 
 ### Data Access Objects
 
-![Data Access Object UML Diagrams](resources/class-diagram/DataAccessObjects.png)
+![Data Access Object UML Diagrams](resources/class-diagrams/DataAccessObjects.png)
 
 ## Models
 
-![Models UML Diagrams](resources/class-diagram/Models.png)
+The model package contains classes which are essentially wrappers for `ArrayList<G>`, where the `G` argument is a Java bean representation of that particular class. This pluralized pattern was chosen due to the fact that each singular class already has an associated bean. E.g. The plural `Addresses` class has a singular `AddressBean` class. Each of these plurals can be seen in the Figure below (their singular, bean counter parts have already been discussed in the Java Beans section).
+
+![Models UML Diagrams](resources/class-diagrams/Models.png)
+
 
 ### Addresses
+
+
 
 ### Books
 
