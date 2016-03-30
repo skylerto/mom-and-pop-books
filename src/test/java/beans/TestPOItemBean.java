@@ -47,8 +47,8 @@ public class TestPOItemBean extends TestCase {
     book = new BookBean(bid, title, price, category);
     book2 = new BookBean("BOOK21", title, price, category);
     address = new AddressBean(aid, street, province, country, zip, phone);
-    po = new PoBean(id, lname, fname, status, address);
-    po2 = new PoBean(2, lname, fname, status, address);
+    po = new PoBean(id, lname, fname, null, status, address);
+    po2 = new PoBean(2, lname, fname, null, status, address);
 
     poitem = new PoItemBean(id, price, po, book);
   }
@@ -65,13 +65,13 @@ public class TestPOItemBean extends TestCase {
 
     this.book = new BookBean(bid, title, price, category);
     this.address = new AddressBean(aid, street, province, country, zip, phone);
-    this.po = new PoBean(id, lname, fname, status, address);
+    this.po = new PoBean(id, lname, fname, null, status, address);
     this.poitem = new PoItemBean(id, price, po, book);
   }
 
   public void testToString() {
-    String res = "POItem: [" + poitem.getId() + ", " + poitem.getPrice()
-        + ", " + poitem.getPo() + ", " + poitem.getBook() + "]";
+    String res = "POItem: [" + poitem.getId() + ", " + poitem.getPrice() + ", " + poitem.getPo()
+        + ", " + poitem.getBook() + "]";
     assertEquals(res, poitem.toString());
   }
 

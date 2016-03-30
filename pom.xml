@@ -35,6 +35,31 @@
       <type>jar</type>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-jsp-api</artifactId>
+      <version>8.5.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>el-api</artifactId>
+      <version>6.0.45</version>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>bootstrap</artifactId>
+      <version>3.2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>jquery</artifactId>
+      <version>2.2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>webjars-locator</artifactId>
+      <version>0.1</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>mom-and-pop-books</finalName>
@@ -51,6 +76,10 @@
           <target>1.8</target>
         </configuration>
       </plugin>
+    </plugins>
+  </build>
+  <reporting>
+    <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
@@ -60,5 +89,5 @@
         </configuration>
       </plugin>
     </plugins>
-  </build>
+  </reporting>
 </project>
