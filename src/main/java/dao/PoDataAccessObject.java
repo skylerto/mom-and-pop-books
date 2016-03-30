@@ -2,12 +2,12 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import beans.AddressBean;
 import beans.PoBean;
+import beans.UserBean;
 import models.Pos;
+import models.Users;
 
 /**
  * 
@@ -29,7 +29,7 @@ public class PoDataAccessObject extends DataAccessObject {
    *          - the result of the query.
    * @return - a list of the Po Beans that are found from the query.
    */
-  public Pos get(ResultSet rs) {
+  public synchronized Pos get(ResultSet rs) {
     Pos pos = new Pos();
 
     try {
@@ -41,9 +41,10 @@ public class PoDataAccessObject extends DataAccessObject {
         String fname = rs.getString("fname");
         String status = rs.getString("status");
         int addressId = rs.getInt("address");
-
+        int userid = rs.getInt("userid");
+        UserBean user = (new UserDataAccessObject()).findByUserid("" + userid).get(0);
         AddressBean address = (new AddressDataAccessObject()).findById("" + addressId).get(0);
-        pos.add(new PoBean(id, lname, fname, status, address));
+        pos.add(new PoBean(id, lname, fname, user, status, address));
       }
 
       rs.close();
@@ -85,8 +86,41 @@ public class PoDataAccessObject extends DataAccessObject {
   public Pos findById(String id) {
     try {
       createConnection();
-      ResultSet rs = this.getStmt().executeQuery(this.getAllQuery() + " where id='" + id + "';");
+      ResultSet rs = this.getStmt()
+          .executeQuery(this.getAllQuery() + " where userid='" + id + "';");
       return get(rs);
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      e.getStackTrace();
+      return new Pos();
+    }
+  }
+
+  public Pos findByUserId(String id) {
+    try {
+      createConnection();
+      ResultSet rs = this.getStmt().executeQuery("select * from po where userid=" + id + ";");
+
+      Pos pos = new Pos();
+
+      this.getCon().setReadOnly(true);
+
+      while (rs.next()) {
+        int aid = rs.getInt("id");
+        String lname = rs.getString("lname");
+        String fname = rs.getString("fname");
+        String status = rs.getString("status");
+        int addressId = rs.getInt("address");
+        int userid = rs.getInt("userid");
+        AddressBean address = (new AddressDataAccessObject()).findById("" + addressId).get(0);
+        pos.add(new PoBean(aid, lname, fname, status, address));
+      }
+
+      rs.close();
+      this.getStmt().close();
+      close();
+      return pos;
+
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
       e.getStackTrace();

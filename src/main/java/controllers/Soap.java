@@ -13,8 +13,10 @@ import dao.AddressDataAccessObject;
 import dao.BookDataAccessObject;
 import dao.PoDataAccessObject;
 import dao.PoItemDataAccessObject;
+import dao.UserDataAccessObject;
 import dao.VisitEventDataAccessObject;
 import models.ObjectMarshaller;
+import models.Users;
 
 /**
  * Servlet implementation class Soap.
@@ -54,7 +56,7 @@ public class Soap extends HttpServlet {
 
       // do books controller logic
       String bid = request.getParameter("bid");
-      if(bid != null){
+      if (bid != null) {
         marshaller.marshal((new BookDataAccessObject()).findById(bid), writer);
       } else {
         marshaller.marshal((new BookDataAccessObject()).findAll(), writer);
@@ -63,7 +65,7 @@ public class Soap extends HttpServlet {
 
       // do poitems controller logic
       String id = request.getParameter("id");
-      if(id != null){
+      if (id != null) {
         marshaller.marshal((new PoItemDataAccessObject()).findById(id), writer);
       } else {
         marshaller.marshal((new PoItemDataAccessObject()).findAll(), writer);
@@ -72,7 +74,7 @@ public class Soap extends HttpServlet {
 
       // do Address controller logic
       String id = request.getParameter("id");
-      if(id != null){
+      if (id != null) {
         marshaller.marshal((new PoItemDataAccessObject()).findById(id), writer);
       } else {
         marshaller.marshal((new AddressDataAccessObject()).findAll(), writer);
@@ -82,12 +84,24 @@ public class Soap extends HttpServlet {
 
       // do Visits controller logic
       String month = request.getParameter("month");
-      if(month != null){
+      if (month != null) {
         marshaller.marshal((new VisitEventDataAccessObject()).findAll().getAll("12"), writer);
       } else {
         marshaller.marshal((new VisitEventDataAccessObject()).findAll(), writer);
       }
 
+    } else if (path.contains("users")) {
+
+      // do books controller logic
+      String id = request.getParameter("id");
+      if (id != null) {
+        Users users = (new UserDataAccessObject()).findByUserid(id);
+        marshaller.marshal(users, writer);
+
+      } else {
+        Users users = (new UserDataAccessObject()).findAll();
+        marshaller.marshal(users, writer);
+      }
     }
   }
 

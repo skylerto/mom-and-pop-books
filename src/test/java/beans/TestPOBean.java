@@ -32,7 +32,7 @@ public class TestPOBean extends TestCase {
     String lname = "last";
     String fname = "first";
     String status = "inactive";
-    this.po = new PoBean(id, lname, fname, status, address);
+    this.po = new PoBean(id, lname, fname, null, status, address);
   }
 
   protected void tearDown() throws Exception {
@@ -56,7 +56,7 @@ public class TestPOBean extends TestCase {
     String fname = "first";
     String status = "inactive";
 
-    PoBean po = new PoBean(id, lname, fname, status, address);
+    PoBean po = new PoBean(id, lname, fname, null, status, address);
   }
 
   public void testGetId() {
