@@ -23,28 +23,7 @@
 		</div>
 
 		<div class="container">
-			<div class="row">
-				<c:forEach var="item" items="${books}">
-					<div class="col-md-4">
-						<a href="book/?book=${item.getBid()}">
-							<c:choose>
-								<c:when test="${item.getCategory() eq 'Science'}">
-									<img class="thumbnail" src="" alt="Science" width="200" height="200">
-								</c:when>
-								<c:when test="${item.getCategory() eq 'Engineering'}">
-									<img class="thumbnail" src="" alt="Engineering" width="200" height="200">
-								</c:when>
-								<c:when test="${item.getCategory() eq 'Fiction'}">
-									<img class="thumbnail" src="" alt="Fiction" width="200" height="200">
-								</c:when>
-							</c:choose>
-							<div class="caption">
-								<h3>${item.getTitle()}</h3>
-							</div>
-						</a>
-					</div>
-				</c:forEach>
-			</div>
+			<p>${book}</p>
 		</div>
 
 		<script src="${pageContext.request.contextPath}/<%= org.webjars.AssetLocator.getWebJarPath("jquery.min.js") %>"></script>
