@@ -13,6 +13,11 @@
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li><a href="${pageContext.request.contextPath}/"/>Home</a></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Login</a></li>
       </ul>
     </div>
   </div>
