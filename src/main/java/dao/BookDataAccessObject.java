@@ -40,8 +40,7 @@ public class BookDataAccessObject extends DataAccessObject {
         String title = rs.getString("title");
         int price = rs.getInt("price");
         String category = rs.getString("category");
-        BookReviews reviews = (new BookReviewDataAccessObject()).findByBookId(bid);
-        books.add(new BookBean(bid, title, price, category, reviews));
+        books.add(new BookBean(bid, title, price, category));
       }
       rs.close();
       this.getStmt().close();

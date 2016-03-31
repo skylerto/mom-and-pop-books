@@ -18,7 +18,6 @@ public class BookBean {
   private String title;
   private double price;
   private String category;
-  private BookReviews reviews;
 
   /**
    * Constructor of a book bean.
@@ -32,12 +31,11 @@ public class BookBean {
    * @param category
    *          - the category which the book is in.
    */
-  public BookBean(String bid, String title, double price, String category, BookReviews reviews) {
+  public BookBean(String bid, String title, double price, String category) {
     this.bid = bid;
     this.title = title;
     this.price = price;
     this.category = category;
-    this.reviews = reviews;
   }
 
   public BookBean() {
