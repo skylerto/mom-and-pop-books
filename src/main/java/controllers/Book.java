@@ -1,6 +1,5 @@
 package controllers;
 
-import beans.BookBean;
 import dao.BookDataAccessObject;
 import models.Books;
 
