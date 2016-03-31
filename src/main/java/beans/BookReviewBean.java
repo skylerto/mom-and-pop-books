@@ -14,7 +14,7 @@ public class BookReviewBean {
 
   private int id;
   private UserBean user;
-  private BookBean book;
+  private String bid;
   private String review;
 
   /**
@@ -24,15 +24,15 @@ public class BookReviewBean {
    *          - the id of the bean.
    * @param user
    *          - the User associated with the review, might be NULL.
-   * @param book
+   * @param bid
    *          - The book which the review is associated with.
    * @param review
    *          - The review detail text
    */
-  public BookReviewBean(int id, UserBean user, BookBean book, String review) {
+  public BookReviewBean(int id, UserBean user, String bid, String review) {
     this.id = id;
     this.user = user;
-    this.book = book;
+    this.bid = bid;
     this.review = review;
   }
 
@@ -54,13 +54,13 @@ public class BookReviewBean {
     this.user = user;
   }
 
-  public BookBean getBook() {
-    return book;
+  public String getBid() {
+    return this.bid;
   }
 
   @XmlElement
-  public void setBook(BookBean book) {
-    this.book = book;
+  public void setBid(String bid) {
+    this.bid = bid;
   }
 
   public String getReview() {
@@ -80,7 +80,7 @@ public class BookReviewBean {
   public boolean save() {
     BookReviewDataAccessObject dao = new BookReviewDataAccessObject();
     boolean res = false;
-    if (dao.findByBookId(book.getBid()).size() > 0) {
+    if (dao.findByBookId(this.getBid()).size() > 0) {
       res = dao.update(this);
     } else {
       res = dao.insert(this);

@@ -78,4 +78,8 @@ public class Books {
     return this.books.size();
   }
 
+  public BookBean get(int index) {
+    return this.books.get(index);
+  }
+
 }

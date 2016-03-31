@@ -4,12 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import beans.BookBean;
 import beans.BookReviewBean;
 import beans.UserBean;
-import beans.VisitEventBean;
 import models.BookReviews;
-import models.Visits;
+import models.Users;
 
 /**
  * BookReviewDataAccessObject interfaces with the database to create Beans from books_review
@@ -45,12 +43,13 @@ public class BookReviewDataAccessObject extends DataAccessObject {
         String bid = rs.getString("bid");
         String review = rs.getString("review");
 
-        UserBean user = (new UserDataAccessObject()).findByUserid("" + userid).get(0);
-        BookBean book = null;
-        book = (new BookDataAccessObject()).findAll().getBooks().stream()
-            .filter(b -> b.getBid().equals(bid)).findFirst().get();
+        UserBean user = null;
+        Users users = (new UserDataAccessObject()).findByUserid("" + userid);
+        if (users.size() > 0) {
+          user = users.get(0);
+        }
 
-        reviews.add(new BookReviewBean(id, user, book, review));
+        reviews.add(new BookReviewBean(id, user, bid, review));
       }
 
       rs.close();
@@ -96,7 +95,7 @@ public class BookReviewDataAccessObject extends DataAccessObject {
       pstmt = this.getCon().prepareStatement(insert);
       pstmt.setInt(1, bean.getId());
       pstmt.setInt(2, bean.getUser().getUserId());
-      pstmt.setString(3, bean.getBook().getBid());
+      pstmt.setString(3, bean.getBid());
       pstmt.setString(4, bean.getReview());
       pstmt.executeUpdate();
       pstmt.close();
@@ -123,7 +122,7 @@ public class BookReviewDataAccessObject extends DataAccessObject {
     try {
       pstmt = this.getCon().prepareStatement(insert);
       pstmt.setInt(1, bean.getUser().getUserId());
-      pstmt.setString(2, bean.getBook().getBid());
+      pstmt.setString(2, bean.getBid());
       pstmt.setString(3, bean.getReview());
       pstmt.executeUpdate();
       pstmt.close();
