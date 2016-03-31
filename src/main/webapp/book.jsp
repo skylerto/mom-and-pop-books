@@ -91,15 +91,19 @@ body {
 	</div>
 
 		<div class="container">
-			<div class="col-sm-6 col-md-offset-3">
+			<div class="col-sm-12">
 				<c:forEach var="review" items="${reviews}">
 					<div class="panel panel-default">
-						<div class="panel-heading">Panel heading without title</div>
+						<c:choose>
+							<c:when test="${empty review.getUser()}">
+								<div class="panel-heading">Anonymous User</div>
+							</c:when>
+							<c:otherwise>
+								<div class="panel-heading">${ review.getUser().getUserName()}</div>
+							</c:otherwise>
+						</c:choose>
 						<div class="panel-body">
 							${review.getReview()}
-							<c:if test="${not empty review.getUser()}">
-								${review.getUser().getUserName()}
-							</c:if>
 						</div>
 					</div>
 				</c:forEach>

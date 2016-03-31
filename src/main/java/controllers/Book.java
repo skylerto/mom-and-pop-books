@@ -32,8 +32,7 @@ public class Book extends HttpServlet {
 
     Books books = bdao.findById(request.getParameter("book"));
 
-    //BookReviews br = brdao.findByBookId(request.getParameter("book"));
-    BookReviews br = brdao.findAll(); //brdao.findByBookId(request.getParameter("book"));
+    BookReviews br = brdao.findByBookId(request.getParameter("book"));
 
     if (books.size() > 0) {
       request.setAttribute("book", books.getBooks().get(0));
