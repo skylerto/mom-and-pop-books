@@ -1,3 +1,4 @@
+<%@ page isELIgnored="false" %>
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -7,11 +8,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Mom and Pop Books</a>
+      <a class="navbar-brand" href="${pageContext.request.contextPath}/">Mom and Pop Books</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
+        <li><a href="${pageContext.request.contextPath}/"/>Home</a></li>
       </ul>
     </div>
   </div>
