@@ -1,7 +1,9 @@
 package controllers;
 
 import dao.BookDataAccessObject;
+import dao.BookReviewDataAccessObject;
 import models.Books;
+import models.BookReviews;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -26,11 +28,19 @@ public class Book extends HttpServlet {
     RequestDispatcher rd = request.getRequestDispatcher("/book.jsp");
 
     BookDataAccessObject bdao = new BookDataAccessObject();
+    BookReviewDataAccessObject brdao = new BookReviewDataAccessObject();
 
     Books books = bdao.findById(request.getParameter("book"));
 
+    //BookReviews br = brdao.findByBookId(request.getParameter("book"));
+    BookReviews br = brdao.findAll(); //brdao.findByBookId(request.getParameter("book"));
+
     if (books.size() > 0) {
       request.setAttribute("book", books.getBooks().get(0));
+    }
+
+    if (br.size() > 0) {
+      request.setAttribute("reviews", br.getReviews());
     }
 
     rd.forward(request, response);
