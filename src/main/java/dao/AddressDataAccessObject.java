@@ -169,7 +169,7 @@ public class AddressDataAccessObject extends DataAccessObject {
   public boolean delete(AddressBean address) {
     this.createConnection();
     PreparedStatement pstmt = null;
-    String delete = "DELETE " + this.getTableName() + " where id=" + address.getId() + ";";
+    String delete = "DELETE FROM " + this.getTableName() + " where id=" + address.getId() + ";";
     try {
       pstmt = this.getCon().prepareStatement(delete);
       pstmt.executeUpdate();

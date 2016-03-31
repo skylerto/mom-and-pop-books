@@ -174,7 +174,7 @@ public class BookDataAccessObject extends DataAccessObject {
   public boolean delete(BookBean book) {
     this.createConnection();
     PreparedStatement pstmt = null;
-    String insert = "DELETE " + this.getTableName() + " where bid=" + book.getBid();
+    String insert = "DELETE FROM " + this.getTableName() + " where bid=" + book.getBid();
     try {
       pstmt = this.getCon().prepareStatement(insert);
       pstmt.executeUpdate();

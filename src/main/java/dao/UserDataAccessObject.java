@@ -194,7 +194,7 @@ public class UserDataAccessObject extends DataAccessObject {
   public boolean delete(UserBean user) {
     this.createConnection();
     PreparedStatement pstmt = null;
-    String insert = "DELETE " + this.getTableName() + " where id=" + user.getUserId();
+    String insert = "DELETE FROM " + this.getTableName() + " where id=" + user.getUserId();
     try {
       pstmt = this.getCon().prepareStatement(insert);
       pstmt.executeUpdate();

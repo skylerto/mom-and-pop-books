@@ -135,10 +135,17 @@ public class BookReviewDataAccessObject extends DataAccessObject {
     }
   }
 
+  /**
+   * Delete a review from the database.
+   * 
+   * @param bean
+   *          - the review to be deleted.
+   * @return - if the review was deleted or not.
+   */
   public boolean delete(BookReviewBean bean) {
     this.createConnection();
     PreparedStatement pstmt = null;
-    String insert = "DELETE " + this.getTableName() + " where id=" + bean.getId();
+    String insert = "DELETE FROM " + this.getTableName() + " where id=" + bean.getId();
     try {
       pstmt = this.getCon().prepareStatement(insert);
       pstmt.executeUpdate();

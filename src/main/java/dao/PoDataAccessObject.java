@@ -198,7 +198,7 @@ public class PoDataAccessObject extends DataAccessObject {
   public boolean delete(PoBean po) {
     this.createConnection();
     PreparedStatement pstmt = null;
-    String insert = "DELETE " + this.getTableName() + " where id=" + po.getId();
+    String insert = "DELETE FROM " + this.getTableName() + " where id=" + po.getId();
     try {
       pstmt = this.getCon().prepareStatement(insert);
       pstmt.executeUpdate();

@@ -154,7 +154,7 @@ public class PoItemDataAccessObject extends DataAccessObject {
   public boolean delete(PoItemBean poitem) {
     this.createConnection();
     PreparedStatement pstmt = null;
-    String insert = "DELETE " + this.getTableName() + " where id=" + poitem.getId();
+    String insert = "DELETE FROM " + this.getTableName() + " where id=" + poitem.getId();
     try {
       pstmt = this.getCon().prepareStatement(insert);
       pstmt.executeUpdate();
