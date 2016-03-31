@@ -143,11 +143,11 @@ public class AddressDataAccessObject extends DataAccessObject {
     try {
       pstmt = this.getCon().prepareStatement(update);
       // pstmt.setInt(1, address.getId());
-      pstmt.setString(2, address.getStreet());
-      pstmt.setString(3, address.getProvince());
-      pstmt.setString(4, address.getCountry());
-      pstmt.setString(5, address.getZip());
-      pstmt.setString(6, address.getPhone());
+      pstmt.setString(1, address.getStreet());
+      pstmt.setString(2, address.getProvince());
+      pstmt.setString(3, address.getCountry());
+      pstmt.setString(4, address.getZip());
+      pstmt.setString(5, address.getPhone());
       pstmt.executeUpdate();
       pstmt.close();
       close();
