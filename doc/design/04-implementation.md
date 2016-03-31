@@ -30,11 +30,13 @@ are called beans. In our implementation we use beans to represent a singular
 database row.  
 
 Within these beans we use the XML annotation library to allow XML to be
-converted to, and from beans (Figure __).  
+converted to, and from beans (see figure below).  
 
 ![JavaBean UML Diagrams](resources/class-diagrams/Beans.png)
 
 ### Data Access Objects
+
+The Data access objects directly interface with `JDBC` for generic CRUD (create, read, update, destroy) operations. The specific implementation chosen includes many `DataAccessObject` classes which inherit from a `DataAccessObject` class. Within the parent `DataAccessObject` class contains common information such as database and database connection information as well as generic queries. Each of the children of the `DataAccessObject` class provide implementation of various ways to select information from the database e.g. `findById(String id)`, `findByUserName(String username)`. This is achieved by querying, and passing the received `ResultSet` to a private method `get(ResultSet queryResults)` which creates an instance of the corresponding model class.
 
 ![Data Access Object UML Diagrams](resources/class-diagrams/DataAccessObjects.png)
 
@@ -44,22 +46,18 @@ The model package contains classes which are essentially wrappers for `ArrayList
 
 ![Models UML Diagrams](resources/class-diagrams/Models.png)
 
-
-### Addresses
-
-
-
-### Books
-
 ### Store
 
-### Object Marchaller
+The `Store` class holds all of the information of the store. It holds reference
+to the stores users, books, addresses, purchase orders, items, and visit events.
 
-### Visits
+### Object Marshaller
 
-### PoItems
+The `ObjectMarshaller` facilitates converting a correctly annotated generic class into XML (marshalling) and vica versa (unmarshalling). In this case, the annotated classes are both the models, and the beans.
 
-### Pos
+### Cart
+
+The Cart Model represents a subset of the items in the store; similar to a shopping cart of other ecommerce applications. It achieves this by storing reference to an instance of the `Books` model.
 
 ## Controllers
 
