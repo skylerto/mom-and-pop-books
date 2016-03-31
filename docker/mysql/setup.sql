@@ -189,11 +189,12 @@ DROP TABLE IF EXISTS book_review;
 CREATE TABLE book_review (id INT UNSIGNED NOT NULL auto_increment,
                            userid INT UNSIGNED,
                            bid varchar(20) NOT NULL,
+                           review TEXT NOT NULL,
                            PRIMARY KEY(id),
                            FOREIGN KEY(bid) REFERENCES book(bid)
                          );
 
-INSERT INTO book_review (id, userid, bid) VALUES (1,1,'b001');
-INSERT INTO book_review (id, userid, bid) VALUES (2,1,'b002');
-INSERT INTO book_review (id, userid, bid) VALUES (3,2,'b001');
-INSERT INTO book_review (id, bid) VALUES (4,'b001');
+INSERT INTO book_review (id, userid, bid, review) VALUES (1,1,'b001', 'loved the book');
+INSERT INTO book_review (id, userid, bid, review) VALUES (2,1,'b002', 'great read');
+INSERT INTO book_review (id, userid, bid, review) VALUES (3,2,'b001', 'I liked it too');
+INSERT INTO book_review (id, bid, review) VALUES (4,'b001', 'Pretty cool book');

@@ -37,7 +37,7 @@ public class BookBean {
     this.title = title;
     this.price = price;
     this.category = category;
-    this.reviews = reviews;
+    this.setReviews(reviews);
   }
 
   public BookBean() {
@@ -131,5 +131,14 @@ public class BookBean {
   public String toString() {
     return "Book: [" + this.bid + ", " + this.title + ", $" + this.price + ", " + this.category
         + "]";
+  }
+
+  public BookReviews getReviews() {
+    return reviews;
+  }
+
+  @XmlElement
+  public void setReviews(BookReviews reviews) {
+    this.reviews = reviews;
   }
 }

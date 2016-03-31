@@ -42,13 +42,14 @@ public class BookReviewDataAccessObject extends DataAccessObject {
         int id = rs.getInt("id");
         int userid = rs.getInt("userid");
         String bid = rs.getString("bid");
+        String review = rs.getString("review");
 
         UserBean user = (new UserDataAccessObject()).findByUserid("" + userid).get(0);
         BookBean book = null;
         book = (new BookDataAccessObject()).findAll().getBooks().stream()
             .filter(b -> b.getBid().equals(bid)).findFirst().get();
 
-        reviews.add(new BookReviewBean(id, user, book));
+        reviews.add(new BookReviewBean(id, user, book, review));
       }
 
       rs.close();
