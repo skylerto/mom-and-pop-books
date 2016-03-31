@@ -85,7 +85,7 @@ public class BookDataAccessObject extends DataAccessObject {
       ResultSet rs = this.getStmt().executeQuery(this.getAllQuery() + " where bid='" + id + "';");
       return get(rs);
     } catch (SQLException e) {
-      System.out.println("SQLException: " + e.getErrorCode() + "");
+      System.out.println("SQLException: " + e.getErrorCode() + ":" + e.getMessage());
       return new Books();
     }
   }
@@ -104,7 +104,7 @@ public class BookDataAccessObject extends DataAccessObject {
           .executeQuery(this.getAllQuery() + " where title='" + title + "';");
       return get(rs);
     } catch (SQLException e) {
-      System.out.println("SQLException: " + e.getErrorCode() + "");
+      System.out.println("SQLException: " + e.getErrorCode() + ":" + e.getMessage());
       return new Books();
     }
   }

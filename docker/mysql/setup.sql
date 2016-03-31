@@ -173,7 +173,7 @@ CREATE TABLE user (id INT UNSIGNED NOT NULL auto_increment,
 INSERT INTO user (id, username, password, admin, addressid)
 VALUES (1,
         'johnwhite',
-        'ineedtobehashed',
+        '43A7F2965151084A573445E062CB9358', -- ineedtobehashed
         1,
         1);
 
@@ -181,7 +181,7 @@ VALUES (1,
 INSERT INTO user (id, username, password, admin, addressid)
 VALUES (2,
         'benjamin',
-        'ineedtobehashed',
+        '43A7F2965151084A573445E062CB9358', -- ineedtobehashed
         0,
         2);
 

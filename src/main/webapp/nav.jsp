@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
@@ -13,11 +14,15 @@
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li><a href="${pageContext.request.contextPath}/"/>Home</a></li>
-
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a data-toggle="modal" data-target="#loginModal">Login</a></li>
+        <c:if test="${empty sessionScope['user']}">
+          <li><a data-toggle="modal" data-target="#loginModal">Login</a></li>
+        </c:if>
+        <c:if test="${not empty sessionScope['user']}">
+          <li><a href="${pageContext.request.contextPath}/Logout">Logout</a></li>
+        </c:if>
       </ul>
     </div>
   </div>

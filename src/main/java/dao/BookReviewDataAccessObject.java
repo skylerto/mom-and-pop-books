@@ -74,7 +74,7 @@ public class BookReviewDataAccessObject extends DataAccessObject {
       ResultSet rs = this.getStmt().executeQuery(this.getAllQuery());
       return get(rs);
     } catch (SQLException e) {
-      System.out.println("SQLException: " + e.getErrorCode() + "");
+      System.out.println("SQLException: " + e.getErrorCode() + ":" + e.getMessage());
       return new BookReviews();
     }
   }
@@ -170,7 +170,7 @@ public class BookReviewDataAccessObject extends DataAccessObject {
       ResultSet rs = this.getStmt().executeQuery(this.getAllQuery() + " where bid='" + bid + "';");
       return get(rs);
     } catch (SQLException e) {
-      System.out.println("SQLException: " + e.getErrorCode() + "");
+      System.out.println("SQLException: " + e.getErrorCode() + ":" + e.getMessage());
       return new BookReviews();
     }
   }

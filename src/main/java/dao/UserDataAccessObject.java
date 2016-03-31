@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * UserDAO - Data Access Object for a User.
- * 
+ *
  * @author Skyler Layne on Mar 16, 2016
  *
  */
@@ -54,7 +54,7 @@ public class UserDataAccessObject extends DataAccessObject {
 
   /**
    * findAll users in the User table. Unsafe for production.
-   * 
+   *
    * @return - a Users model object.
    */
   public Users findAll() {
@@ -71,7 +71,7 @@ public class UserDataAccessObject extends DataAccessObject {
 
   /**
    * Check the user in the database against its password hash.
-   * 
+   *
    * @param id
    *          - the User's id.
    * @param hash
@@ -81,18 +81,21 @@ public class UserDataAccessObject extends DataAccessObject {
   public Users get(String id, String hash) {
     try {
       createConnection();
-      ResultSet rs = this.getStmt()
-          .executeQuery(this.getAllQuery() + " where id='" + id + "' AND password '" + hash + ";");
+
+      PreparedStatement stmnt = getCon().prepareStatement(this.getAllQuery() + " where username=? AND password=?;");
+      stmnt.setString(1, id);
+      stmnt.setString(2, hash);
+      ResultSet rs = stmnt.executeQuery();
       return get(rs);
     } catch (SQLException e) {
-      System.out.println("SQLException: " + e.getErrorCode() + "");
+      System.out.println("SQLException: " + e.getErrorCode() + ":" + e.getMessage());
       return new Users();
     }
   }
 
   /**
    * Find Users by Username.
-   * 
+   *
    * @param username
    *          - the user's username.
    * @return - a Users object.
@@ -104,14 +107,14 @@ public class UserDataAccessObject extends DataAccessObject {
           .executeQuery(this.getAllQuery() + " where username='" + username + "';");
       return get(rs);
     } catch (SQLException e) {
-      System.out.println("SQLException: " + e.getErrorCode() + "");
+      System.out.println("SQLException: " + e.getErrorCode() + ":" + e.getMessage());
       return new Users();
     }
   }
 
   /**
    * Find a User by a given id.
-   * 
+   *
    * @param id
    *          - the user's id.
    * @return - a Users model with that id.
@@ -129,7 +132,7 @@ public class UserDataAccessObject extends DataAccessObject {
 
   /**
    * Insert a UserBean into the database.
-   * 
+   *
    * @param user
    *          - the user to be inserted.
    * @return - if the insertion happened.
@@ -158,7 +161,7 @@ public class UserDataAccessObject extends DataAccessObject {
 
   /**
    * Update the passed UserBean in the database.
-   * 
+   *
    * @param user
    *          - The UserBean to update.
    * @return - If the user has been, updated or not.
@@ -186,7 +189,7 @@ public class UserDataAccessObject extends DataAccessObject {
 
   /**
    * Delete the passed user from the database.
-   * 
+   *
    * @param user
    *          - The user to be deleted.
    * @return - If the user has been deleted or not.

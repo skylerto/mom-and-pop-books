@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.bind.DatatypeConverter;
 
 import dao.UserDataAccessObject;
 import models.Users;
@@ -31,14 +32,13 @@ public class Login extends HttpServlet {
 	  String hash =  request.getParameter("userPassword");
 		try {
 			md = MessageDigest.getInstance("MD5");
-			md.update(hash.getBytes());
-			hash = md.digest().toString();
+			hash = DatatypeConverter.printHexBinary(md.digest(hash.getBytes()));
 
 			UserDataAccessObject udao = new UserDataAccessObject();
 			Users result = udao.get(request.getParameter("userName"), hash);
-			
+
 			HttpSession currentSession = request.getSession();
-			
+
 			/* Set User in Context */
 			if (!result.isEmpty()) {
 				currentSession.setAttribute("user", request.getParameter("userName"));

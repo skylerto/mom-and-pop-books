@@ -69,7 +69,7 @@ public class PoItemDataAccessObject extends DataAccessObject {
       ResultSet rs = this.getStmt().executeQuery(this.getAllQuery());
       return get(rs);
     } catch (SQLException e) {
-      System.out.println("SQLException: " + e.getErrorCode() + "");
+      System.out.println("SQLException: " + e.getErrorCode() + ":" + e.getMessage());
       return new PoItems();
     }
   }
@@ -87,7 +87,7 @@ public class PoItemDataAccessObject extends DataAccessObject {
       ResultSet rs = this.getStmt().executeQuery(this.getAllQuery() + " where id='" + id + "';");
       return get(rs);
     } catch (SQLException e) {
-      System.out.println("SQLException: " + e.getErrorCode() + "");
+      System.out.println("SQLException: " + e.getErrorCode() + ":" + e.getMessage());
       return new PoItems();
     }
   }
