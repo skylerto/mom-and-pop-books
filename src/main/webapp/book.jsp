@@ -19,28 +19,29 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
-				<c:choose>
-					<c:when test="${book.getCategory() eq 'Science'}">
-						<img class="thumbnail" src="" alt="Science" width="500" height="500">
-					</c:when>
-					<c:when test="${book.getCategory() eq 'Engineering'}">
-						<img class="thumbnail" src="" alt="Engineering" width="500" height="500">
-					</c:when>
-					<c:when test="${book.getCategory() eq 'Fiction'}">
-						<img class="thumbnail" src="" alt="Fiction" width="500" height="500">
-					</c:when>
-				</c:choose>
-			</div>
+					<c:choose>
+						<c:when test="${book.getCategory() eq 'Science'}">
+							<img class="thumbnail" src="" alt="Science" width="500" height="500">
+						</c:when>
+						<c:when test="${book.getCategory() eq 'Engineering'}">
+							<img class="thumbnail" src="" alt="Engineering" width="500" height="500">
+						</c:when>
+						<c:when test="${book.getCategory() eq 'Fiction'}">
+							<img class="thumbnail" src="" alt="Fiction" width="500" height="500">
+						</c:when>
+					</c:choose>
+				</div>
 				<div class="col-lg-6">
-				<div class="caption">
-					<h3>${book.getTitle()}</h3>
-					<h4><fmt:formatNumber type="currency">${book.getPrice()}</fmt:formatNumber></h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					<div class="caption">
+						<h3>${book.getTitle()}</h3>
+						<h4><fmt:formatNumber type="currency">${book.getPrice()}</fmt:formatNumber></h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-					<!-- TODO: Add button for adding to cart -->
+						<!-- TODO: Add button for adding to cart -->
 
-					<!-- TODO: Add review system for logged in users -->
+						<!-- TODO: Add review system for logged in users -->
 
+					</div>
 				</div>
 			</div>
 		</div>
