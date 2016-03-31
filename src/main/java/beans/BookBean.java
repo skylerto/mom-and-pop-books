@@ -20,6 +20,7 @@ public class BookBean {
   private double price;
   private String category;
   private BookReviews reviews;
+  private String description;
 
   /**
    * Constructor of a book bean.
@@ -33,12 +34,23 @@ public class BookBean {
    * @param category
    *          - the category which the book is in.
    */
-  public BookBean(String bid, String title, double price, String category, BookReviews reviews) {
+  public BookBean(String bid, String title, double price, String category, String description,
+      BookReviews reviews) {
     this.bid = bid;
     this.title = title;
     this.price = price;
     this.category = category;
     this.reviews = reviews;
+    this.description = description;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  @XmlElement
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   public BookBean() {
