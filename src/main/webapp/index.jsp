@@ -5,7 +5,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="<%= org.webjars.AssetLocator.getWebJarPath("css/bootstrap.min.css")%>">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/<%= org.webjars.AssetLocator.getWebJarPath("css/bootstrap.min.css")%>">
 		<style>
 		body {
 			padding-top: 50px;
@@ -47,7 +47,7 @@
 			</div>
 		</div>
 
-		<script src="<%= org.webjars.AssetLocator.getWebJarPath("jquery.min.js") %>"></script>
-		<script src="<%= org.webjars.AssetLocator.getWebJarPath("bootstrap.min.js") %>"></script>
+		<script src="${pageContext.request.contextPath}/<%= org.webjars.AssetLocator.getWebJarPath("jquery.min.js") %>"></script>
+		<script src="${pageContext.request.contextPath}/<%= org.webjars.AssetLocator.getWebJarPath("bootstrap.min.js") %>"></script>
 	</body>
 </html>
