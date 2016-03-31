@@ -21,7 +21,7 @@ public class BookReviewDataAccessObject extends DataAccessObject {
 
   public BookReviewDataAccessObject() {
     super();
-    this.setTableName("visitevent");
+    this.setTableName("book_review");
   }
 
   /**
@@ -88,6 +88,24 @@ public class BookReviewDataAccessObject extends DataAccessObject {
 
   public boolean delete(BookReviewBean bean) {
     return false;
+  }
+
+  /**
+   * Find the list of reviews for a specific book.
+   * 
+   * @param bid
+   *          - the desired book id.
+   * @return - a model instance of the reviews.
+   */
+  public BookReviews findByBookId(String bid) {
+    try {
+      createConnection();
+      ResultSet rs = this.getStmt().executeQuery(this.getAllQuery() + " where bid='" + bid + "';");
+      return get(rs);
+    } catch (SQLException e) {
+      System.out.println("SQLException: " + e.getErrorCode() + "");
+      return new BookReviews();
+    }
   }
 
 }
