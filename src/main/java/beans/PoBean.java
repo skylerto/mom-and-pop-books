@@ -3,6 +3,8 @@ package beans;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import dao.PoDataAccessObject;
+
 /**
  *
  * @author Skyler Layne on Feb 8, 2016
@@ -178,4 +180,29 @@ public class PoBean {
         + this.address + "]";
   }
 
+  /**
+   * Insert or Update this po.
+   * 
+   * @return - if the save worked.
+   */
+  public boolean save() {
+    PoDataAccessObject dao = new PoDataAccessObject();
+    boolean res = false;
+    if (dao.findById("" + id).size() > 0) {
+      res = dao.update(this);
+    } else {
+      res = dao.insert(this);
+    }
+
+    return res;
+  }
+
+  /**
+   * Delete this po.
+   * 
+   * @return - if the delete worked.
+   */
+  public boolean delete() {
+    return (new PoDataAccessObject()).delete(this);
+  }
 }

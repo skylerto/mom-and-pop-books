@@ -3,6 +3,7 @@ package beans;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import dao.BookDataAccessObject;
 import models.BookReviews;
 
 /**
@@ -140,5 +141,30 @@ public class BookBean {
   @XmlElement
   public void setReviews(BookReviews reviews) {
     this.reviews = reviews;
+  }
+
+  /**
+   * Insert or update this record.
+   * 
+   * @return - if the save worked.
+   */
+  public boolean save() {
+    BookDataAccessObject dao = new BookDataAccessObject();
+    boolean res = false;
+    if (dao.findById(bid).size() > 0) {
+      res = dao.update(this);
+    } else {
+      res = dao.insert(this);
+    }
+    return res;
+  }
+
+  /**
+   * Delete this record from the database.
+   * 
+   * @return - if the delete worked or not.
+   */
+  public boolean delete() {
+    return (new BookDataAccessObject()).delete(this);
   }
 }

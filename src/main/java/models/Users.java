@@ -56,4 +56,8 @@ public class Users {
     return users.get(index);
   }
 
+  public int size() {
+    return this.users.size();
+  }
+
 }

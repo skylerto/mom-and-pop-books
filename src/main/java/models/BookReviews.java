@@ -43,4 +43,8 @@ public class BookReviews {
     return this.reviews.add(bean);
   }
 
+  public int size() {
+    return this.reviews.size();
+  }
+
 }

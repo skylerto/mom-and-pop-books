@@ -3,6 +3,8 @@ package beans;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import dao.VisitEventDataAccessObject;
+
 /**
  * Bean object representation of VisitEvent.
  * 
@@ -70,4 +72,30 @@ public class VisitEventBean {
     return this.getDay().substring(0, 2);
   }
 
+  /**
+   * Insert of Update this record.
+   * 
+   * @return - if the save worked.
+   */
+  public boolean save() {
+    VisitEventDataAccessObject dao = new VisitEventDataAccessObject();
+    boolean res = false;
+
+    if (dao.findByDay(day).size() > 0) {
+      res = dao.update(this);
+    } else {
+      res = dao.insert(this);
+    }
+
+    return res;
+  }
+
+  /**
+   * Delete this record.
+   * 
+   * @return - if the delete worked.
+   */
+  public boolean delete() {
+    return (new VisitEventDataAccessObject()).delete(this);
+  }
 }
