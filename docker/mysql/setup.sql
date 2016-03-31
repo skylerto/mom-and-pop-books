@@ -10,19 +10,22 @@ CREATE TABLE book (
                    title varchar(60) NOT NULL,
                    price INT NOT NULL,
                    category enum('Science','Fiction','Engineering') NOT NULL,
+                   description text,
                    PRIMARY key(bid));
 
-INSERT INTO book (bid, title, price, category)
+INSERT INTO book (bid, title, price, category, description)
 VALUES ('b001',
         'Little Prince',
         20,
-        'Fiction');
+        'Fiction',
+        'Moral allegory and spiritual autobiography, The Little Prince is the most translated book in the French language. With a timeless charm it tells the story of a little boy who leaves the safety of his own tiny planet to travel the universe, learning the vagaries of adult behaviour through a series of extraordinary encounters. His personal odyssey culminates in a voyage to Earth and further adventures.');
 
-INSERT INTO book (bid, title, price, category)
+INSERT INTO book (bid, title, price, category, description)
 VALUES ('b002',
         'Physics',
         201,
-        'Science');
+        'Science',
+        'This is an over priced Physics book!');
 
 INSERT INTO book (bid, title, price, category)
 VALUES ('b003',
