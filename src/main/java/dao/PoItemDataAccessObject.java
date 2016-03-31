@@ -6,6 +6,7 @@ import beans.PoItemBean;
 import models.Books;
 import models.PoItems;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -91,15 +92,78 @@ public class PoItemDataAccessObject extends DataAccessObject {
     }
   }
 
+  /**
+   * Insert poitem into the database.
+   * 
+   * @param poitem
+   *          - item to be inserted.
+   * @return - if the insert worked or not.
+   */
   public boolean insert(PoItemBean poitem) {
-    return false;
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String insert = "INSERT INTO " + this.getTableName() + " (id, bid, price) VALUES" + "(?,?,?);";
+    try {
+      pstmt = this.getCon().prepareStatement(insert);
+      pstmt.setInt(1, poitem.getId());
+      pstmt.setString(2, poitem.getBook().getBid());
+      pstmt.setDouble(3, poitem.getPrice());
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
   }
 
+  /**
+   * Update poitem into the database.
+   * 
+   * @param poitem
+   *          - item to be iupdated.
+   * @return - if the update worked or not.
+   */
   public boolean update(PoItemBean poitem) {
-    return false;
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String insert = "UPDATE " + this.getTableName() + " SET bid=?, price=? where id="
+        + poitem.getId();
+    try {
+      pstmt = this.getCon().prepareStatement(insert);
+      pstmt.setString(1, poitem.getBook().getBid());
+      pstmt.setDouble(2, poitem.getPrice());
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
   }
 
+  /**
+   * Delete poitem into the database.
+   * 
+   * @param poitem
+   *          - item to be deleted.
+   * @return - if the delete worked or not.
+   */
   public boolean delete(PoItemBean poitem) {
-    return false;
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String insert = "DELETE " + this.getTableName() + " where id=" + poitem.getId();
+    try {
+      pstmt = this.getCon().prepareStatement(insert);
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
   }
 }
