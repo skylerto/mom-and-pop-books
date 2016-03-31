@@ -5,6 +5,16 @@ import beans.BookReviewBean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+/**
+ * BookReviews model class.
+ * 
+ * @author Skyler Layne on Mar 31, 2016
+ *
+ */
+@XmlRootElement(name = "reviews")
 public class BookReviews {
   private List<BookReviewBean> reviews;
 
@@ -12,6 +22,7 @@ public class BookReviews {
     return reviews;
   }
 
+  @XmlElement(name = "review")
   public void setReviews(List<BookReviewBean> reviews) {
     this.reviews = reviews;
   }
@@ -30,6 +41,10 @@ public class BookReviews {
 
   public boolean add(BookReviewBean bean) {
     return this.reviews.add(bean);
+  }
+
+  public int size() {
+    return this.reviews.size();
   }
 
 }

@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -12,6 +13,8 @@ import models.PoItems;
 import models.Visits;
 
 /**
+ * 
+ * VisitEvent DAO.
  * 
  * @author Skyler Layne on Feb 17, 2016
  *
@@ -78,8 +81,8 @@ public class VisitEventDataAccessObject extends DataAccessObject {
   /**
    * Get the Visits that happen on a particular day.
    * 
-   * @param id
-   *          - the day to find visits (DD/MM/YYYY)
+   * @param day
+   *          - the day to find visits (DD/MM/YYYY).
    * @return - The Visits on that day.
    */
   public Visits findByDay(String day) {
@@ -93,16 +96,80 @@ public class VisitEventDataAccessObject extends DataAccessObject {
     }
   }
 
-  public boolean insert(VisitEventBean poitem) {
-    return false;
+  /**
+   * Insert the visit event into the database.
+   * 
+   * @param visit
+   *          - the visit event.
+   * @return - if the insert was successful
+   */
+  public boolean insert(VisitEventBean visit) {
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String insert = "INSERT INTO " + this.getTableName() + " (DAY, bid, eventtype) VALUES"
+        + "(?,?,?);";
+    try {
+      pstmt = this.getCon().prepareStatement(insert);
+      pstmt.setString(1, visit.getDay());
+      pstmt.setString(2, visit.getBook().getBid());
+      pstmt.setString(3, visit.getEventType());
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
   }
 
-  public boolean update(VisitEventBean poitem) {
-    return false;
+  /**
+   * Update the visit event in the database.
+   * 
+   * @param visit
+   *          - the visit event.
+   * @return - if the update was successful.
+   */
+  public boolean update(VisitEventBean visit) {
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String insert = "UPDATE " + this.getTableName() + " SET bid=?, eventtype=? where DAY="
+        + visit.getDay();
+    try {
+      pstmt = this.getCon().prepareStatement(insert);
+      pstmt.setString(1, visit.getBook().getBid());
+      pstmt.setString(2, visit.getEventType());
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
   }
 
-  public boolean delete(VisitEventBean poitem) {
-    return false;
+  /**
+   * Delete the visit event from the database.
+   * 
+   * @param visit
+   *          - the visit event.
+   * @return - if the delete was successful.
+   */
+  public boolean delete(VisitEventBean visit) {
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String insert = "DELETE FROM " + this.getTableName() + " where DAY=" + visit.getDay();
+    try {
+      pstmt = this.getCon().prepareStatement(insert);
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
   }
 
 }

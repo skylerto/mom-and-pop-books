@@ -3,6 +3,8 @@ package beans;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import dao.PoItemDataAccessObject;
+
 /**
  *
  * @author Skyler Layne on Feb 8, 2016
@@ -39,9 +41,9 @@ public class PoItemBean {
   }
 
   /**
-  *  Default Constructor
-  */
-  public PoItemBean(){
+   * Default Constructor
+   */
+  public PoItemBean() {
 
   }
 
@@ -60,7 +62,7 @@ public class PoItemBean {
    * @param po
    *          - the new purchase order.
    */
-   @XmlElement(required = true)
+  @XmlElement(required = true)
   public void setPo(PoBean po) {
     this.po = po;
   }
@@ -80,7 +82,7 @@ public class PoItemBean {
    * @param book
    *          - the new book.
    */
-   @XmlElement(required = true)
+  @XmlElement(required = true)
   public void setBook(BookBean book) {
     this.book = book;
   }
@@ -100,7 +102,7 @@ public class PoItemBean {
    * @param id
    *          - the new id.
    */
-   @XmlElement(required = true)
+  @XmlElement(required = true)
   public void setId(int id) {
     this.id = id;
   }
@@ -120,7 +122,7 @@ public class PoItemBean {
    * @param price
    *          - the new price.
    */
-   @XmlElement(required = true)
+  @XmlElement(required = true)
   public void setPrice(double price) {
     this.price = price;
   }
@@ -130,7 +132,31 @@ public class PoItemBean {
    */
   @Override
   public String toString() {
-    return "POItem: [" + this.id + ", " + this.price + ", " + this.po + ", "
-        + this.book + "]";
+    return "POItem: [" + this.id + ", " + this.price + ", " + this.po + ", " + this.book + "]";
+  }
+
+  /**
+   * Insert or Update this record.
+   * 
+   * @return - if the save worked.
+   */
+  public boolean save() {
+    PoItemDataAccessObject dao = new PoItemDataAccessObject();
+    boolean res = false;
+    if (dao.findById("" + id).size() > 0) {
+      res = dao.update(this);
+    } else {
+      res = dao.insert(this);
+    }
+    return res;
+  }
+
+  /**
+   * Delete this record.
+   * 
+   * @return - if the delete worked.
+   */
+  public boolean delete() {
+    return (new PoItemDataAccessObject()).delete(this);
   }
 }

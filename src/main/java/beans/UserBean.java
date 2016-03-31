@@ -1,19 +1,16 @@
 package beans;
 
-import java.util.List;
+import dao.UserDataAccessObject;
+import models.Pos;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import models.Pos;
 
 /**
  * UserBean is a class to represent a user of the system: - A user needs login information. - A
  * normal user needs to be distinguished from an admin user. - A user might want to save their
  * address for future purchases. - A user might want to save their Cart. - A user might want
- * remember want their purchase orders.
- *
- * Credit card info should NOT be stored for each user.
+ * remember want their purchase orders. Credit card info should NOT be stored for each user.
  *
  * @author Skyler Layne on Mar 16, 2016
  * @version 0.0.1
@@ -54,7 +51,7 @@ public class UserBean {
   /**
    * Create a User from the passed value.
    * 
-   * @param userId
+   * @param id
    *          - the User's Id.
    * @param userName
    *          - the user's name.
@@ -72,23 +69,6 @@ public class UserBean {
     this.id = id;
     this.userName = userName;
     this.password = password;
-    this.address = address;
-    this.admin = admin;
-    this.pos = pos;
-  }
-
-  /**
-   * Create a UserBean without a password.
-   * 
-   * @param userId
-   * @param userName
-   * @param address
-   * @param admin
-   * @param pos
-   */
-  public UserBean(int id, String userName, AddressBean address, boolean admin, Pos pos) {
-    this.id = id;
-    this.userName = userName;
     this.address = address;
     this.admin = admin;
     this.pos = pos;
@@ -152,6 +132,35 @@ public class UserBean {
   @XmlElement
   public void setPos(Pos pos) {
     this.pos = pos;
+  }
+
+  public boolean getAdmin() {
+    return this.admin;
+  }
+
+  /**
+   * Update or Insert the record in the database.
+   * 
+   * @return - if the save worked.
+   */
+  public boolean save() {
+    UserDataAccessObject dao = new UserDataAccessObject();
+    boolean res = false;
+    if (dao.findByUserid("" + id).size() > 0) {
+      res = dao.update(this);
+    } else {
+      res = dao.insert(this);
+    }
+    return res;
+  }
+
+  /**
+   * Delete the rescord from the database.
+   * 
+   * @return - if the delete worked or not.
+   */
+  public boolean delete() {
+    return (new UserDataAccessObject()).delete(this);
   }
 
 }

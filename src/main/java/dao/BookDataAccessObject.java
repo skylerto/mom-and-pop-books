@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -107,16 +108,81 @@ public class BookDataAccessObject extends DataAccessObject {
     }
   }
 
+  /**
+   * Insert a book into the database.
+   * 
+   * @param book
+   *          - the book to be inserted.
+   * @return - if the book was inserted or not.
+   */
   public boolean insert(BookBean book) {
-
-    return false;
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String insert = "INSERT INTO " + this.getTableName() + " (bid, title, price, category) VALUES"
+        + "(?,?,?,?);";
+    try {
+      pstmt = this.getCon().prepareStatement(insert);
+      pstmt.setString(1, book.getBid());
+      pstmt.setString(2, book.getTitle());
+      pstmt.setDouble(3, book.getPrice());
+      pstmt.setString(4, book.getCategory());
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
   }
 
+  /**
+   * Update a book in the database.
+   * 
+   * @param book
+   *          - the book to be updated.
+   * @return - if the update was successful or not.
+   */
   public boolean update(BookBean book) {
-    return false;
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String insert = "UPDATE " + this.getTableName() + " SET title=?, price=?, category=? where bid="
+        + book.getBid();
+    try {
+      pstmt = this.getCon().prepareStatement(insert);
+      pstmt.setString(1, book.getTitle());
+      pstmt.setDouble(2, book.getPrice());
+      pstmt.setString(3, book.getCategory());
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
   }
 
+  /**
+   * Delete a book from the database.
+   * 
+   * @param book
+   *          - the book to be deleted.
+   * @return - if the book deletion was successful.
+   */
   public boolean delete(BookBean book) {
-    return false;
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String insert = "DELETE FROM " + this.getTableName() + " where bid=" + book.getBid();
+    try {
+      pstmt = this.getCon().prepareStatement(insert);
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
   }
 }

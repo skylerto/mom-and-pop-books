@@ -3,6 +3,8 @@ package beans;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import dao.AddressDataAccessObject;
+
 /**
  * AddressBean - Address class.
  * 
@@ -188,6 +190,31 @@ public class AddressBean {
   @XmlElement
   public void setPhone(String phone) {
     this.phone = phone;
+  }
+
+  /**
+   * Save the record, either updates or inserts this bean.
+   * 
+   * @return - if the save worked.
+   */
+  public boolean save() {
+    AddressDataAccessObject dao = new AddressDataAccessObject();
+    boolean result = false;
+    if (dao.findById("" + id).size() > 0) {
+      result = dao.update(this);
+    } else {
+      result = dao.insert(this);
+    }
+    return result;
+  }
+
+  /**
+   * Delete this Bean from the database.
+   * 
+   * @return - if the deletion worked.
+   */
+  public boolean delete() {
+    return (new AddressDataAccessObject()).delete(this);
   }
 
   /**

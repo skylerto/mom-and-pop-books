@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -79,16 +80,82 @@ public class BookReviewDataAccessObject extends DataAccessObject {
     }
   }
 
+  /**
+   * Add a book review.
+   * 
+   * @param bean
+   *          - the review to add.
+   * @return - if the review was added or not.
+   */
   public boolean insert(BookReviewBean bean) {
-    return false;
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String insert = "INSERT INTO " + this.getTableName() + " (id, userid, bid, review) VALUES"
+        + "(?,?,?,?)";
+    try {
+      pstmt = this.getCon().prepareStatement(insert);
+      pstmt.setInt(1, bean.getId());
+      pstmt.setInt(2, bean.getUser().getUserId());
+      pstmt.setString(3, bean.getBook().getBid());
+      pstmt.setString(4, bean.getReview());
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
   }
 
+  /**
+   * Update a review in the database.
+   * 
+   * @param bean
+   *          - the review to be updated.
+   * @return - if the review was updated or not.
+   */
   public boolean update(BookReviewBean bean) {
-    return false;
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String insert = "UPDATE " + this.getTableName() + " SET userid=?, bid=?, review=? where id="
+        + bean.getId();
+    try {
+      pstmt = this.getCon().prepareStatement(insert);
+      pstmt.setInt(1, bean.getUser().getUserId());
+      pstmt.setString(2, bean.getBook().getBid());
+      pstmt.setString(3, bean.getReview());
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
   }
 
+  /**
+   * Delete a review from the database.
+   * 
+   * @param bean
+   *          - the review to be deleted.
+   * @return - if the review was deleted or not.
+   */
   public boolean delete(BookReviewBean bean) {
-    return false;
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String insert = "DELETE FROM " + this.getTableName() + " where id=" + bean.getId();
+    try {
+      pstmt = this.getCon().prepareStatement(insert);
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
   }
 
   /**

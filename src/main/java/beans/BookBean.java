@@ -3,6 +3,7 @@ package beans;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import dao.BookDataAccessObject;
 import models.BookReviews;
 
 /**
@@ -18,6 +19,7 @@ public class BookBean {
   private String title;
   private double price;
   private String category;
+  private BookReviews reviews;
 
   /**
    * Constructor of a book bean.
@@ -31,11 +33,12 @@ public class BookBean {
    * @param category
    *          - the category which the book is in.
    */
-  public BookBean(String bid, String title, double price, String category) {
+  public BookBean(String bid, String title, double price, String category, BookReviews reviews) {
     this.bid = bid;
     this.title = title;
     this.price = price;
     this.category = category;
+    this.reviews = reviews;
   }
 
   public BookBean() {
@@ -129,5 +132,39 @@ public class BookBean {
   public String toString() {
     return "Book: [" + this.bid + ", " + this.title + ", $" + this.price + ", " + this.category
         + "]";
+  }
+
+  public BookReviews getReviews() {
+    return this.reviews;
+  }
+
+  @XmlElement
+  public void setReviews(BookReviews reviews) {
+    this.reviews = reviews;
+  }
+
+  /**
+   * Insert or update this record.
+   * 
+   * @return - if the save worked.
+   */
+  public boolean save() {
+    BookDataAccessObject dao = new BookDataAccessObject();
+    boolean res = false;
+    if (dao.findById(bid).size() > 0) {
+      res = dao.update(this);
+    } else {
+      res = dao.insert(this);
+    }
+    return res;
+  }
+
+  /**
+   * Delete this record from the database.
+   * 
+   * @return - if the delete worked or not.
+   */
+  public boolean delete() {
+    return (new BookDataAccessObject()).delete(this);
   }
 }
