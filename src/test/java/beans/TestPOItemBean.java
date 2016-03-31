@@ -44,8 +44,8 @@ public class TestPOItemBean extends TestCase {
   protected void setUp() throws Exception {
     super.setUp();
 
-    book = new BookBean(bid, title, price, category);
-    book2 = new BookBean("BOOK21", title, price, category);
+    book = new BookBean(bid, title, price, category, null);
+    book2 = new BookBean("BOOK21", title, price, category, null);
     address = new AddressBean(aid, street, province, country, zip, phone);
     po = new PoBean(id, lname, fname, null, status, address);
     po2 = new PoBean(2, lname, fname, null, status, address);
@@ -63,7 +63,7 @@ public class TestPOItemBean extends TestCase {
 
   public void testPOItemBean() {
 
-    this.book = new BookBean(bid, title, price, category);
+    this.book = new BookBean(bid, title, price, category, null);
     this.address = new AddressBean(aid, street, province, country, zip, phone);
     this.po = new PoBean(id, lname, fname, null, status, address);
     this.poitem = new PoItemBean(id, price, po, book);

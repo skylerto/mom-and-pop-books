@@ -1,9 +1,8 @@
 package dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import beans.AddressBean;
 import models.Addresses;
@@ -98,19 +97,89 @@ public class AddressDataAccessObject extends DataAccessObject {
 
   }
 
+  /**
+   * Insert an address.
+   * 
+   * @param address
+   *          - the address to insert into the database.
+   * @return - if the record was inserted.
+   */
   public boolean insert(AddressBean address) {
-    // TODO Auto-generated method stub
-    return false;
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String insert = "INSERT INTO " + this.getTableName()
+        + " (id, street, province, country, zip, phone) VALUES" + "(?,?,?,?,?,?)";
+    try {
+      pstmt = this.getCon().prepareStatement(insert);
+      pstmt.setInt(1, address.getId());
+      pstmt.setString(2, address.getStreet());
+      pstmt.setString(3, address.getProvince());
+      pstmt.setString(4, address.getCountry());
+      pstmt.setString(5, address.getZip());
+      pstmt.setString(6, address.getPhone());
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
+
   }
 
+  /**
+   * Update a given address.
+   * 
+   * @param address
+   *          - the address to update.
+   * @return - if the record was updated or not.
+   */
   public boolean update(AddressBean address) {
-    // TODO Auto-generated method stub
-    return false;
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String update = "UPDATE " + this.getTableName()
+        + "street=?, province=?, country=?, zip=?, phone=?" + " where id=" + address.getId() + ";";
+    try {
+      pstmt = this.getCon().prepareStatement(update);
+      // pstmt.setInt(1, address.getId());
+      pstmt.setString(2, address.getStreet());
+      pstmt.setString(3, address.getProvince());
+      pstmt.setString(4, address.getCountry());
+      pstmt.setString(5, address.getZip());
+      pstmt.setString(6, address.getPhone());
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
   }
 
+  /**
+   * Delete a record from the database.
+   * 
+   * @param address
+   *          - the address to be deleted.
+   * @return - if the record was deleted or not.
+   */
   public boolean delete(AddressBean address) {
-    // TODO Auto-generated method stub
-    return false;
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String delete = "DELETE " + this.getTableName() + " where id=" + address.getId() + ";";
+    try {
+      pstmt = this.getCon().prepareStatement(delete);
+      pstmt.setInt(1, address.getId());
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
   }
 
 }

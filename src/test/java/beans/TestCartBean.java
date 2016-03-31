@@ -16,9 +16,10 @@ public class TestCartBean extends TestCase {
     super.setUp();
     cart = new CartBean();
     b1 = new BookBean("0201633612",
-        "Design Patterns: Elements of Reusable Object-Oriented Software", 55.09, "Programming");
+        "Design Patterns: Elements of Reusable Object-Oriented Software", 55.09, "Programming",
+        null);
     b2 = new BookBean("0978739213", "Release It!: Design and Deploy Production-Rea​dy Software",
-        40.11, "Programming");
+        40.11, "Programming", null);
   }
 
   protected void tearDown() throws Exception {
