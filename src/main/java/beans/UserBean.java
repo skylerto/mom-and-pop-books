@@ -154,4 +154,8 @@ public class UserBean {
     this.pos = pos;
   }
 
+  public boolean getAdmin() {
+    return this.admin;
+  }
+
 }

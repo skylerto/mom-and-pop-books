@@ -6,6 +6,7 @@ import beans.UserBean;
 import models.Pos;
 import models.Users;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -127,37 +128,83 @@ public class UserDataAccessObject extends DataAccessObject {
   }
 
   /**
-   * Insert a BookBean into the database.
+   * Insert a UserBean into the database.
    * 
-   * @param book
-   *          - the book to be inserted.
+   * @param user
+   *          - the user to be inserted.
    * @return - if the insertion happened.
    */
-  public boolean insert(BookBean book) {
-
-    return false;
+  public boolean insert(UserBean user) {
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String insert = "INSERT INTO " + this.getTableName()
+        + " (id, username, password, admin, addressid) VALUES" + "(?,?,?,?,?);";
+    try {
+      pstmt = this.getCon().prepareStatement(insert);
+      pstmt.setInt(1, user.getUserId());
+      pstmt.setString(2, user.getUserName());
+      pstmt.setString(3, user.getPassword());
+      pstmt.setBoolean(4, user.getAdmin());
+      pstmt.setInt(5, user.getAddress().getId());
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
   }
 
   /**
-   * Update the passed BookBean in the database.
+   * Update the passed UserBean in the database.
    * 
-   * @param book
-   *          - The BookBean to update.
-   * @return - If the book has been, updated or not.
+   * @param user
+   *          - The UserBean to update.
+   * @return - If the user has been, updated or not.
    */
-  public boolean update(BookBean book) {
-    return false;
+  public boolean update(UserBean user) {
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String insert = "UPDATE " + this.getTableName()
+        + " SET username=?, password=?, admin=?, addressid=? where id=" + user.getUserId();
+    try {
+      pstmt = this.getCon().prepareStatement(insert);
+      pstmt.setString(1, user.getUserName());
+      pstmt.setString(2, user.getPassword());
+      pstmt.setBoolean(3, user.getAdmin());
+      pstmt.setInt(4, user.getAddress().getId());
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
   }
 
   /**
-   * Delete the passed book from the database.
+   * Delete the passed user from the database.
    * 
-   * @param book
-   *          - The book to be deleted.
-   * @return - If the book has been deleted or not.
+   * @param user
+   *          - The user to be deleted.
+   * @return - If the user has been deleted or not.
    */
-  public boolean delete(BookBean book) {
-    return false;
+  public boolean delete(UserBean user) {
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String insert = "DELETE " + this.getTableName() + " where id=" + user.getUserId();
+    try {
+      pstmt = this.getCon().prepareStatement(insert);
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
   }
 
 }
