@@ -5,7 +5,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="<%= org.webjars.AssetLocator.getWebJarPath("css/bootstrap.min.css")%>">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/<%= org.webjars.AssetLocator.getWebJarPath("css/bootstrap.min.css")%>">
 		<style>
 		body {
 			padding-top: 50px;
@@ -14,24 +14,7 @@
 		<title>Mom and Pop Books</title>
 	</head>
 	<body>
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#">Mom and Pop Books</a>
-				</div>
-				<div id="navbar" class="collapse navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+		<jsp:include page="nav.jsp" />
 
 		<div class="container">
 			<p>
@@ -43,7 +26,7 @@
 			<div class="row">
 				<c:forEach var="item" items="${books}">
 					<div class="col-md-4">
-						<a href="book/${item.getBid()}">
+						<a href="book/?book=${item.getBid()}">
 							<c:choose>
 								<c:when test="${item.getCategory() eq 'Science'}">
 									<img class="thumbnail" src="" alt="Science" width="200" height="200">
@@ -64,7 +47,7 @@
 			</div>
 		</div>
 
-		<script src="<%= org.webjars.AssetLocator.getWebJarPath("jquery.min.js") %>"></script>
-		<script src="<%= org.webjars.AssetLocator.getWebJarPath("bootstrap.min.js") %>"></script>
+		<script src="${pageContext.request.contextPath}/<%= org.webjars.AssetLocator.getWebJarPath("jquery.min.js") %>"></script>
+		<script src="${pageContext.request.contextPath}/<%= org.webjars.AssetLocator.getWebJarPath("bootstrap.min.js") %>"></script>
 	</body>
 </html>
