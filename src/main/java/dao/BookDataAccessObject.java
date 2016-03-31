@@ -177,7 +177,6 @@ public class BookDataAccessObject extends DataAccessObject {
     String insert = "DELETE " + this.getTableName() + " where bid=" + book.getBid();
     try {
       pstmt = this.getCon().prepareStatement(insert);
-      pstmt.setString(1, book.getBid());
       pstmt.executeUpdate();
       pstmt.close();
       close();

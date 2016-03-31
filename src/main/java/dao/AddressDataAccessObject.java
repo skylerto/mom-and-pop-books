@@ -171,7 +171,6 @@ public class AddressDataAccessObject extends DataAccessObject {
     String delete = "DELETE " + this.getTableName() + " where id=" + address.getId() + ";";
     try {
       pstmt = this.getCon().prepareStatement(delete);
-      pstmt.setInt(1, address.getId());
       pstmt.executeUpdate();
       pstmt.close();
       close();
