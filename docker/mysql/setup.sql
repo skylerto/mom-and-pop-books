@@ -184,3 +184,16 @@ VALUES (2,
         'ineedtobehashed',
         0,
         2);
+
+DROP TABLE IF EXISTS book_review;
+CREATE TABLE book_review (id INT UNSIGNED NOT NULL auto_increment,
+                           userid INT UNSIGNED,
+                           bid varchar(20) NOT NULL,
+                           PRIMARY KEY(id),
+                           FOREIGN KEY(bid) REFERENCES book(bid)
+                         );
+
+INSERT INTO book_review (id, userid, bid) VALUES (1,1,'b001');
+INSERT INTO book_review (id, userid, bid) VALUES (2,1,'b002');
+INSERT INTO book_review (id, userid, bid) VALUES (3,2,'b001');
+INSERT INTO book_review (id, bid) VALUES (4,'b001');
