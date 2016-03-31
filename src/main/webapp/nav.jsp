@@ -31,18 +31,19 @@
         <h4 class="modal-title" id="loginModalLabel">Login</h4>
       </div>
       <div class="modal-body">
-        <form>
+        <div id="loginAlertContainer"></div>
+        <form id="loginForm">
           <div class="form-group">
-            <input type="text" placeholder="Username" class="form-control" id="user-name">
+            <input name="userName" type="text" placeholder="Username" class="form-control">
           </div>
           <div class="form-group">
-            <input type="password" placeholder="Password" class="form-control" id="user-password">
+            <input name="userPassword" type="password" placeholder="Password" class="form-control">
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Login</button>
+        <button type="button" id="login-btn" class="btn btn-primary">Login</button>
       </div>
     </div>
   </div>
