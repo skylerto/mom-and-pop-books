@@ -147,7 +147,7 @@ public class BookDataAccessObject extends DataAccessObject {
   public boolean update(BookBean book) {
     this.createConnection();
     PreparedStatement pstmt = null;
-    String insert = "UPDATE " + this.getTableName() + " title=?, price=?, category=? where bid="
+    String insert = "UPDATE " + this.getTableName() + " SET title=?, price=?, category=? where bid="
         + book.getBid();
     try {
       pstmt = this.getCon().prepareStatement(insert);

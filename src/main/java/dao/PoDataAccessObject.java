@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -128,15 +129,85 @@ public class PoDataAccessObject extends DataAccessObject {
     }
   }
 
-  public boolean insert(PoBean address) {
-    return false;
+  /**
+   * Insert a po into the database.
+   * 
+   * @param po
+   *          - the po to be inserted.
+   * @return - if the po was inserted or not.
+   */
+  public boolean insert(PoBean po) {
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String insert = "INSERT INTO " + this.getTableName()
+        + " (id, lname, fname, userid, status, address) VALUES" + "(?,?,?,?,?,?)";
+    try {
+      pstmt = this.getCon().prepareStatement(insert);
+      pstmt.setInt(1, po.getId());
+      pstmt.setString(2, po.getLname());
+      pstmt.setString(3, po.getFname());
+      pstmt.setInt(4, po.getUser().getUserId());
+      pstmt.setString(5, po.getStatus());
+      pstmt.setInt(6, po.getAddress().getId());
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
   }
 
-  public boolean update(PoBean address) {
-    return false;
+  /**
+   * Update a po into the database.
+   * 
+   * @param po
+   *          - the po to be updated.
+   * @return - if the po was updated or not.
+   */
+  public boolean update(PoBean po) {
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String insert = "UPDATE " + this.getTableName()
+        + " SET lname=?, fname=?, userid=?, status=?, address=? where id=" + po.getId();
+    try {
+      pstmt = this.getCon().prepareStatement(insert);
+      pstmt.setString(1, po.getLname());
+      pstmt.setString(2, po.getFname());
+      pstmt.setInt(3, po.getUser().getUserId());
+      pstmt.setString(4, po.getStatus());
+      pstmt.setInt(5, po.getAddress().getId());
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
   }
 
-  public boolean delete(PoBean address) {
-    return false;
+  /**
+   * Delete a po into the database.
+   * 
+   * @param po
+   *          - the po to be deleted.
+   * @return - if the po was deleted or not.
+   */
+  public boolean delete(PoBean po) {
+    this.createConnection();
+    PreparedStatement pstmt = null;
+    String insert = "DELETE " + this.getTableName() + " where id=" + po.getId();
+    try {
+      pstmt = this.getCon().prepareStatement(insert);
+      pstmt.executeUpdate();
+      pstmt.close();
+      close();
+      return true;
+    } catch (SQLException e) {
+      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
+      return false;
+    }
   }
 }

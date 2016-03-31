@@ -139,7 +139,8 @@ public class AddressDataAccessObject extends DataAccessObject {
     this.createConnection();
     PreparedStatement pstmt = null;
     String update = "UPDATE " + this.getTableName()
-        + "street=?, province=?, country=?, zip=?, phone=?" + " where id=" + address.getId() + ";";
+        + " SET street=?, province=?, country=?, zip=?, phone=?" + " where id=" + address.getId()
+        + ";";
     try {
       pstmt = this.getCon().prepareStatement(update);
       // pstmt.setInt(1, address.getId());
