@@ -189,7 +189,7 @@ DROP TABLE IF EXISTS book_review;
 CREATE TABLE book_review (id INT UNSIGNED NOT NULL auto_increment,
                            userid INT UNSIGNED,
                            bid varchar(20) NOT NULL,
-                           review text NOT NULL
+                           review text NOT NULL,
                            PRIMARY KEY(id),
                            FOREIGN KEY(bid) REFERENCES book(bid)
                          );
