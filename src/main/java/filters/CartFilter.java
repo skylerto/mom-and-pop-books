@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import models.Cart;
+
 /**
  * Servlet Filter implementation class Cart.
  * 
@@ -21,12 +23,12 @@ import javax.servlet.http.HttpSession;
  *
  */
 @WebFilter(dispatcherTypes = { DispatcherType.REQUEST }, urlPatterns = { "/" })
-public class Cart implements Filter {
+public class CartFilter implements Filter {
 
   /**
    * Default constructor.
    */
-  public Cart() {
+  public CartFilter() {
     // TODO Auto-generated constructor stub
   }
 
@@ -48,13 +50,14 @@ public class Cart implements Filter {
     HttpServletResponse res = (HttpServletResponse) response;
 
     HttpSession currentSession = req.getSession();
-    models.Cart cart = (models.Cart) currentSession.getAttribute("cart");
+    Cart cart = (Cart) currentSession.getAttribute("cart");
     if (cart == null) {
-      cart = new models.Cart();
+      cart = new Cart();
     }
-
+    currentSession.setAttribute("cart", cart);
     // pass the request along the filter chain
-    chain.doFilter(request, response);
+    chain.doFilter(req, res);
+
   }
 
   /**

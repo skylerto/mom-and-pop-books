@@ -67,7 +67,7 @@ public class Cart {
    * @return - The current cart.
    */
   public int size() {
-    return this.books.getBooks().size();
+    return this.books.size();
   }
 
   /**
