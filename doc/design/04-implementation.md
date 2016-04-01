@@ -13,7 +13,7 @@ In the _Data Layer_ we explore our Database schema, Java Beans, and Data Access 
 
 ### Database Schema
 
-We have chosen to use a _MySQL_ database. This decision was made in part because it provides morefunctionality than _Derby_ but, mostly due to developer familiarity.
+We have chosen to use a _MySQL_ database. This decision was made in part because it provides more functionality than _Derby_ but, mostly due to developer familiarity.
 
 Our database consists of 6 tables. These tables include `book`, `address`, `po`,
 `poitem`, `visitevent`, and `user`. Each of these database tables has a corresponding
