@@ -187,4 +187,16 @@ public class BookDataAccessObject extends DataAccessObject {
       return false;
     }
   }
+
+  public Books findByCategory(String string) {
+    try {
+      createConnection();
+      ResultSet rs = this.getStmt()
+          .executeQuery(this.getAllQuery() + " where category='" + string + "';");
+      return get(rs);
+    } catch (SQLException e) {
+      System.out.println("SQLException: " + e.getErrorCode() + ":" + e.getMessage());
+      return new Books();
+    }
+  }
 }

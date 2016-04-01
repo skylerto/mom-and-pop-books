@@ -19,6 +19,14 @@
 				<c:if test="${sessionScope['admin']}">
 					<li><a href="${pageContext.request.contextPath}/Reports" />Reports</a></li>
 				</c:if>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false">Browse By Category<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="${pageContext.request.contextPath}/Science">Science</a></li>
+						<li><a href="${pageContext.request.contextPath}/Fiction">Fiction</a></li>
+						<li><a href="${pageContext.request.contextPath}/Engineering">Engineering</a></li>
+					</ul></li>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">

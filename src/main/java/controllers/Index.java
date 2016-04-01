@@ -27,14 +27,30 @@ public class Index extends HttpServlet {
    */
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 
     BookDataAccessObject bdao = new BookDataAccessObject();
     HttpSession session = request.getSession();
-    Cart cart = (Cart) session.getAttribute("cart");
 
-    Books books = bdao.findAll();
+    RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+    Books books;
+
+    if (request.getServletPath() == null) {
+      books = bdao.findAll();
+    } else if (request.getServletPath().toLowerCase().contains("science")) {
+      books = bdao.findByCategory("Science");
+    } else if (request.getServletPath().toLowerCase().contains("fiction")) {
+      books = bdao.findByCategory("Fiction");
+    } else if (request.getServletPath().toLowerCase().contains("engineering")) {
+      books = bdao.findByCategory("Engineering");
+    } else {
+      books = bdao.findAll();
+    }
+    Cart cart = (Cart) session.getAttribute("cart");
+    if (cart != null) {
+      cart = new Cart();
+    }
     cart.setBooks(books);
+    session.setAttribute("cart", cart);
     request.setAttribute("books", books.getBooks());
 
     rd.forward(request, response);
