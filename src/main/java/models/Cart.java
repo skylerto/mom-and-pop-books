@@ -88,4 +88,11 @@ public class Cart {
     }
   }
 
+  public double getSum() {
+    double val = 0;
+    for (BookBean b : this.books.getBooks()) {
+      val += b.getPrice();
+    }
+    return val;
+  }
 }

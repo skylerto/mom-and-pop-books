@@ -22,9 +22,17 @@ body {
 			<h1>Cart</h1>
 		</div>
 		<div class="container">
+			<c:if test="${empty sessionScope['user']}">
+				<div class="alert alert-danger" role="alert">
+					<span class="glyphicon glyphicon-exclamation-sign"
+						aria-hidden="true"></span> <span class="sr-only">Error:</span>
+					Please register/sign in before checking out.
+				</div>
+			</c:if>
 			<div class="row">
-				<c:forEach var="item" items="${sessionScope['cart'].get()}">
-					<div class="col-md-12">
+				<c:forEach var="item"
+					items="${sessionScope['cart'].get().getBooks()}">
+					<div class="col-md-4">
 						<a href="book/?book=${item.getBid()}"> <c:choose>
 								<c:when test="${item.getCategory() eq 'Science'}">
 									<img class="thumbnail" src="" alt="Science" width="200"
@@ -46,6 +54,15 @@ body {
 						<button type="button" class="remove">Remove</button>
 					</div>
 				</c:forEach>
+			</div>
+			<div class="row" style="float: right; padding-right: 2em;">
+				<h3>
+					Total Value:
+					<fmt:formatNumber type="currency" currencySymbol="$">${ sessionScope['cart'].getSum()}</fmt:formatNumber>
+				</h3>
+				<h3>
+					<a href="${pageContext.request.contextPath}/checkout">Check Out</a>
+				</h3>
 			</div>
 		</div>
 	</div>

@@ -30,8 +30,11 @@ public class Index extends HttpServlet {
     RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 
     BookDataAccessObject bdao = new BookDataAccessObject();
+    HttpSession session = request.getSession();
+    Cart cart = (Cart) session.getAttribute("cart");
 
     Books books = bdao.findAll();
+    cart.setBooks(books);
     request.setAttribute("books", books.getBooks());
 
     rd.forward(request, response);
