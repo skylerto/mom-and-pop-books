@@ -7,13 +7,13 @@ import dao.BookDataAccessObject;
 import models.BookReviews;
 
 /**
- * 
+ *
  * @author Skyler Layne on Jan 8, 2016
  * @version 0.0.2
  *
  */
 @XmlRootElement(name = "book")
-public class BookBean {
+public class BookBean implements Comparable<BookBean> {
 
   private String bid;
   private String title;
@@ -24,7 +24,7 @@ public class BookBean {
 
   /**
    * Constructor of a book bean.
-   * 
+   *
    * @param bid
    *          - the primary key of the book.
    * @param title
@@ -59,7 +59,7 @@ public class BookBean {
 
   /**
    * Get the book id.
-   * 
+   *
    * @return - the id.
    */
   public String getBid() {
@@ -68,7 +68,7 @@ public class BookBean {
 
   /**
    * Set the book id
-   * 
+   *
    * @param bid
    *          - the new id.
    */
@@ -79,7 +79,7 @@ public class BookBean {
 
   /**
    * Get the title of the book.
-   * 
+   *
    * @return - the books title.
    */
   public String getTitle() {
@@ -88,7 +88,7 @@ public class BookBean {
 
   /**
    * Change the title of the book.
-   * 
+   *
    * @param title
    *          - the new title.
    */
@@ -99,7 +99,7 @@ public class BookBean {
 
   /**
    * Get the price of the book.
-   * 
+   *
    * @return - the books price.
    */
   public double getPrice() {
@@ -108,7 +108,7 @@ public class BookBean {
 
   /**
    * Change the books price.
-   * 
+   *
    * @param price
    *          - the new price.
    */
@@ -119,7 +119,7 @@ public class BookBean {
 
   /**
    * Get the books category.
-   * 
+   *
    * @return - the category.
    */
   public String getCategory() {
@@ -128,7 +128,7 @@ public class BookBean {
 
   /**
    * Change the books category.
-   * 
+   *
    * @param category
    *          - the new category.
    */
@@ -157,7 +157,7 @@ public class BookBean {
 
   /**
    * Insert or update this record.
-   * 
+   *
    * @return - if the save worked.
    */
   public boolean save() {
@@ -173,10 +173,15 @@ public class BookBean {
 
   /**
    * Delete this record from the database.
-   * 
+   *
    * @return - if the delete worked or not.
    */
   public boolean delete() {
     return (new BookDataAccessObject()).delete(this);
+  }
+
+  @Override
+  public int compareTo(BookBean other) {
+    return this.bid.compareTo(other.bid);
   }
 }
