@@ -59,6 +59,7 @@
 						</c:choose>
 						<div class="panel-body">
 							<textarea name="review" class="form-control" rows="5"></textarea>
+							<input type="hidden" name="bid" value="${param.book}">
 							<button id="review-btn" type="button" class="btn btn-success">Submit</button>
 						</div>
 					</div>
