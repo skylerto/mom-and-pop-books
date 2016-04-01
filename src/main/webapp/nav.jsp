@@ -16,22 +16,21 @@
 		<div id="navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
 				<li><a href="${pageContext.request.contextPath}/" />Home</a></li>
+				<c:if test="${sessionScope['admin']}">
+					<li><a href="${pageContext.request.contextPath}/Reports" />Reports</a></li>
+				</c:if>
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
+				<li><a href="${pageContext.request.contextPath}/cart">Cart
+						(${sessionScope['cart'].size() })</a></li>
+				<li><a data-toggle="modal" data-target="#registerModal">Register</a></li>
 				<c:if test="${empty sessionScope['user']}">
 					<li><a data-toggle="modal" data-target="#loginModal">Login</a></li>
 				</c:if>
 				<c:if test="${not empty sessionScope['user']}">
 					<li><a href="${pageContext.request.contextPath}/Logout">Logout</a></li>
 				</c:if>
-			</ul>
-
-			<ul class="nav navbar-nav navbar-right">
-
-				<li><a href="${pageContext.request.contextPath}/cart">Cart
-						(${sessionScope['cart'].size() })</a></li>
-				<li><a data-toggle="modal" data-target="#registerModal">Register</a></li>
 			</ul>
 		</div>
 	</div>
