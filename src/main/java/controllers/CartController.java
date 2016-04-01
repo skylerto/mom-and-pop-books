@@ -39,25 +39,6 @@ public class CartController extends HttpServlet {
 
     Cart cart = (Cart) request.getSession().getAttribute("cart");
 
-    if (request.getServletPath() == null) {
-
-    } else if (request.getServletPath().toLowerCase().contains("add")) {
-      String bid = (String) request.getParameter("bid");
-      System.out.println("BOOD BID: " + bid);
-      BookDataAccessObject dao = new BookDataAccessObject();
-      Books books = dao.findById(bid);
-      if (books.size() > 0) {
-        BookBean book = books.get(0);
-        cart.add(book);
-      }
-
-    } else if (request.getServletPath().toLowerCase().contains("remove")) {
-      String bid = (String) request.getAttribute("bid");
-      cart.get().remove(bid);
-    } else {
-
-    }
-
     request.setAttribute("cart", cart);
 
     rd.forward(request, response);
