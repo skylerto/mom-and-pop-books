@@ -47,7 +47,7 @@ public class CheckoutFilter implements Filter {
     String user = (String) session.getAttribute("user");
 
     if (user != null) {
-      res.sendRedirect(request.getServletContext().getContextPath() + "/checkout");
+      chain.doFilter(req, res);
     } else {
       session.setAttribute("error", "Please register/sign in before checking out.");
       res.sendRedirect(request.getServletContext().getContextPath() + "/cart");

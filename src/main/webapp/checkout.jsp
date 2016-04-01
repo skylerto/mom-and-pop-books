@@ -19,16 +19,12 @@ body {
 	<jsp:include page="nav.jsp" />
 	<div class="container">
 		<div class="row">
-			<h1>Cart</h1>
+			<h1>Checkout</h1>
 		</div>
 		<div class="container">
-			<c:if test="${not empty sessionScope['error']}">
-				<div class="alert alert-danger" role="alert">
-					<span class="glyphicon glyphicon-exclamation-sign"
-						aria-hidden="true"></span> <span class="sr-only">Error:</span>
-					${sessionScope['error'] }
-				</div>
-			</c:if>
+			<div class="row">
+				<h2>Cart Items</h2>
+			</div>
 			<div class="row">
 				<c:forEach var="item"
 					items="${sessionScope['cart'].get().getBooks()}">
@@ -55,6 +51,36 @@ body {
 					</div>
 				</c:forEach>
 			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<h2>Address Information</h2>
+				<!--  Show the users address information -->
+				<c:if test="${not empty sessionScope['user']}">
+					<c:if test="${not empty sessionScope['address']}">
+
+						<div class="">
+							<strong>Street:</strong> ${sessionScope['address'].getStreet() }
+						</div>
+						<div class="">
+							<strong>Province:</strong>
+							${sessionScope['address'].getProvince() }
+						</div>
+						<div class="">
+							<strong>Country:</strong> ${sessionScope['address'].getCountry() }
+						</div>
+						<div class="">
+							<strong>Zip:</strong> ${sessionScope['address'].getZip() }
+						</div>
+						<div class="">
+							<strong>Phone:</strong> ${sessionScope['address'].getPhone() }
+						</div>
+					</c:if>
+				</c:if>
+			</div>
+		</div>
+		<div class="container">
 			<div class="row" style="float: right; padding-right: 2em;">
 				<h3>
 					Total Value:
