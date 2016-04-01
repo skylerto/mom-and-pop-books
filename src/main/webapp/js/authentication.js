@@ -10,7 +10,7 @@ $("#login-btn").click(function() {
 		if (data.result === "success") {
 			location.reload();
 		} else {
-			$("#loginAlertContainer").load("alert.html", function() {
+			$("#loginAlertContainer").load(baseURL + "/alert.html", function() {
 				$("#loginAlertContainer span").html(data.message);
 				$("#loginAlertContainer div").fadeIn();
 			});
@@ -20,7 +20,7 @@ $("#login-btn").click(function() {
 
 $("#register-btn").click(function() {
 	if ($("#userPassword").val() !== $("#userPassword2").val()) {
-		$("#registerAlertContainer").load("alert.html", function() {
+		$("#registerAlertContainer").load(baseURL + "/alert.html", function() {
 			$("#registerAlertContainer span").html("<span>Passwords do not match!</span>");
 			$("#registerAlertContainer div").fadeIn();
 		});
@@ -33,7 +33,7 @@ $("#register-btn").click(function() {
 			if (data.result === "success") {
 				location.reload();
 			} else {
-				$("#registerAlertContainer").load("alert.html", function() {
+				$("#registerAlertContainer").load(baseURL + "/alert.html", function() {
 					$("#registerAlertContainer span").html(data.message);
 					$("#registerAlertContainer div").fadeIn();
 				});
