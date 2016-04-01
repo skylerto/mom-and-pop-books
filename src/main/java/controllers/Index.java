@@ -44,6 +44,9 @@ public class Index extends HttpServlet {
       throws ServletException, IOException {
     HttpSession currentSession = request.getSession();
     Cart cart = (Cart) currentSession.getAttribute("cart");
+    if (cart == null) {
+      cart = new Cart();
+    }
     String id = request.getParameter("bookid");
     BookDataAccessObject dao = new BookDataAccessObject();
     Books books = dao.findById(id);
@@ -51,11 +54,7 @@ public class Index extends HttpServlet {
       BookBean book = books.get(0);
       cart.add(book);
     }
-    if (cart != null) {
-      currentSession.setAttribute("cart", cart);
-    } else {
-      currentSession.setAttribute("cart", new Cart());
-    }
+    currentSession.setAttribute("cart", cart);
     doGet(request, response);
   }
 
