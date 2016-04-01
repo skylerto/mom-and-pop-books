@@ -38,10 +38,13 @@ public class Index extends HttpServlet {
       books = bdao.findAll();
     } else if (request.getServletPath().toLowerCase().contains("science")) {
       books = bdao.findByCategory("Science");
+      session.setAttribute("category", "Science");
     } else if (request.getServletPath().toLowerCase().contains("fiction")) {
       books = bdao.findByCategory("Fiction");
+      session.setAttribute("category", "Fiction");
     } else if (request.getServletPath().toLowerCase().contains("engineering")) {
       books = bdao.findByCategory("Engineering");
+      session.setAttribute("category", "Engineering");
     } else {
       books = bdao.findAll();
     }
