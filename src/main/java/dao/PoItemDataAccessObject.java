@@ -32,7 +32,6 @@ public class PoItemDataAccessObject extends DataAccessObject {
     PoItems poItems = new PoItems();
 
     try {
-      this.getCon().setReadOnly(true);
 
       while (rs.next()) {
 

@@ -37,7 +37,6 @@ public class BookDataAccessObject extends DataAccessObject {
   private Books get(ResultSet rs) {
     List<BookBean> books = new ArrayList<>();
     try {
-      this.getCon().setReadOnly(true);
       while (rs.next()) {
         String bid = rs.getString("bid");
         String title = rs.getString("title");

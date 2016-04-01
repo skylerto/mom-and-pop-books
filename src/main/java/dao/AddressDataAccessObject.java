@@ -36,8 +36,6 @@ public class AddressDataAccessObject extends DataAccessObject {
     Addresses addresses = new Addresses();
 
     try {
-      this.getCon().setReadOnly(true);
-
       while (rs.next()) {
         int id = rs.getInt("id");
         String street = rs.getString("street");

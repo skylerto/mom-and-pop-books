@@ -34,7 +34,6 @@ public class PoDataAccessObject extends DataAccessObject {
     Pos pos = new Pos();
 
     try {
-      this.getCon().setReadOnly(true);
 
       while (rs.next()) {
         int id = rs.getInt("id");
@@ -103,7 +102,6 @@ public class PoDataAccessObject extends DataAccessObject {
 
       Pos pos = new Pos();
 
-      this.getCon().setReadOnly(true);
 
       while (rs.next()) {
         int aid = rs.getInt("id");

@@ -31,7 +31,6 @@ public class UserDataAccessObject extends DataAccessObject {
     try {
       Connection con = this.getCon();
       Statement stmnt = this.getStmt();
-      con.setReadOnly(true);
       while (rs.next()) {
         int id = rs.getInt("id");
         String uname = rs.getString("username");

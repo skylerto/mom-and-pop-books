@@ -35,7 +35,6 @@ public class BookReviewDataAccessObject extends DataAccessObject {
     BookReviews reviews = new BookReviews();
 
     try {
-      this.getCon().setReadOnly(true);
 
       while (rs.next()) {
 

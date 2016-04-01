@@ -37,7 +37,6 @@ public class VisitEventDataAccessObject extends DataAccessObject {
     Visits visits = new Visits();
 
     try {
-      this.getCon().setReadOnly(true);
 
       while (rs.next()) {
 
