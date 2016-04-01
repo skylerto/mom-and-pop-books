@@ -36,6 +36,12 @@
 		<description></description>
 		<servlet-class>controllers.CartController</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>CheckoutController</servlet-name>
+		<display-name>CheckoutController</display-name>
+		<description></description>
+		<servlet-class>controllers.CheckoutController</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Soap</servlet-name>
 		<url-pattern>/Soap</url-pattern>
@@ -49,6 +55,10 @@
 	<servlet-mapping>
 		<servlet-name>CartController</servlet-name>
 		<url-pattern>/CartController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CheckoutController</servlet-name>
+		<url-pattern>/CheckoutController</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>unlikelyFileName.xml</welcome-file>
