@@ -12,7 +12,7 @@ import models.Users;
 /**
  * BookReviewDataAccessObject interfaces with the database to create Beans from books_review
  * queries.
- * 
+ *
  * @author Skyler Layne on Feb 17, 2016
  *
  */
@@ -25,7 +25,7 @@ public class BookReviewDataAccessObject extends DataAccessObject {
 
   /**
    * Get the PoItemBean from the passed result set.
-   * 
+   *
    * @param rs
    *          - the result of the query.
    * @return - a list of the PoItemBean that are found from the query.
@@ -54,7 +54,6 @@ public class BookReviewDataAccessObject extends DataAccessObject {
 
       rs.close();
       this.getStmt().close();
-      close();
       return reviews;
 
     } catch (SQLException e) {
@@ -65,7 +64,7 @@ public class BookReviewDataAccessObject extends DataAccessObject {
 
   /**
    * Get all the PoItemBean in the objects.
-   * 
+   *
    * @return - A list of all the PoItemBean.
    */
   public BookReviews findAll() {
@@ -81,7 +80,7 @@ public class BookReviewDataAccessObject extends DataAccessObject {
 
   /**
    * Add a book review.
-   * 
+   *
    * @param bean
    *          - the review to add.
    * @return - if the review was added or not.
@@ -99,7 +98,6 @@ public class BookReviewDataAccessObject extends DataAccessObject {
       pstmt.setString(4, bean.getReview());
       pstmt.executeUpdate();
       pstmt.close();
-      close();
       return true;
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
@@ -109,7 +107,7 @@ public class BookReviewDataAccessObject extends DataAccessObject {
 
   /**
    * Update a review in the database.
-   * 
+   *
    * @param bean
    *          - the review to be updated.
    * @return - if the review was updated or not.
@@ -126,7 +124,6 @@ public class BookReviewDataAccessObject extends DataAccessObject {
       pstmt.setString(3, bean.getReview());
       pstmt.executeUpdate();
       pstmt.close();
-      close();
       return true;
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
@@ -136,7 +133,7 @@ public class BookReviewDataAccessObject extends DataAccessObject {
 
   /**
    * Delete a review from the database.
-   * 
+   *
    * @param bean
    *          - the review to be deleted.
    * @return - if the review was deleted or not.
@@ -149,7 +146,6 @@ public class BookReviewDataAccessObject extends DataAccessObject {
       pstmt = this.getCon().prepareStatement(insert);
       pstmt.executeUpdate();
       pstmt.close();
-      close();
       return true;
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
@@ -159,7 +155,7 @@ public class BookReviewDataAccessObject extends DataAccessObject {
 
   /**
    * Find the list of reviews for a specific book.
-   * 
+   *
    * @param bid
    *          - the desired book id.
    * @return - a model instance of the reviews.

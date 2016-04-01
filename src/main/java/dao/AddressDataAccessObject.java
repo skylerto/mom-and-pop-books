@@ -9,7 +9,7 @@ import models.Addresses;
 
 /**
  * AddressDAO - Data Access Object for Addresses
- * 
+ *
  * @author Skyler Layne on Jan 9, 2016
  * @version 0.1.0
  *
@@ -27,7 +27,7 @@ public class AddressDataAccessObject extends DataAccessObject {
 
   /**
    * Get the Address Bean from the passed result set.
-   * 
+   *
    * @param rs
    *          - the result of the query.
    * @return - a list of the Address Beans that are found from the query.
@@ -51,7 +51,6 @@ public class AddressDataAccessObject extends DataAccessObject {
 
       rs.close();
       this.getStmt().close();
-      close();
       return addresses;
 
     } catch (SQLException e) {
@@ -62,7 +61,7 @@ public class AddressDataAccessObject extends DataAccessObject {
 
   /**
    * Get all the Address Beans in the objects.
-   * 
+   *
    * @return - A list of all the address beans.
    */
   public Addresses findAll() {
@@ -78,7 +77,7 @@ public class AddressDataAccessObject extends DataAccessObject {
 
   /**
    * Get the address beans with the registered id.
-   * 
+   *
    * @param id
    *          - the id to look for.
    * @return - a list of address beans with that id.
@@ -99,7 +98,7 @@ public class AddressDataAccessObject extends DataAccessObject {
 
   /**
    * Insert an address.
-   * 
+   *
    * @param address
    *          - the address to insert into the database.
    * @return - if the record was inserted.
@@ -119,7 +118,6 @@ public class AddressDataAccessObject extends DataAccessObject {
       pstmt.setString(6, address.getPhone());
       pstmt.executeUpdate();
       pstmt.close();
-      close();
       return true;
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
@@ -130,7 +128,7 @@ public class AddressDataAccessObject extends DataAccessObject {
 
   /**
    * Update a given address.
-   * 
+   *
    * @param address
    *          - the address to update.
    * @return - if the record was updated or not.
@@ -151,7 +149,6 @@ public class AddressDataAccessObject extends DataAccessObject {
       pstmt.setString(5, address.getPhone());
       pstmt.executeUpdate();
       pstmt.close();
-      close();
       return true;
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
@@ -161,7 +158,7 @@ public class AddressDataAccessObject extends DataAccessObject {
 
   /**
    * Delete a record from the database.
-   * 
+   *
    * @param address
    *          - the address to be deleted.
    * @return - if the record was deleted or not.
@@ -174,7 +171,6 @@ public class AddressDataAccessObject extends DataAccessObject {
       pstmt = this.getCon().prepareStatement(delete);
       pstmt.executeUpdate();
       pstmt.close();
-      close();
       return true;
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());

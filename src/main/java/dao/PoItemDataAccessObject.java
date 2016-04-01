@@ -49,7 +49,6 @@ public class PoItemDataAccessObject extends DataAccessObject {
 
       rs.close();
       this.getStmt().close();
-      close();
       return poItems;
 
     } catch (SQLException e) {
@@ -94,7 +93,7 @@ public class PoItemDataAccessObject extends DataAccessObject {
 
   /**
    * Insert poitem into the database.
-   * 
+   *
    * @param poitem
    *          - item to be inserted.
    * @return - if the insert worked or not.
@@ -110,7 +109,6 @@ public class PoItemDataAccessObject extends DataAccessObject {
       pstmt.setDouble(3, poitem.getPrice());
       pstmt.executeUpdate();
       pstmt.close();
-      close();
       return true;
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
@@ -120,7 +118,7 @@ public class PoItemDataAccessObject extends DataAccessObject {
 
   /**
    * Update poitem into the database.
-   * 
+   *
    * @param poitem
    *          - item to be iupdated.
    * @return - if the update worked or not.
@@ -136,7 +134,6 @@ public class PoItemDataAccessObject extends DataAccessObject {
       pstmt.setDouble(2, poitem.getPrice());
       pstmt.executeUpdate();
       pstmt.close();
-      close();
       return true;
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
@@ -146,7 +143,7 @@ public class PoItemDataAccessObject extends DataAccessObject {
 
   /**
    * Delete poitem into the database.
-   * 
+   *
    * @param poitem
    *          - item to be deleted.
    * @return - if the delete worked or not.
@@ -159,7 +156,6 @@ public class PoItemDataAccessObject extends DataAccessObject {
       pstmt = this.getCon().prepareStatement(insert);
       pstmt.executeUpdate();
       pstmt.close();
-      close();
       return true;
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());

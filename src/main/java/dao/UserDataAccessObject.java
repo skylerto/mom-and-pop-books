@@ -29,8 +29,9 @@ public class UserDataAccessObject extends DataAccessObject {
 
   private synchronized Users get(ResultSet rs) {
     List<UserBean> users = new ArrayList<>();
-    try (Connection con = this.getCon();
-    	Statement stmnt = this.getStmt()) {
+    try {
+      Connection con = this.getCon();
+      Statement stmnt = this.getStmt();
       con.setReadOnly(true);
       while (rs.next()) {
         int id = rs.getInt("id");
@@ -59,9 +60,9 @@ public class UserDataAccessObject extends DataAccessObject {
    */
   public Users findAll() {
 	this.createConnection();
-	
-    try (Connection con = this.getCon();
-    	PreparedStatement stmnt = con.prepareStatement(this.getAllQuery())) {
+    try {
+      Connection con = this.getCon();
+      PreparedStatement stmnt = con.prepareStatement(this.getAllQuery());
       ResultSet rs = stmnt.executeQuery();
       return get(rs);
     } catch (SQLException e) {
@@ -82,9 +83,10 @@ public class UserDataAccessObject extends DataAccessObject {
    */
   public Users get(String id, String hash) {
 	this.createConnection();
-    
-	try (Connection con = this.getCon();
-		PreparedStatement stmnt = con.prepareStatement(this.getAllQuery() + " where username=? AND password=?;")) {
+
+	try {
+    Connection con = this.getCon();
+		PreparedStatement stmnt = con.prepareStatement(this.getAllQuery() + " where username=? AND password=?;");
       stmnt.setString(1, id);
       stmnt.setString(2, hash);
       ResultSet rs = stmnt.executeQuery();
@@ -104,9 +106,10 @@ public class UserDataAccessObject extends DataAccessObject {
    */
   public Users findByUsername(String username) {
 	this.createConnection();
-	
-    try (Connection con = this.getCon();
-    	PreparedStatement stmnt = con.prepareStatement(this.getAllQuery() + " where username=?;")) {
+
+    try {
+      Connection con = this.getCon();
+      	PreparedStatement stmnt = con.prepareStatement(this.getAllQuery() + " where username=?;");
       stmnt.setString(1, username);
       ResultSet rs = stmnt.executeQuery();
       return get(rs);
@@ -125,9 +128,10 @@ public class UserDataAccessObject extends DataAccessObject {
    */
   public Users findByUserid(String id) {
 	this.createConnection();
-	
-    try (Connection con = this.getCon();
-		PreparedStatement stmnt = con.prepareStatement("select * from user where id=?;")) {
+
+    try {
+      Connection con = this.getCon();
+      PreparedStatement stmnt = con.prepareStatement("select * from user where id=?;");
       stmnt.setString(1, id);
       ResultSet rs = stmnt.executeQuery();
       return get(rs);
@@ -146,7 +150,7 @@ public class UserDataAccessObject extends DataAccessObject {
    */
   public boolean insert(UserBean user) {
     this.createConnection();
-    
+
     try (Connection con = this.getCon();
 		PreparedStatement pstmt = con.prepareStatement("INSERT INTO ? (id, username, password, admin, addressid) VALUES (?,?,?,?,?);")) {
       pstmt.setString(1, this.getTableName());
@@ -172,7 +176,7 @@ public class UserDataAccessObject extends DataAccessObject {
    */
   public boolean update(UserBean user) {
 	this.createConnection();
-	  
+
     try (Connection con = this.getCon();
 		PreparedStatement pstmt = con.prepareStatement("UPDATE ? SET username=?, password=?, admin=?, addressid=? where id=")) {
       pstmt.setString(1, this.getTableName());
@@ -199,7 +203,7 @@ public class UserDataAccessObject extends DataAccessObject {
    */
   public boolean delete(UserBean user) {
 	this.createConnection();
-	
+
     try (Connection con = this.getCon();
     	PreparedStatement pstmt = con.prepareStatement("DELETE FROM ? where id = ? ;")) {
       pstmt.setString(1, this.getTableName());
