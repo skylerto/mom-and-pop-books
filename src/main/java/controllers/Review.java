@@ -12,10 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.xml.bind.DatatypeConverter;
+import org.apache.commons.lang.StringEscapeUtils;
 
 import dao.UserDataAccessObject;
 import models.Users;
 import beans.BookReviewBean;
+import beans.UserBean;
 import dao.BookReviewDataAccessObject;
 
 /**
@@ -33,7 +35,21 @@ public class Review extends HttpServlet {
     String review = request.getParameter("review");
     String bid = request.getParameter("bid");
 
-    BookReviewBean brb = new BookReviewBean(0, null, bid, review);
+    // Sanitize the review of any HTML
+    review = StringEscapeUtils.escapeHtml(review);
+
+    // Figure out if we're logged in or not for the userID
+    UserBean userId = null;
+    HttpSession currentSession = request.getSession();
+    String userName = (String)currentSession.getAttribute("user");
+    System.out.println(userName);
+    if (currentSession.getAttribute("user") != null) {
+      UserDataAccessObject udao = new UserDataAccessObject();
+      Users users = udao.findByUsername(userName);
+      userId = users.get(0);
+    }
+
+    BookReviewBean brb = new BookReviewBean(0, userId, bid, review);
     BookReviewDataAccessObject brdao = new BookReviewDataAccessObject();
 
     brdao.insert(brb);

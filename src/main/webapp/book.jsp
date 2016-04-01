@@ -50,11 +50,11 @@
 				<form id="reviewForm" role="form">
 					<div class="panel panel-default">
 						<c:choose>
-							<c:when test="${true}">
+							<c:when test="${empty sessionScope.user}">
 								<div class="panel-heading">New Comment -- Anonymous User</div>
 							</c:when>
 							<c:otherwise>
-								<div class="panel-heading">New Comment -- Logged In User</div>
+								<div class="panel-heading">New Comment -- ${sessionScope.user}</div>
 							</c:otherwise>
 						</c:choose>
 						<div class="panel-body">
