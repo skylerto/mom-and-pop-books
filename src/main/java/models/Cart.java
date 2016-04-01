@@ -1,11 +1,11 @@
-package beans;
+package models;
 
 import java.util.Optional;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import models.Books;
+import beans.BookBean;
 
 /**
  * Bean data structure of what a cart should look like.
@@ -16,14 +16,14 @@ import models.Books;
  *
  */
 @XmlRootElement(name = "cart")
-public class CartBean {
+public class Cart {
 
   private Books books;
 
   /**
    * Default constructor, creates a new empty cart.
    */
-  public CartBean() {
+  public Cart() {
     this.books = new Books();
   }
 

@@ -5,16 +5,17 @@ import java.util.List;
 
 import junit.framework.TestCase;
 import models.Books;
+import models.Cart;
 
 public class TestCartBean extends TestCase {
 
-  private CartBean cart;
+  private Cart cart;
   private BookBean b1;
   private BookBean b2;
 
   protected void setUp() throws Exception {
     super.setUp();
-    cart = new CartBean();
+    cart = new Cart();
     b1 = new BookBean("0201633612",
         "Design Patterns: Elements of Reusable Object-Oriented Software", 55.09, "Programming",
         null, null);

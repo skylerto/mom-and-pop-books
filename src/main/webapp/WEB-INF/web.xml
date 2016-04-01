@@ -4,6 +4,16 @@
 
 <web-app>
 	<display-name>Archetype Created Web Application</display-name>
+	<filter>
+		<filter-name>Cart</filter-name>
+		<display-name>Cart</display-name>
+		<description></description>
+		<filter-class>filters.Cart</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Cart</filter-name>
+		<url-pattern>/Cart</url-pattern>
+	</filter-mapping>
 	<servlet>
 		<servlet-name>Soap</servlet-name>
 		<display-name>Soap</display-name>
