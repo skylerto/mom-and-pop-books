@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlElement;
+
 import beans.BookBean;
 import models.BookReviews;
 import models.Books;
@@ -41,8 +43,12 @@ public class BookDataAccessObject extends DataAccessObject {
         String title = rs.getString("title");
         int price = rs.getInt("price");
         String category = rs.getString("category");
+        String description = rs.getString("description");
+        if (description == null) {
+          description = "";
+        }
         BookReviews reviews = (new BookReviewDataAccessObject()).findByBookId(bid);
-        books.add(new BookBean(bid, title, price, category, reviews));
+        books.add(new BookBean(bid, title, price, category, description, reviews));
       }
       rs.close();
       this.getStmt().close();
