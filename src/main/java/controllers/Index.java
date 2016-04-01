@@ -33,7 +33,8 @@ public class Index extends HttpServlet {
 
     RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
     Books books = null;
-
+    session.removeAttribute("category");
+    
     if (request.getServletPath() == null) {
       books = bdao.findAll();
     } else if (request.getServletPath().toLowerCase().contains("science")) {
