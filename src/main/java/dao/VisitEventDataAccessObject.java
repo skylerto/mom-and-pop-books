@@ -13,9 +13,9 @@ import models.PoItems;
 import models.Visits;
 
 /**
- * 
+ *
  * VisitEvent DAO.
- * 
+ *
  * @author Skyler Layne on Feb 17, 2016
  *
  */
@@ -28,7 +28,7 @@ public class VisitEventDataAccessObject extends DataAccessObject {
 
   /**
    * Get the PoItemBean from the passed result set.
-   * 
+   *
    * @param rs
    *          - the result of the query.
    * @return - a list of the PoItemBean that are found from the query.
@@ -53,7 +53,6 @@ public class VisitEventDataAccessObject extends DataAccessObject {
 
       rs.close();
       this.getStmt().close();
-      close();
       return visits;
 
     } catch (SQLException e) {
@@ -64,7 +63,7 @@ public class VisitEventDataAccessObject extends DataAccessObject {
 
   /**
    * Get all the PoItemBean in the objects.
-   * 
+   *
    * @return - A list of all the PoItemBean.
    */
   public Visits findAll() {
@@ -80,7 +79,7 @@ public class VisitEventDataAccessObject extends DataAccessObject {
 
   /**
    * Get the Visits that happen on a particular day.
-   * 
+   *
    * @param day
    *          - the day to find visits (DD/MM/YYYY).
    * @return - The Visits on that day.
@@ -98,7 +97,7 @@ public class VisitEventDataAccessObject extends DataAccessObject {
 
   /**
    * Insert the visit event into the database.
-   * 
+   *
    * @param visit
    *          - the visit event.
    * @return - if the insert was successful
@@ -115,7 +114,6 @@ public class VisitEventDataAccessObject extends DataAccessObject {
       pstmt.setString(3, visit.getEventType());
       pstmt.executeUpdate();
       pstmt.close();
-      close();
       return true;
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
@@ -125,7 +123,7 @@ public class VisitEventDataAccessObject extends DataAccessObject {
 
   /**
    * Update the visit event in the database.
-   * 
+   *
    * @param visit
    *          - the visit event.
    * @return - if the update was successful.
@@ -141,7 +139,6 @@ public class VisitEventDataAccessObject extends DataAccessObject {
       pstmt.setString(2, visit.getEventType());
       pstmt.executeUpdate();
       pstmt.close();
-      close();
       return true;
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
@@ -151,7 +148,7 @@ public class VisitEventDataAccessObject extends DataAccessObject {
 
   /**
    * Delete the visit event from the database.
-   * 
+   *
    * @param visit
    *          - the visit event.
    * @return - if the delete was successful.
@@ -164,7 +161,6 @@ public class VisitEventDataAccessObject extends DataAccessObject {
       pstmt = this.getCon().prepareStatement(insert);
       pstmt.executeUpdate();
       pstmt.close();
-      close();
       return true;
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());

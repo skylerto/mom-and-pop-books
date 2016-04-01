@@ -12,9 +12,9 @@ import models.Books;
 
 /**
  * BookDAO - Data Access Object for Book.
- * 
+ *
  * @author Skyler Layne on Jan 9, 2016
- * 
+ *
  * @version 0.1.0
  *
  */
@@ -27,7 +27,7 @@ public class BookDataAccessObject extends DataAccessObject {
 
   /**
    * Get the Book Bean from the passed result set.
-   * 
+   *
    * @param rs
    *          - the result of the query.
    * @return - a list of the book Beans that are found from the query.
@@ -46,7 +46,6 @@ public class BookDataAccessObject extends DataAccessObject {
       }
       rs.close();
       this.getStmt().close();
-      close();
       return new Books(books);
 
     } catch (SQLException e) {
@@ -57,7 +56,7 @@ public class BookDataAccessObject extends DataAccessObject {
 
   /**
    * Get all the Book Beans in the objects.
-   * 
+   *
    * @return - A list of all the book beans.
    */
   public Books findAll() {
@@ -74,7 +73,7 @@ public class BookDataAccessObject extends DataAccessObject {
 
   /**
    * Get the book beans with the registered id.
-   * 
+   *
    * @param id
    *          - the id to look for.
    * @return - a list of book beans with that id.
@@ -92,7 +91,7 @@ public class BookDataAccessObject extends DataAccessObject {
 
   /**
    * Get the book beans with the given title.
-   * 
+   *
    * @param title
    *          - the title to query.
    * @return - a list of the book beans with that title.
@@ -111,7 +110,7 @@ public class BookDataAccessObject extends DataAccessObject {
 
   /**
    * Insert a book into the database.
-   * 
+   *
    * @param book
    *          - the book to be inserted.
    * @return - if the book was inserted or not.
@@ -129,7 +128,6 @@ public class BookDataAccessObject extends DataAccessObject {
       pstmt.setString(4, book.getCategory());
       pstmt.executeUpdate();
       pstmt.close();
-      close();
       return true;
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
@@ -139,7 +137,7 @@ public class BookDataAccessObject extends DataAccessObject {
 
   /**
    * Update a book in the database.
-   * 
+   *
    * @param book
    *          - the book to be updated.
    * @return - if the update was successful or not.
@@ -156,7 +154,6 @@ public class BookDataAccessObject extends DataAccessObject {
       pstmt.setString(3, book.getCategory());
       pstmt.executeUpdate();
       pstmt.close();
-      close();
       return true;
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
@@ -166,7 +163,7 @@ public class BookDataAccessObject extends DataAccessObject {
 
   /**
    * Delete a book from the database.
-   * 
+   *
    * @param book
    *          - the book to be deleted.
    * @return - if the book deletion was successful.
@@ -179,7 +176,6 @@ public class BookDataAccessObject extends DataAccessObject {
       pstmt = this.getCon().prepareStatement(insert);
       pstmt.executeUpdate();
       pstmt.close();
-      close();
       return true;
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());

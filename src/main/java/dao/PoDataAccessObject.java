@@ -11,7 +11,7 @@ import models.Pos;
 import models.Users;
 
 /**
- * 
+ *
  * @author Skyler Layne on Feb 8, 2016
  *
  * @version 0.1.0
@@ -25,7 +25,7 @@ public class PoDataAccessObject extends DataAccessObject {
 
   /**
    * Get the Po Bean from the passed result set.
-   * 
+   *
    * @param rs
    *          - the result of the query.
    * @return - a list of the Po Beans that are found from the query.
@@ -50,7 +50,6 @@ public class PoDataAccessObject extends DataAccessObject {
 
       rs.close();
       this.getStmt().close();
-      close();
       return pos;
 
     } catch (SQLException e) {
@@ -62,7 +61,7 @@ public class PoDataAccessObject extends DataAccessObject {
 
   /**
    * Get all the po Beans in the objects.
-   * 
+   *
    * @return - A list of all the po beans.
    */
   public Pos findAll() {
@@ -79,7 +78,7 @@ public class PoDataAccessObject extends DataAccessObject {
 
   /**
    * Get the po beans with the registered id.
-   * 
+   *
    * @param id
    *          - the id to look for.
    * @return - a list of po beans with that id.
@@ -119,7 +118,6 @@ public class PoDataAccessObject extends DataAccessObject {
 
       rs.close();
       this.getStmt().close();
-      close();
       return pos;
 
     } catch (SQLException e) {
@@ -131,7 +129,7 @@ public class PoDataAccessObject extends DataAccessObject {
 
   /**
    * Insert a po into the database.
-   * 
+   *
    * @param po
    *          - the po to be inserted.
    * @return - if the po was inserted or not.
@@ -151,7 +149,6 @@ public class PoDataAccessObject extends DataAccessObject {
       pstmt.setInt(6, po.getAddress().getId());
       pstmt.executeUpdate();
       pstmt.close();
-      close();
       return true;
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
@@ -161,7 +158,7 @@ public class PoDataAccessObject extends DataAccessObject {
 
   /**
    * Update a po into the database.
-   * 
+   *
    * @param po
    *          - the po to be updated.
    * @return - if the po was updated or not.
@@ -180,7 +177,6 @@ public class PoDataAccessObject extends DataAccessObject {
       pstmt.setInt(5, po.getAddress().getId());
       pstmt.executeUpdate();
       pstmt.close();
-      close();
       return true;
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
@@ -190,7 +186,7 @@ public class PoDataAccessObject extends DataAccessObject {
 
   /**
    * Delete a po into the database.
-   * 
+   *
    * @param po
    *          - the po to be deleted.
    * @return - if the po was deleted or not.
@@ -203,7 +199,6 @@ public class PoDataAccessObject extends DataAccessObject {
       pstmt = this.getCon().prepareStatement(insert);
       pstmt.executeUpdate();
       pstmt.close();
-      close();
       return true;
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());

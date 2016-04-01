@@ -8,9 +8,9 @@ import java.sql.Statement;
 /**
  * Data Access Object, this is used to separate out some logic from all subclasses. Should never be
  * instantiated on it's own.
- * 
+ *
  * @author Skyler Layne on Feb 8, 2016
- * 
+ *
  * @version 0.1.0
  *
  */
@@ -79,7 +79,7 @@ public class DataAccessObject {
   }
 
   public Connection getCon() {
-    return this.con;
+    return SingletonConnection.getConnection();
   }
 
   public Statement getStmt() {
@@ -93,31 +93,16 @@ public class DataAccessObject {
   // Get a connection from the pool
   protected void createConnection() {
     try {
-      Class.forName("com.mysql.jdbc.Driver").newInstance();
-
-      this.con = DriverManager.getConnection(
-          "jdbc:mysql://" + this.getHost() + "/" + this.getDb() + "?useSSL=false", this.getUser(),
-          this.getPass());
 
       this.setStmt(this.getCon().createStatement());
 
-    } catch (InstantiationException | IllegalAccessException | ClassNotFoundException
-        | SQLException e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
   private String getDb() {
     return this.db;
-  }
-
-  protected void close() {
-    try {
-      this.getCon().close();
-    } catch (SQLException e) {
-      System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());
-      e.getStackTrace();
-    }
   }
 
 }
