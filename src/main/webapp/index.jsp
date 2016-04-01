@@ -47,8 +47,6 @@
 			</div>
 		</div>
 
-		<script src="${pageContext.request.contextPath}/<%= org.webjars.AssetLocator.getWebJarPath("jquery.min.js") %>"></script>
-		<script src="${pageContext.request.contextPath}/<%= org.webjars.AssetLocator.getWebJarPath("bootstrap.min.js") %>"></script>
-		<script src="js/authentication.js"></script>
+		<jsp:include page="js-includes.jsp" />
 	</body>
 </html>
