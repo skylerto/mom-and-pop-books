@@ -21,15 +21,19 @@ import models.Users;
  */
 @WebServlet(urlPatterns = { "/Login" })
 public class Login extends HttpServlet {
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  /**
-   * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response).
-   */
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-	  MessageDigest md;
-	  String hash =  request.getParameter("userPassword");
+	/**
+	* @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response).
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		MessageDigest md;
+		String hash = request.getParameter("userPassword");
+
+		Writer out = response.getWriter();
+		out.flush();
+
 		try {
 			md = MessageDigest.getInstance("MD5");
 			hash = DatatypeConverter.printHexBinary(md.digest(hash.getBytes()));
@@ -48,9 +52,14 @@ public class Login extends HttpServlet {
 				currentSession.removeAttribute("admin");
 			}
 
-			Writer out = response.getWriter();
-			out.flush();
-			out.write("{ \"RESULT\" : \"" + (result.isEmpty() ? "FAIL" : "PASS") + "\" }");
-		} catch (NoSuchAlgorithmException e) { e.printStackTrace(); }
-  }
+			out.write("{ \"result\" : \"" + (result.isEmpty() ? "fail" : "success") + "\"");
+			if (result.isEmpty()) {
+				out.write(", \"message\" : \"<span><strong>Login Failed!</strong> Username or password incorrect.</span>\"");
+			}
+			out.write(" }");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+			out.write("{ \"result\" : \"fail\", \"message\" : \"<span>Database Failure.</span>\" }");
+		}
+	}
 }

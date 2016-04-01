@@ -1,7 +1,6 @@
 package dao;
 
 import beans.AddressBean;
-import beans.BookBean;
 import beans.UserBean;
 import models.Pos;
 import models.Users;
@@ -150,16 +149,21 @@ public class UserDataAccessObject extends DataAccessObject {
    */
   public boolean insert(UserBean user) {
     this.createConnection();
+    String stmntAddr = "INSERT INTO " + this.getTableName() + " (username, password, admin, addressid) VALUES (?,?,?,?);";
+    String stmntNoAddr = "INSERT INTO " + this.getTableName() + " (username, password, admin) VALUES (?,?,?);";
 
-    try (Connection con = this.getCon();
-		PreparedStatement pstmt = con.prepareStatement("INSERT INTO ? (id, username, password, admin, addressid) VALUES (?,?,?,?,?);")) {
-      pstmt.setString(1, this.getTableName());
-      pstmt.setInt(2, user.getUserId());
-      pstmt.setString(3, user.getUserName());
-      pstmt.setString(4, user.getPassword());
-      pstmt.setBoolean(5, user.getAdmin());
-      pstmt.setInt(6, user.getAddress().getId());
+    try {
+	     Connection con = this.getCon();
+	      PreparedStatement pstmt = con.prepareStatement(user.getAddress() == null ? stmntNoAddr : stmntAddr);
+
+      pstmt.setString(1, user.getUserName());
+      pstmt.setString(2, user.getPassword());
+      pstmt.setBoolean(3, user.getAdmin());
+      if (user.getAddress() != null) {
+        pstmt.setInt(4, user.getAddress().getId());
+      }
       pstmt.executeUpdate();
+
       return true;
     } catch (SQLException e) {
       System.out.println("SQL Exception" + e.getErrorCode() + e.getMessage());

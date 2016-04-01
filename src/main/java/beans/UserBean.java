@@ -50,7 +50,7 @@ public class UserBean {
 
   /**
    * Create a User from the passed value.
-   * 
+   *
    * @param id
    *          - the User's Id.
    * @param userName
@@ -140,7 +140,7 @@ public class UserBean {
 
   /**
    * Update or Insert the record in the database.
-   * 
+   *
    * @return - if the save worked.
    */
   public boolean save() {
@@ -156,7 +156,7 @@ public class UserBean {
 
   /**
    * Delete the rescord from the database.
-   * 
+   *
    * @return - if the delete worked or not.
    */
   public boolean delete() {
