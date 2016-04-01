@@ -7,7 +7,7 @@ import dao.VisitEventDataAccessObject;
 
 /**
  * Bean object representation of VisitEvent.
- * 
+ *
  * @author Skyler Layne on Feb 17, 2016
  *
  */
@@ -27,7 +27,7 @@ public class VisitEventBean {
 
   /**
    * Create a Visit Event.
-   * 
+   *
    * @param day
    *          - the day the visit even occurs on.
    * @param book
@@ -74,25 +74,16 @@ public class VisitEventBean {
 
   /**
    * Insert of Update this record.
-   * 
+   *
    * @return - if the save worked.
    */
   public boolean save() {
-    VisitEventDataAccessObject dao = new VisitEventDataAccessObject();
-    boolean res = false;
-
-    if (dao.findByDay(day).size() > 0) {
-      res = dao.update(this);
-    } else {
-      res = dao.insert(this);
-    }
-
-    return res;
+    return (new VisitEventDataAccessObject()).insert(this);
   }
 
   /**
    * Delete this record.
-   * 
+   *
    * @return - if the delete worked.
    */
   public boolean delete() {
