@@ -1,6 +1,9 @@
+var baseURL = window.location.pathname.substring(0,
+	window.location.pathname.indexOf("/", 1) + 1);
+
 $("#login-btn").click(function() {
 	$.post({
-		url: window.location.pathname + "Login",
+		url: baseURL + "/Login",
 		data: $("#loginForm").serialize(),
 		dataType: "json"
 	}).done(function(data, textStatus, jqXHR) {
@@ -23,7 +26,7 @@ $("#register-btn").click(function() {
 		});
 	} else {
 		$.post({
-			url: window.location.pathname + "Register",
+			url: baseURL + "Register",
 			data: $("#registerForm").serialize(),
 			dataType: "json"
 		}).done(function(data, textStatus, jqXHR) {
