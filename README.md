@@ -9,7 +9,11 @@ The brick-and-mortar company Mom&Pop wants to create an online book store. This,
 
 For the project specification and tools used checkout our [specification](/SPECIFICATION.md).
 
-For advanced contribution, checkout the [Design Documentation](https://github.com/skylerto/mom-and-pop-books/wiki).
+For advanced contribution, checkout the [Design Documentation](submit/report.pdf).
+
+## Usage
+
+For usage checkout our submission [readme!](submit/README.md)
 
 ## Contributing
 
