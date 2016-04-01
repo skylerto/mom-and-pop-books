@@ -3,6 +3,7 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 
 import beans.BookReviewBean;
 import beans.UserBean;
@@ -88,14 +89,17 @@ public class BookReviewDataAccessObject extends DataAccessObject {
   public boolean insert(BookReviewBean bean) {
     this.createConnection();
     PreparedStatement pstmt = null;
-    String insert = "INSERT INTO " + this.getTableName() + " (id, userid, bid, review) VALUES"
-        + "(?,?,?,?)";
+    String insert = "INSERT INTO " + this.getTableName() + " (userid, bid, review) VALUES"
+        + "(?,?,?)";
     try {
       pstmt = this.getCon().prepareStatement(insert);
-      pstmt.setInt(1, bean.getId());
-      pstmt.setInt(2, bean.getUser().getUserId());
-      pstmt.setString(3, bean.getBid());
-      pstmt.setString(4, bean.getReview());
+      if (bean.getUser() != null) {
+        pstmt.setInt(1, bean.getUser().getUserId());
+      } else {
+        pstmt.setNull(1, Types.INTEGER);
+      }
+      pstmt.setString(2, bean.getBid());
+      pstmt.setString(3, bean.getReview());
       pstmt.executeUpdate();
       pstmt.close();
       return true;
