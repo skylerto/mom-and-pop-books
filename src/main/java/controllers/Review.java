@@ -2,8 +2,6 @@ package controllers;
 
 import java.io.IOException;
 import java.io.Writer;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.xml.bind.DatatypeConverter;
 import org.apache.commons.lang.StringEscapeUtils;
 
 import dao.UserDataAccessObject;
@@ -42,7 +39,6 @@ public class Review extends HttpServlet {
     UserBean userId = null;
     HttpSession currentSession = request.getSession();
     String userName = (String)currentSession.getAttribute("user");
-    System.out.println(userName);
     if (currentSession.getAttribute("user") != null) {
       UserDataAccessObject udao = new UserDataAccessObject();
       Users users = udao.findByUsername(userName);

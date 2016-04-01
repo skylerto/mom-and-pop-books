@@ -2,11 +2,12 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 class SingletonConnection {
   private static Connection con = null;
+
+  // Not allowed
+  private SingletonConnection() {}
 
   public static Connection getConnection() {
     try {
