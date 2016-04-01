@@ -56,7 +56,7 @@ public class Index extends HttpServlet {
     if (cart != null) {
       cart = new Cart();
     }
-    cart.setBooks(books);
+//    cart.setBooks(books);
     session.setAttribute("cart", cart);
     request.setAttribute("books", books.getBooks());
 

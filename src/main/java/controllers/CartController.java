@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.io.Writer;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,7 +18,7 @@ import models.Cart;
 /**
  * Servlet implementation class CartController
  */
-@WebServlet(urlPatterns = { "/cart" })
+@WebServlet(urlPatterns = { "/cart", "/cart/remove", "/cart/add" })
 public class CartController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
@@ -41,7 +42,8 @@ public class CartController extends HttpServlet {
     if (request.getServletPath() == null) {
 
     } else if (request.getServletPath().toLowerCase().contains("add")) {
-      String bid = (String) request.getAttribute("bid");
+      String bid = (String) request.getParameter("bid");
+      System.out.println("BOOD BID: " + bid);
       BookDataAccessObject dao = new BookDataAccessObject();
       Books books = dao.findById(bid);
       if (books.size() > 0) {
@@ -66,8 +68,33 @@ public class CartController extends HttpServlet {
    */
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    // TODO Auto-generated method stub
-    doGet(request, response);
+    RequestDispatcher rd = request.getRequestDispatcher("/cart.jsp");
+
+    Cart cart = (Cart) request.getSession().getAttribute("cart");
+
+    String method = (String) request.getParameter("method").trim();
+    String bid = (String) request.getParameter("bid").trim();
+    if (method.equals("add")) {
+      BookDataAccessObject dao = new BookDataAccessObject();
+      Books books = dao.findById(bid);
+      if (books.size() > 0) {
+        BookBean book = books.get(0);
+        cart.add(book);
+      }
+    } else {
+      System.out.println("BOOD BID:" + bid.trim());
+      cart.remove(bid);
+    }
+    request.setAttribute("cart", cart);
+    Writer out = response.getWriter();
+    out.flush();
+
+    out.write("{ \"result\" : \"" + (cart.getBook(bid) != null ? "fail" : "success") + "\"");
+    if (cart.getBook(bid) == null) {
+      out.write(
+          ", \"message\" : \"<span><strong>Remove from cart Failed!</strong> Please try again.</span>\"");
+    }
+    out.write(" }");
   }
 
 }

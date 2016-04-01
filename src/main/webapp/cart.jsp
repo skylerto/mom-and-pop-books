@@ -32,8 +32,8 @@ body {
 			<div class="row">
 				<c:forEach var="item"
 					items="${sessionScope['cart'].get().getBooks()}">
-					<span id="bid" style="visibility: hidden"> ${ item.getBid()}</span>
-					<div class="col-md-4">
+
+					<div class="col-md-4 item">
 						<a href="book/?book=${item.getBid()}"> <c:choose>
 								<c:when test="${item.getCategory() eq 'Science'}">
 									<img class="thumbnail" src="" alt="Science" width="200"
@@ -51,8 +51,8 @@ body {
 							<div class="caption">
 								<h3>${item.getTitle()}</h3>
 							</div>
-						</a>
-						<button type="button" class="remove" id="remove-btn">Remove</button>
+						</a> <span id="bid" style="display: none;" class="bid"> ${ item.getBid()}</span>
+						<button type="button" class="remove-btn" id="remove-btn">Remove</button>
 					</div>
 				</c:forEach>
 			</div>
@@ -68,10 +68,6 @@ body {
 		</div>
 	</div>
 
-	<script
-		src="${pageContext.request.contextPath}/<%= org.webjars.AssetLocator.getWebJarPath("jquery.min.js") %>"></script>
-	<script
-		src="${pageContext.request.contextPath}/<%= org.webjars.AssetLocator.getWebJarPath("bootstrap.min.js") %>"></script>
-	<script src="js/login.js"></script>
+	<jsp:include page="js-includes.jsp" />
 </body>
 </html>

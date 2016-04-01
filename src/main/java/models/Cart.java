@@ -40,6 +40,10 @@ public class Cart {
     }
   }
 
+  public boolean remove(String bid) {
+    return this.books.remove(bid);
+  }
+
   /**
    * Get the items in the cart as a list.
    * 

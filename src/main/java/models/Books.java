@@ -82,14 +82,18 @@ public class Books {
     return this.books.get(index);
   }
 
-  public void remove(String bid) {
+  public boolean remove(String bid) {
     int i = 0;
+    boolean res = false;
     for (BookBean b : this.books) {
-      if (b.getBid().equals(bid)) {
-        this.books.remove(i);
+      if (b.getBid().toLowerCase().equals(bid)) {
+        this.books.remove(books.indexOf(b));
+        System.out.println("REMOVED BOOK: " + b.getBid() + " " + b.getTitle());
+        res = true;
       }
       i++;
     }
+    return res;
   }
 
 }
