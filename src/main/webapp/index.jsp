@@ -27,9 +27,9 @@ body {
 			</h1>
 		</div>
 		<div class="row">
-			<c:if test="${not empty sessionScope['error']}">
+			<c:if test="${not empty sessionScope['confirm']}">
 				<div class="alert alert-success" role="alert">
-					<span class="glyphicon glyphicon-exclamation-sign"
+					<span class="glyphicon glyphicon-exclamation-	sign"
 						aria-hidden="true"></span> <span class="sr-only">Error:</span>
 					${sessionScope['confirm'] }
 				</div>

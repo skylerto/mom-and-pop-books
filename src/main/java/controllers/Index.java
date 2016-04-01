@@ -32,7 +32,7 @@ public class Index extends HttpServlet {
     HttpSession session = request.getSession();
 
     RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
-    Books books;
+    Books books = null;
 
     if (request.getServletPath() == null) {
       books = bdao.findAll();
@@ -47,6 +47,7 @@ public class Index extends HttpServlet {
       session.setAttribute("category", "Engineering");
     } else if (request.getServletPath().toLowerCase().contains("purchase")) {
       session.setAttribute("confirm", "Order has ben processed successfully!");
+      books = bdao.findAll();
     } else {
       books = bdao.findAll();
     }
