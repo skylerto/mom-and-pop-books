@@ -32,6 +32,7 @@ body {
 			<div class="row">
 				<c:forEach var="item"
 					items="${sessionScope['cart'].get().getBooks()}">
+					<span id="bid" style="visibility: hidden"> ${ item.getBid()}</span>
 					<div class="col-md-4">
 						<a href="book/?book=${item.getBid()}"> <c:choose>
 								<c:when test="${item.getCategory() eq 'Science'}">
@@ -51,7 +52,7 @@ body {
 								<h3>${item.getTitle()}</h3>
 							</div>
 						</a>
-						<button type="button" class="remove">Remove</button>
+						<button type="button" class="remove" id="remove-btn">Remove</button>
 					</div>
 				</c:forEach>
 			</div>
