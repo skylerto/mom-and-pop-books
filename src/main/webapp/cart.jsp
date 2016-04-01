@@ -19,34 +19,33 @@ body {
 	<jsp:include page="nav.jsp" />
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-6">
-				<c:choose>
-					<c:when test="${book.getCategory() eq 'Science'}">
-						<img class="thumbnail" src="" alt="Science" width="500"
-							height="500">
-					</c:when>
-					<c:when test="${book.getCategory() eq 'Engineering'}">
-						<img class="thumbnail" src="" alt="Engineering" width="500"
-							height="500">
-					</c:when>
-					<c:when test="${book.getCategory() eq 'Fiction'}">
-						<img class="thumbnail" src="" alt="Fiction" width="500"
-							height="500">
-					</c:when>
-				</c:choose>
-			</div>
-			<div class="col-lg-6">
-				<div class="caption">
-					<h3>${book.getTitle()}</h3>
-					<h4>
-						<fmt:formatNumber type="currency">${book.getPrice()}</fmt:formatNumber>
-					</h4>
-					<p>${book.getDescription()}</p>
-					<!-- TODO: Add button for adding to cart -->
-
-					<!-- TODO: Add review system for logged in users -->
-
-				</div>
+			<h1>Cart</h1>
+		</div>
+		<div class="container">
+			<div class="row">
+				<c:forEach var="item" items="${sessionScope['cart'].get()}">
+					<div class="col-md-12">
+						<a href="book/?book=${item.getBid()}"> <c:choose>
+								<c:when test="${item.getCategory() eq 'Science'}">
+									<img class="thumbnail" src="" alt="Science" width="200"
+										height="200">
+								</c:when>
+								<c:when test="${item.getCategory() eq 'Engineering'}">
+									<img class="thumbnail" src="" alt="Engineering" width="200"
+										height="200">
+								</c:when>
+								<c:when test="${item.getCategory() eq 'Fiction'}">
+									<img class="thumbnail" src="" alt="Fiction" width="200"
+										height="200">
+								</c:when>
+							</c:choose>
+							<div class="caption">
+								<h3>${item.getTitle()}</h3>
+							</div>
+						</a>
+						<button type="button" class="remove">Remove</button>
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
