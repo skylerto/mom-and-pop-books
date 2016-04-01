@@ -82,4 +82,14 @@ public class Books {
     return this.books.get(index);
   }
 
+  public void remove(String bid) {
+    int i = 0;
+    for (BookBean b : this.books) {
+      if (b.getBid().equals(bid)) {
+        this.books.remove(i);
+      }
+      i++;
+    }
+  }
+
 }
