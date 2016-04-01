@@ -86,18 +86,18 @@ body {
 				<form>
 					<fieldset class="form-group">
 						<label for="formGroupExampleInput">Card Holder First Name</label>
-						<input type="text" class="form-control" id="fname"
+						<input type="text" class="form-control" required id="fname"
 							placeholder="Card Holder First Name">
 					</fieldset>
 					<fieldset class="form-group">
 						<label for="formGroupExampleInput">Card Holder Last Name</label> <input
-							type="text" class="form-control" id="lname"
+							type="text" class="form-control" required id="lname"
 							placeholder="Card Holder First Last">
 					</fieldset>
 					<fieldset class="form-group">
-						<label for="formGroupExampleInput">Card Number</label> <input
+						<label for="formGroupExampleInput required">Card Number</label> <input
 							type="text" class="form-control" id="ccnumber"
-							placeholder="Credit Card Number"> <label
+							placeholder="Credit Card Number required"> <label
 							for="formGroupExampleInput">Security Code</label> <input
 							type="text" class="form-control" id="lname"
 							placeholder="Security Code">
@@ -105,7 +105,7 @@ body {
 
 					<fieldset class="form-group">
 						<label for="exampleSelect1">Expiration Month</label> <select
-							class="form-control" id="emonth">
+							required class="form-control" id="emonth">
 							<option>1</option>
 							<option>2</option>
 							<option>3</option>
@@ -119,7 +119,7 @@ body {
 							<option>11</option>
 							<option>12</option>
 						</select> <label for="exampleSelect1">Expiration Yeah</label> <select
-							class="form-control" id="eyear">
+							required class="form-control" id="eyear">
 							<option>16</option>
 							<option>17</option>
 							<option>18</option>
