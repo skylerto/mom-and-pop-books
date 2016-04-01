@@ -5,6 +5,8 @@ decision which we have chosen. This is broken up into the following sections Use
 
 ## User Interface
 
+The user interface was created by using Twitter's Bootstrap as a base, along with jQuery. These two components removed the burden of the "heavy-lifting" from the project. Basic scaffolding and grid layout is predefined by Bootstrap, along with a few very basic styling elements. This allowed the team to focus on making the interface functional.
+
 ## Data Layer
 
 In the _Data Layer_ we explore our Database schema, Java Beans, and Data Access Objects. The importance of this implementation is that it creates a base for our implementation.
