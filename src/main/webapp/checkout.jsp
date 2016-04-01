@@ -81,13 +81,63 @@ body {
 			</div>
 		</div>
 		<div class="container">
+			<div class="row" style="width: 60%;">
+				<h3>Credit Card Information</h3>
+				<form>
+					<fieldset class="form-group">
+						<label for="formGroupExampleInput">Card Holder First Name</label>
+						<input type="text" class="form-control" id="fname"
+							placeholder="Card Holder First Name">
+					</fieldset>
+					<fieldset class="form-group">
+						<label for="formGroupExampleInput">Card Holder Last Name</label> <input
+							type="text" class="form-control" id="lname"
+							placeholder="Card Holder First Last">
+					</fieldset>
+					<fieldset class="form-group">
+						<label for="formGroupExampleInput">Card Number</label> <input
+							type="text" class="form-control" id="ccnumber"
+							placeholder="Credit Card Number"> <label
+							for="formGroupExampleInput">Security Code</label> <input
+							type="text" class="form-control" id="lname"
+							placeholder="Security Code">
+					</fieldset>
+
+					<fieldset class="form-group">
+						<label for="exampleSelect1">Expiration Month</label> <select
+							class="form-control" id="emonth">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+							<option>6</option>
+							<option>7</option>
+							<option>8</option>
+							<option>9</option>
+							<option>10</option>
+							<option>11</option>
+							<option>12</option>
+						</select> <label for="exampleSelect1">Expiration Yeah</label> <select
+							class="form-control" id="eyear">
+							<option>16</option>
+							<option>17</option>
+							<option>18</option>
+							<option>19</option>
+							<option>20</option>
+						</select>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		<div class="container">
 			<div class="row" style="float: right; padding-right: 2em;">
 				<h3>
 					Total Value:
 					<fmt:formatNumber type="currency" currencySymbol="$">${ sessionScope['cart'].getSum()}</fmt:formatNumber>
 				</h3>
 				<h3>
-					<a href="${pageContext.request.contextPath}/checkout">Check Out</a>
+					<a href="${pageContext.request.contextPath}/purchase">Purchase</a>
 				</h3>
 			</div>
 		</div>
