@@ -25,32 +25,19 @@ body {
 			<div class="row">
 				<h2>Cart Items</h2>
 			</div>
-			<div class="row">
+			<ol>
 				<c:forEach var="item"
 					items="${sessionScope['cart'].get().getBooks()}">
-					<div class="col-md-4">
-						<a href="book/?book=${item.getBid()}"> <c:choose>
-								<c:when test="${item.getCategory() eq 'Science'}">
-									<img class="thumbnail" src="" alt="Science" width="200"
-										height="200">
-								</c:when>
-								<c:when test="${item.getCategory() eq 'Engineering'}">
-									<img class="thumbnail" src="" alt="Engineering" width="200"
-										height="200">
-								</c:when>
-								<c:when test="${item.getCategory() eq 'Fiction'}">
-									<img class="thumbnail" src="" alt="Fiction" width="200"
-										height="200">
-								</c:when>
-							</c:choose>
-							<div class="caption">
-								<h3>${item.getTitle()}</h3>
-							</div>
-						</a>
-						<button type="button" class="remove">Remove</button>
-					</div>
+						<li>
+							<a href="book/?book=${item.getBid()}">
+								<div class="caption">
+									<h3>${item.getTitle()}</h3>
+								</div>
+							</a>
+							<button type="button" class="remove">Remove</button>
+						</li>
 				</c:forEach>
-			</div>
+			</ol>
 		</div>
 
 		<div class="container">
@@ -147,6 +134,6 @@ body {
 		src="${pageContext.request.contextPath}/<%= org.webjars.AssetLocator.getWebJarPath("jquery.min.js") %>"></script>
 	<script
 		src="${pageContext.request.contextPath}/<%= org.webjars.AssetLocator.getWebJarPath("bootstrap.min.js") %>"></script>
-	<script src="js/login.js"></script>
+	<script src="js/authentication.js"></script>
 </body>
 </html>
