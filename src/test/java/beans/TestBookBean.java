@@ -23,7 +23,7 @@ public class TestBookBean extends TestCase {
     String title = "";
     int price = 0;
     String category = "";
-    b = new BookBean(bid, title, price, category, null);
+    b = new BookBean(bid, title, price, category, null, null);
 
     b = null;
     assertNull(b);
@@ -35,7 +35,7 @@ public class TestBookBean extends TestCase {
     String title = "";
     int price = 0;
     String category = "";
-    b = new BookBean(bid, title, price, category, null);
+    b = new BookBean(bid, title, price, category, null, null);
 
     assertEquals("", b.getBid());
   }
@@ -45,7 +45,7 @@ public class TestBookBean extends TestCase {
     String title = "";
     int price = 0;
     String category = "";
-    b = new BookBean(bid, title, price, category, null);
+    b = new BookBean(bid, title, price, category, null, null);
     b.setBid("BID2");
     assertEquals("BID2", b.getBid());
   }
@@ -55,7 +55,7 @@ public class TestBookBean extends TestCase {
     String title = "";
     int price = 0;
     String category = "";
-    b = new BookBean(bid, title, price, category, null);
+    b = new BookBean(bid, title, price, category, null, null);
 
     assertEquals("", b.getTitle());
   }
@@ -65,7 +65,7 @@ public class TestBookBean extends TestCase {
     String title = "";
     int price = 0;
     String category = "";
-    b = new BookBean(bid, title, price, category, null);
+    b = new BookBean(bid, title, price, category, null, null);
     b.setTitle("A title");
     assertEquals("A title", b.getTitle());
   }
@@ -75,7 +75,7 @@ public class TestBookBean extends TestCase {
     String title = "";
     double price = 0;
     String category = "";
-    b = new BookBean(bid, title, price, category, null);
+    b = new BookBean(bid, title, price, category, null, null);
 
     assertEquals(0.0, b.getPrice());
   }
@@ -85,7 +85,7 @@ public class TestBookBean extends TestCase {
     String title = "";
     int price = 0;
     String category = "";
-    b = new BookBean(bid, title, price, category, null);
+    b = new BookBean(bid, title, price, category, null, null);
     b.setPrice(36.50);
     assertEquals(36.50, b.getPrice());
   }
@@ -95,7 +95,7 @@ public class TestBookBean extends TestCase {
     String title = "";
     int price = 0;
     String category = "";
-    b = new BookBean(bid, title, price, category, null);
+    b = new BookBean(bid, title, price, category, null, null);
 
     assertEquals("", b.getCategory());
   }
@@ -105,7 +105,7 @@ public class TestBookBean extends TestCase {
     String title = "";
     int price = 0;
     String category = "";
-    b = new BookBean(bid, title, price, category, null);
+    b = new BookBean(bid, title, price, category, null, null);
     b.setCategory("A Category");
     assertEquals("A Category", b.getCategory());
   }
@@ -115,7 +115,7 @@ public class TestBookBean extends TestCase {
     String title = "";
     double price = 0.0;
     String category = "";
-    b = new BookBean(bid, title, price, category, null);
+    b = new BookBean(bid, title, price, category, null, null);
 
     String res = "Book: [" + "" + ", " + "" + ", $" + 0.0 + ", " + "" + "]";
     assertEquals(res, b.toString());
