@@ -9,6 +9,26 @@ The above use diagram was extracted from the requirement descriptions provided. 
 
 ## UML Class Diagram
 
-
 ### Full UML Class Diagram
 ![UML Class Diagram](resources/uml-class.png)
+
+### Database Scheme
+
+![Database Schema](resources/database-schema.png)
+
+### Java Beans
+
+![JavaBean UML Diagrams](resources/class-diagrams/Beans.png)
+
+### Data Access Objects
+
+![Data Access Object UML Diagrams](resources/class-diagrams/DataAccessObjects.png)
+
+### Models
+
+![Models UML Diagrams](resources/class-diagrams/Models.png)  
+
+### Controllers
+
+![Data Access Object UML Diagrams](resources/class-diagrams/Controllers.png)
+
