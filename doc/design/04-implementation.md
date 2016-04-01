@@ -1,7 +1,7 @@
 # Implementation
 
 In the implementation portion of the design document, we discuss the design
-decision which we have chosen. This is broken up into the following sections User Interface, Data Layer (coresponds to the dao and beans packages), Models (models package), Controllers (controllers), and Analytics (analytics).
+decision which we have chosen. This is broken up into the following sections User Interface, Data Layer (corresponds to the Data Access Object and beans packages), Models (models package), Controllers (controllers), and Analytics (analytics).
 
 ## User Interface
 
@@ -11,8 +11,7 @@ In the _Data Layer_ we explore our Database schema, Java Beans, and Data Access 
 
 ### Database Schema
 
-We have chosen to use a _MySQL_ database. This decision was made in part because it provides more
-functionality than _Derby_ but, mostly due to developer familiarity.
+We have chosen to use a _MySQL_ database. This decision was made in part because it provides morefunctionality than _Derby_ but, mostly due to developer familiarity.
 
 Our database consists of 6 tables. These tables include `book`, `address`, `po`,
 `poitem`, `visitevent`, and `user`. Each of these database tables has a corresponding
@@ -23,7 +22,7 @@ Objects.
 
 ### Java Beans
 
-Each of our database tables has a corresponding Java class called `Bean`. The bean pattern maps rows within a database table to java objects. In our implementation we use beans to represent a singular database row. For this reason, we need to create a bean class for each of our database tables. In practise, each table row from a database query instantiates a new instance of the corresponding bean class (see Data Access Objects section).  
+Each of our database tables has a corresponding Java class called `Bean`. The bean pattern maps rows within a database table to Java objects. In our implementation we use beans to represent a singular database row. For this reason, we need to create a bean class for each of our database tables. In practice, each table row from a database query instantiates a new instance of the corresponding bean class (see Data Access Objects section).  
 
 As the beans keep track of the singular class, we treat them as a specific type of model. If we need to preform any operations on a singular model instance, here is where the logic lay. E.g. if we would like to get a user's full name, we add the method `getFullName()` to the UserBean which concatenates the user's first name and last name. This is to avoid clouding our database with redundant data.
 
@@ -42,16 +41,16 @@ The Data access objects directly interface with `JDBC` for generic CRUD (create,
 The model package contains classes which are essentially wrappers for `ArrayList<G>`, where the `G` argument is a Java bean representation of that particular class. This pluralized pattern was chosen due to the fact that each singular class already has an associated bean. E.g. The plural `Addresses` class has a singular `AddressBean` class. Each of these plurals can be seen in the Figure below (their singular, bean counter parts have already been discussed in the Java Beans section).  
 
 ![Models UML Diagrams](resources/class-diagrams/Models.png)  
-  
+
 In most cases, these models are fairly straight forward, as they are extensions of the singular `Bean`s. However, there are 3 cases which are not, these include `ObjectMarshaller`, `Store`, and `Cart`. We will explain these in more detail.
 
 ### Store
 
-The `Store` class holds all of the information of the store. It holds reference to the stores *users*, *books*, *addresses*, *purchase orders*, *items*, and *visit events*. The store is global, it is created in the `init()` method and stored in the session. Most controller operations are forwarded through the `Store` class, with the exception of user authentication 
+The `Store` class holds all of the information of the store. It holds reference to the stores *users*, *books*, *addresses*, *purchase orders*, *items*, and *visit events*. The store is global, it is created in the `init()` method and stored in the session. Most controller operations are forwarded through the `Store` class, with the exception of user authentication
 
 ### Object Marshaller
 
-The `ObjectMarshaller` facilitates converting a correctly annotated generic class into XML (marshalling) and vica versa (unmarshalling). In this case, the annotated classes are both the models, and the beans.
+The `ObjectMarshaller` facilitates converting a correctly annotated generic class into XML (marshalling) and vice versa (unmarshalling). In this case, the annotated classes are both the models, and the beans.
 
 ### Cart
 
@@ -67,4 +66,4 @@ Each of these controllers has a very specific role. The `Authenticator` controll
 
 ## Analytics
 
-We have chosen to implement the analytics as a separate component. The analytics page is essentially a Java Listener. 
+We have chosen to implement the analytics as a separate component. The analytics page is essentially a Java Listener.
