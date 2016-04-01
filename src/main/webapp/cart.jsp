@@ -22,11 +22,11 @@ body {
 			<h1>Cart</h1>
 		</div>
 		<div class="container">
-			<c:if test="${empty sessionScope['user']}">
+			<c:if test="${not empty sessionScope['error']}">
 				<div class="alert alert-danger" role="alert">
 					<span class="glyphicon glyphicon-exclamation-sign"
 						aria-hidden="true"></span> <span class="sr-only">Error:</span>
-					Please register/sign in before checking out.
+					${sessionScope['error'] }
 				</div>
 			</c:if>
 			<div class="row">
