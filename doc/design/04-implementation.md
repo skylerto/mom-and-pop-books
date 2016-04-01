@@ -20,9 +20,6 @@ Our database consists of 6 tables. These tables include `book`, `address`, `po`,
 Data Access Object and Java Bean to convert these flat database rows into Java
 Objects.
 
-![Database Schema](resources/database-schema.png)
-
-\newpage
 
 ### Java Beans
 
@@ -32,25 +29,15 @@ As the beans keep track of the singular class, we treat them as a specific type 
 
 Within these beans we use the XML annotation library to allow XML to be converted to, and from beans (see figure below). The XML annotation library aids in marshalling/unmarshalling data to/from XML files (see Object Marshaller in the Models section).  
 
-![JavaBean UML Diagrams](resources/class-diagrams/Beans.png)
-
-\newpage
-
 ### Data Access Objects
 
 The Data access objects directly interface with `JDBC` for generic CRUD (create, read, update, destroy) operations. The specific implementation chosen includes many `DataAccessObject` classes which inherit from a `DataAccessObject` class. Within the parent `DataAccessObject` class contains common information such as database and database connection information as well as generic queries. Each of the children of the `DataAccessObject` class provide implementation of various ways to select information from the database e.g. `findById(String id)`, `findByUserName(String username)`. This is achieved by querying, and passing the received `ResultSet` to a private method `get(ResultSet queryResults)` which creates an instance of the corresponding model class.
 
-![Data Access Object UML Diagrams](resources/class-diagrams/DataAccessObjects.png)
-
-\newpage
 
 ## Models
 
 The model package contains classes which are essentially wrappers for `ArrayList<G>`, where the `G` argument is a Java bean representation of that particular class. This pluralized pattern was chosen due to the fact that each singular class already has an associated bean. E.g. The plural `Addresses` class has a singular `AddressBean` class. Each of these plurals can be seen in the Figure below (their singular, bean counter parts have already been discussed in the Java Beans section).  
 
-![Models UML Diagrams](resources/class-diagrams/Models.png)  
-
-\newpage
 
 In most cases, these models are fairly straight forward, as they are extensions of the singular `Bean`s. However, there are 3 cases which are not, these include `ObjectMarshaller`, `Store`, and `Cart`. We will explain these in more detail.
 
@@ -70,9 +57,6 @@ The Cart Model represents a subset of the items in the store; similar to a shopp
 
 Another part of the MVC stack is the controller. The controllers package facilitates the communication between the user interface and model layer. The classes in the controllers can be seen in the figure below. The controllers package also includes our filters and listeners.
 
-![Data Access Object UML Diagrams](resources/class-diagrams/Controllers.png)
-
-\newpage
 
 Each of these controllers has a very specific role. The `Authenticator` controller is a filter which filters certain routes to determine if a user is properly authenticated, is an administrator, if the route permits, and is stored in the session. The `Admin` controller facilitates the routing of the admin panel. The checkout controller of the checkout, the `Index` of the main, `Soap` of the SOAP requests.
 
