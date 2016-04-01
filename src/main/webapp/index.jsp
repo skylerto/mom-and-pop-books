@@ -26,6 +26,16 @@ body {
 				</c:if>
 			</h1>
 		</div>
+		<div class="row">
+			<c:if test="${not empty sessionScope['error']}">
+				<div class="alert alert-success" role="alert">
+					<span class="glyphicon glyphicon-exclamation-sign"
+						aria-hidden="true"></span> <span class="sr-only">Error:</span>
+					${sessionScope['confirm'] }
+				</div>
+			</c:if>
+		</div>
+
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
 			do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
 			enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi

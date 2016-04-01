@@ -45,6 +45,8 @@ public class Index extends HttpServlet {
     } else if (request.getServletPath().toLowerCase().contains("engineering")) {
       books = bdao.findByCategory("Engineering");
       session.setAttribute("category", "Engineering");
+    } else if (request.getServletPath().toLowerCase().contains("purchase")) {
+      session.setAttribute("confirm", "Order has ben processed successfully!");
     } else {
       books = bdao.findAll();
     }
