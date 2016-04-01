@@ -59,7 +59,7 @@
 						</c:choose>
 						<div class="panel-body">
 							<textarea name="review" class="form-control" rows="5"></textarea>
-							<input id="review-btn" type="submit" class="btn btn-success">
+							<button id="review-btn" type="button" class="btn btn-success">Submit</button>
 						</div>
 					</div>
 				</form>
@@ -82,8 +82,6 @@
 			</div>
 		</div>
 
-		<script src="${pageContext.request.contextPath}/<%= org.webjars.AssetLocator.getWebJarPath("jquery.min.js") %>"></script>
-		<script src="${pageContext.request.contextPath}/<%= org.webjars.AssetLocator.getWebJarPath("bootstrap.min.js") %>"></script>
-		<script src="js/login.js"></script>
+		<jsp:include page="js-includes.jsp" />
 	</body>
 </html>
