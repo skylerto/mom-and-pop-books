@@ -29,11 +29,11 @@ body {
 					${sessionScope['error'] }
 				</div>
 			</c:if>
-			<div class="row">
+			<ol>
 				<c:forEach var="item"
 					items="${sessionScope['cart'].get().getBooks()}">
-
-					<div class="col-md-4 item">
+					<span id="bid" style="visibility: hidden"> ${ item.getBid()}</span>
+					<div class="col-md-4">
 						<a href="book/?book=${item.getBid()}"> <c:choose>
 								<c:when test="${item.getCategory() eq 'Science'}">
 									<img class="thumbnail" src="" alt="Science" width="200"
@@ -55,7 +55,7 @@ body {
 						<button type="button" class="remove-btn" id="remove-btn">Remove</button>
 					</div>
 				</c:forEach>
-			</div>
+			</ol>
 			<div class="row" style="float: right; padding-right: 2em;">
 				<h3>
 					Total Value:
