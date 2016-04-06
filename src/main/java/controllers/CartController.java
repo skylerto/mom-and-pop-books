@@ -39,7 +39,7 @@ public class CartController extends HttpServlet {
 
     Cart cart = (Cart) request.getSession().getAttribute("cart");
 
-    request.setAttribute("cart", cart);
+    request.getSession().setAttribute("cart", cart);
 
     rd.forward(request, response);
   }
@@ -62,11 +62,13 @@ public class CartController extends HttpServlet {
         BookBean book = books.get(0);
         cart.add(book);
       }
-    } else {
+    } else if(method.equals("remove")){
+      BookDataAccessObject dao = new BookDataAccessObject();
+      Books books = dao.findById(bid);
       System.out.println("BOOD BID:" + bid.trim());
       cart.remove(bid);
     }
-    request.setAttribute("cart", cart);
+    request.getSession().setAttribute("cart", cart);
     Writer out = response.getWriter();
     out.flush();
 

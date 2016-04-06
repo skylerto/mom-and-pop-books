@@ -23,7 +23,9 @@ public class StartListener implements HttpSessionListener {
 
 	@Override
 	public void sessionCreated(HttpSessionEvent arg0) {
-		arg0.getSession().setAttribute("cart", new Cart());
+    if(arg0.getSession().getAttribute("cart") == null){
+		  arg0.getSession().setAttribute("cart", new Cart());
+    }
 	}
 
 	@Override

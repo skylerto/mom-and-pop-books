@@ -52,10 +52,10 @@ public class Index extends HttpServlet {
     } else {
       books = bdao.findAll();
     }
-    Cart cart = (Cart) session.getAttribute("cart");
-    if (cart != null) {
-      cart = new Cart();
-    }
+    //Cart cart = (Cart) session.getAttribute("cart");
+    //if (cart != null) {
+      //cart = new Cart();
+   // }
 //    cart.setBooks(books);
     session.setAttribute("cart", cart);
     request.setAttribute("books", books.getBooks());
@@ -76,10 +76,10 @@ public class Index extends HttpServlet {
     String id = request.getParameter("bookid");
     BookDataAccessObject dao = new BookDataAccessObject();
     Books books = dao.findById(id);
-    if (books.size() > 0) {
-      BookBean book = books.get(0);
-      cart.add(book);
-    }
+//    if (books.size() > 0) {
+  //    BookBean book = books.get(0);
+    //  cart.add(book);
+   // }
     currentSession.setAttribute("cart", cart);
     doGet(request, response);
   }
